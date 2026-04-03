@@ -17,6 +17,7 @@ export default function Navigation() {
     { href: '/manifesto', label: messages.nav.links.manifesto },
     { href: '/philosophy', label: messages.nav.links.philosophy },
     { href: '/research', label: messages.nav.links.research },
+    { href: '/insights', label: locale === 'es' ? 'Ideas' : 'Insights' },
     { href: '/about', label: messages.nav.links.about },
   ];
 

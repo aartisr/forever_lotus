@@ -1,16 +1,21 @@
 import type { MetadataRoute } from 'next';
 import { buildPageUrl } from '@/lib/seo';
+import { insightSlugs } from '@/content/insights';
 
-const routes = ['/', '/about', '/manifesto', '/philosophy', '/research'] as const;
+const coreRoutes = ['/', '/about', '/manifesto', '/philosophy', '/research', '/insights'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return routes.map((route) => ({
+  const insightRoutes = insightSlugs.map((slug) => `/insights/${slug}`);
+
+  const allRoutes = [...coreRoutes, ...insightRoutes];
+
+  return allRoutes.map((route) => ({
     url: buildPageUrl(route, 'en'),
     lastModified: now,
-    changeFrequency: route === '/' ? 'weekly' : 'monthly',
-    priority: route === '/' ? 1 : 0.8,
+    changeFrequency: route === '/' || route === '/insights' ? 'weekly' : 'monthly',
+    priority: route === '/' ? 1 : route.startsWith('/insights/') ? 0.76 : 0.84,
     alternates: {
       languages: {
         en: buildPageUrl(route, 'en'),
