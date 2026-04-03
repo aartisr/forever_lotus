@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
+import { resolveLocale, withLocale } from '@/i18n';
 
 export const metadata: Metadata = {
   title: 'Research',
@@ -162,7 +163,15 @@ const categories = [
   },
 ];
 
-export default function ResearchPage() {
+type PageProps = {
+  searchParams?: {
+    lang?: string | string[];
+  };
+};
+
+export default function ResearchPage({ searchParams }: PageProps) {
+  const locale = resolveLocale(searchParams?.lang);
+
   return (
     <>
       {/* Page hero */}
@@ -284,10 +293,10 @@ export default function ResearchPage() {
               See how this scholarship grounds the full 15-section manifesto.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/manifesto" className="btn-primary">
+              <Link href={withLocale('/manifesto', locale)} className="btn-primary">
                 Read the Manifesto →
               </Link>
-              <Link href="/philosophy" className="btn-ghost">
+              <Link href={withLocale('/philosophy', locale)} className="btn-ghost">
                 Eastern Philosophy
               </Link>
             </div>

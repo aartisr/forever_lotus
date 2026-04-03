@@ -5,6 +5,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
@@ -32,6 +33,11 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: rgba(201, 168, 76, 0.55);
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
@@ -127,7 +133,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.875rem 2rem;
+    padding: 0.875rem 1.5rem;
     background: linear-gradient(135deg, #c9a84c, #a8841e);
     color: #07080f;
     font-weight: 700;
@@ -150,7 +156,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.875rem 2rem;
+    padding: 0.875rem 1.5rem;
     background: transparent;
     color: #f0ece4;
     font-weight: 600;
@@ -180,6 +186,35 @@
 @keyframes textShimmer {
   0% { background-position: 0% center; }
   100% { background-position: 200% center; }
+}
+
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Starfield background */

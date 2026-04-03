@@ -1,90 +1,14 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
-
-// ─── Data ────────────────────────────────────────────────────────────────────
-
-const pillars = [
-  {
-    icon: '🌿',
-    title: 'Earth Consciousness',
-    summary:
-      'Gratitude made practical. Stewardship is not an optional virtue — it is the minimum expression of respect for the conditions that sustain all life.',
-    color: 'teal',
-  },
-  {
-    icon: '🤲',
-    title: 'Kindness Without Expectation',
-    summary:
-      'True compassion is not transactional. Giving is not moral currency — it is alignment with life itself.',
-    color: 'pink',
-  },
-  {
-    icon: '📖',
-    title: 'Education as Liberation',
-    summary:
-      'Education is humanity\'s sacred inheritance. Knowledge must produce agency, not credential theater.',
-    color: 'gold',
-  },
-  {
-    icon: '🕊️',
-    title: 'Peace and Inner Harmony',
-    summary:
-      'Durable social peace begins in the human nervous system — in restraint, clarity, and responsibility.',
-    color: 'violet',
-  },
-  {
-    icon: '🤝',
-    title: 'Humanitarian Dignity',
-    summary:
-      'Aid must restore dignity, not manufacture dependency. Assistance without agency becomes erosion.',
-    color: 'teal',
-  },
-  {
-    icon: '✨',
-    title: 'Conscious Creation',
-    summary:
-      'Every system, institution, and decision is an act of creation — bending the future toward harmony or fracture.',
-    color: 'gold',
-  },
-];
-
-const traditions = [
-  {
-    tradition: 'Hindu',
-    text: 'Brahma emerges from the lotus — creation as responsibility, not conquest.',
-    cite: 'Bhagavata Purana',
-  },
-  {
-    tradition: 'Buddhist',
-    text: 'The Lotus Sutra: purity of spirit untainted by the murky waters of ignorance.',
-    cite: 'Saddharma Puṇḍarīka Sūtra',
-  },
-  {
-    tradition: 'Egyptian',
-    text: 'The lotus represents the first sun—creation rising from the primordial waters.',
-    cite: 'Book of the Dead',
-  },
-  {
-    tradition: 'Universal',
-    text: 'Rooted in darkness, nourished by difficulty, rising toward light, remaining unstained.',
-    cite: 'The Lotus Principle',
-  },
-];
-
-const stats = [
-  { value: '25+', label: 'Peer-reviewed sources' },
-  { value: '4,000', label: 'Years of Eastern wisdom' },
-  { value: '6', label: 'Civilizational pillars' },
-  { value: '3', label: 'Continents of scholarship' },
-];
+import { getMessages, resolveLocale, withLocale } from '@/i18n';
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 
-function HeroSection() {
+function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -141,7 +65,7 @@ function HeroSection() {
           className="eyebrow mb-6 animate-fade-up"
           style={{ animationDelay: '200ms', animationFillMode: 'both' }}
         >
-          ❋ &nbsp; Forever Lotus &nbsp; ❋
+          ❋ &nbsp; {home.hero.eyebrow} &nbsp; ❋
         </p>
 
         <h1
@@ -153,28 +77,27 @@ function HeroSection() {
             animationFillMode: 'both',
           }}
         >
-          A Civilizational Call to{' '}
-          <span className="text-gold-shimmer">Conscious Creation</span>
+          {home.hero.titlePrefix}{' '}
+          <span className="text-gold-shimmer">{home.hero.titleHighlight}</span>
         </h1>
 
         <p
           className="text-lotus-muted text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-up"
           style={{ animationDelay: '540ms', animationFillMode: 'both' }}
         >
-          Humanity can create without domination. Progress can be kind. This is
-          a practical moral architecture for an age of immense power.
+          {home.hero.description}
         </p>
 
         <div
           className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up"
           style={{ animationDelay: '700ms', animationFillMode: 'both' }}
         >
-          <Link href="/manifesto" className="btn-primary text-base">
-            Read the Manifesto
+          <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base">
+            {home.hero.ctaPrimary}
             <span aria-hidden="true">→</span>
           </Link>
-          <Link href="/philosophy" className="btn-ghost text-base">
-            Explore the Philosophy
+          <Link href={withLocale('/philosophy', locale)} className="btn-ghost text-base">
+            {home.hero.ctaSecondary}
           </Link>
         </div>
       </div>
@@ -186,7 +109,7 @@ function HeroSection() {
         aria-hidden="true"
       >
         <span className="text-lotus-muted-2 text-xs tracking-widest uppercase">
-          Scroll
+          {home.hero.scroll}
         </span>
         <div className="w-px h-10 bg-gradient-to-b from-lotus-gold/40 to-transparent animate-float" />
       </div>
@@ -196,46 +119,26 @@ function HeroSection() {
 
 // ─── Lotus Principle ─────────────────────────────────────────────────────────
 
-function LotusPrinciple() {
+function LotusPrinciple({ home }: { home: ReturnType<typeof getMessages>['home'] }) {
   return (
     <section className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="principle-heading">
       <div className="max-w-5xl mx-auto text-center">
         <ScrollReveal>
-          <p className="eyebrow mb-4">The Operating Principle</p>
+          <p className="eyebrow mb-4">{home.principle.eyebrow}</p>
           <h2
             id="principle-heading"
             className="font-serif font-bold mb-5"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
           >
-            The Lotus as Method
+            {home.principle.title}
           </h2>
           <p className="text-lotus-muted max-w-2xl mx-auto text-lg leading-relaxed mb-16">
-            Across 4,000 years of civilizational wisdom, the lotus does not
-            escape difficulty — it transforms through it. This is the principle.
+            {home.principle.description}
           </p>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
-          {[
-            {
-              symbol: '◎',
-              word: 'Rooted',
-              desc: 'Born from darkness and challenge. Strength comes from depth, not escape.',
-              color: '#0f9688',
-            },
-            {
-              symbol: '↑',
-              word: 'Rising',
-              desc: 'Ascending toward light without abandoning the origin of growth.',
-              color: '#c9a84c',
-            },
-            {
-              symbol: '✦',
-              word: 'Untainted',
-              desc: 'Pure despite conditions. Creation that refuses to be stained by its context.',
-              color: '#e887a6',
-            },
-          ].map(({ symbol, word, desc, color }) => (
+          {home.principle.cards.map(({ symbol, word, desc, color }) => (
             <ScrollReveal key={word} className="h-full">
               <div className="card-glass rounded-2xl p-8 h-full group hover:border-lotus-border transition-all duration-500 hover:shadow-card-hover">
                 <div
@@ -262,7 +165,7 @@ function LotusPrinciple() {
 
 // ─── Quote Section ────────────────────────────────────────────────────────────
 
-function QuoteSection() {
+function QuoteSection({ home }: { home: ReturnType<typeof getMessages>['home'] }) {
   return (
     <section className="relative py-28 px-5 sm:px-8 overflow-hidden bg-lotus-bg-2">
       <div
@@ -281,14 +184,12 @@ function QuoteSection() {
               className="font-serif italic leading-tight mb-8 text-lotus-cream/90"
               style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)' }}
             >
-              &ldquo;Creation is not domination — it is responsibility. Every
-              system we design bends the future toward harmony or fracture.
-              Neutrality is an illusion.&rdquo;
+              &ldquo;{home.quote.text}&rdquo;
             </p>
             <footer className="flex items-center justify-center gap-3">
               <div className="h-px w-12 bg-lotus-gold/40" />
               <cite className="not-italic text-lotus-gold text-sm font-medium tracking-wider uppercase">
-                Forever Lotus Manifesto
+                {home.quote.cite}
               </cite>
               <div className="h-px w-12 bg-lotus-gold/40" />
             </footer>
@@ -315,27 +216,26 @@ const pillarIconBg: Record<string, string> = {
   violet: 'bg-violet-500/10 text-violet-400',
 };
 
-function PillarsSection() {
+function PillarsSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
     <section className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="pillars-heading">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16">
-          <p className="eyebrow mb-4">Core Framework</p>
+          <p className="eyebrow mb-4">{home.pillars.eyebrow}</p>
           <h2
             id="pillars-heading"
             className="font-serif font-bold"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
           >
-            Six Pillars of Conscious Creation
+            {home.pillars.title}
           </h2>
           <p className="text-lotus-muted max-w-xl mx-auto mt-4 leading-relaxed">
-            A coherent moral architecture — not abstract, not bureaucratic, but
-            deeply operational.
+            {home.pillars.description}
           </p>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
-          {pillars.map(({ icon, title, summary, color }) => (
+          {home.pillars.items.map(({ icon, title, summary, color }) => (
             <ScrollReveal key={title} className="h-full">
               <div
                 className={`card-glass rounded-2xl p-7 h-full border border-lotus-border-soft transition-all duration-500 group cursor-default ${pillarBorderColors[color]}`}
@@ -356,8 +256,8 @@ function PillarsSection() {
 
         <ScrollReveal>
           <div className="mt-12 text-center">
-            <Link href="/manifesto" className="btn-ghost">
-              Explore all pillars in the Manifesto →
+            <Link href={withLocale('/manifesto', locale)} className="btn-ghost">
+              {home.pillars.cta} →
             </Link>
           </div>
         </ScrollReveal>
@@ -368,12 +268,12 @@ function PillarsSection() {
 
 // ─── Statistics ───────────────────────────────────────────────────────────────
 
-function StatsSection() {
+function StatsSection({ home }: { home: ReturnType<typeof getMessages>['home'] }) {
   return (
     <section className="py-20 px-5 sm:px-8 bg-lotus-bg-2 border-y border-lotus-border-soft">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 stagger-children">
-          {stats.map(({ value, label }) => (
+          {home.stats.map(({ value, label }) => (
             <ScrollReveal key={label} className="text-center">
               <p
                 className="font-serif font-black text-gold-shimmer mb-2"
@@ -392,27 +292,26 @@ function StatsSection() {
 
 // ─── Traditions Section ───────────────────────────────────────────────────────
 
-function TraditionsSection() {
+function TraditionsSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
     <section className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="traditions-heading">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16">
-          <p className="eyebrow mb-4">Universal Wisdom</p>
+          <p className="eyebrow mb-4">{home.traditions.eyebrow}</p>
           <h2
             id="traditions-heading"
             className="font-serif font-bold"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
           >
-            The Lotus Across Civilization
+            {home.traditions.title}
           </h2>
           <p className="text-lotus-muted max-w-xl mx-auto mt-4 leading-relaxed">
-            One symbol. Four thousand years. Every major spiritual tradition
-            converges on the same principle.
+            {home.traditions.description}
           </p>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 stagger-children">
-          {traditions.map(({ tradition, text, cite }) => (
+          {home.traditions.items.map(({ tradition, text, cite }) => (
             <ScrollReveal key={tradition} className="h-full">
               <div className="card-glass-gold rounded-2xl p-7 h-full group hover:shadow-gold transition-all duration-500">
                 <p className="eyebrow mb-3 text-lotus-gold/60">{tradition}</p>
@@ -427,8 +326,8 @@ function TraditionsSection() {
 
         <ScrollReveal>
           <div className="mt-10 text-center">
-            <Link href="/philosophy" className="btn-ghost">
-              Dive into Eastern Philosophy →
+            <Link href={withLocale('/philosophy', locale)} className="btn-ghost">
+              {home.traditions.cta} →
             </Link>
           </div>
         </ScrollReveal>
@@ -439,37 +338,26 @@ function TraditionsSection() {
 
 // ─── Research Section ─────────────────────────────────────────────────────────
 
-function ResearchSection() {
-  const institutions = [
-    'Stanford CCARE',
-    'Harvard HFH',
-    'Oxford Wellbeing Research Centre',
-    'Kyoto University',
-    'National University of Singapore',
-    'Tsinghua University',
-  ];
-
+function ResearchSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
     <section className="py-28 px-5 sm:px-8 bg-lotus-bg-2" aria-labelledby="research-heading">
       <div className="max-w-5xl mx-auto text-center">
         <ScrollReveal>
-          <p className="eyebrow mb-4">Evidence Base</p>
+          <p className="eyebrow mb-4">{home.research.eyebrow}</p>
           <h2
             id="research-heading"
             className="font-serif font-bold mb-5"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
           >
-            Grounded in Scholarship
+            {home.research.title}
           </h2>
           <p className="text-lotus-muted max-w-2xl mx-auto text-lg leading-relaxed mb-12">
-            Forever Lotus is not ideology. It is built on 25+ peer-reviewed
-            sources, canonical Eastern texts, and leading research institutions
-            across three continents.
+            {home.research.description}
           </p>
         </ScrollReveal>
 
         <div className="flex flex-wrap justify-center gap-3 mb-14 stagger-children">
-          {institutions.map((inst) => (
+          {home.research.institutions.map((inst) => (
             <ScrollReveal key={inst}>
               <span className="card-glass-gold inline-block px-5 py-2.5 rounded-full text-sm text-lotus-cream/80 font-medium">
                 {inst}
@@ -482,10 +370,10 @@ function ResearchSection() {
           <div className="card-glass rounded-2xl p-8 max-w-2xl mx-auto border border-lotus-border-soft">
             <LotusIcon size={36} variant="section" className="mx-auto mb-5 opacity-70" />
             <p className="font-serif italic text-lotus-cream/80 text-xl leading-relaxed mb-5">
-              &ldquo;Kindness without transaction is supported by prosocial and flourishing research from Stanford, Harvard, and the World Happiness Report.&rdquo;
+              &ldquo;{home.research.quote}&rdquo;
             </p>
-            <Link href="/research" className="btn-primary text-sm !py-2.5">
-              Explore the Research Dossier →
+            <Link href={withLocale('/research', locale)} className="btn-primary text-sm !py-2.5">
+              {home.research.cta} →
             </Link>
           </div>
         </ScrollReveal>
@@ -496,7 +384,7 @@ function ResearchSection() {
 
 // ─── Vow Section ─────────────────────────────────────────────────────────────
 
-function VowSection() {
+function VowSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
     <section className="relative py-32 px-5 sm:px-8 overflow-hidden bg-lotus-bg-3" aria-labelledby="vow-heading">
       <div
@@ -510,36 +398,21 @@ function VowSection() {
 
       <div className="relative max-w-4xl mx-auto text-center">
         <ScrollReveal>
-          <p className="eyebrow mb-6">The Vow</p>
+          <p className="eyebrow mb-6">{home.vow.eyebrow}</p>
           <h2
             id="vow-heading"
             className="font-serif font-black leading-tight mb-8 text-lotus-cream"
             style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)' }}
           >
-            Forever Lotus is a Brand in Form.{' '}
-            <span className="text-lotus-pink">A Vow in Substance.</span>
+            {home.vow.titlePrefix}{' '}
+            <span className="text-lotus-pink">{home.vow.titleHighlight}</span>
           </h2>
           <p className="text-lotus-muted text-lg max-w-2xl mx-auto leading-relaxed mb-10">
-            Its vow is explicit: reduce suffering, elevate dignity, and reject
-            domination. Any strategy, institution, or product that fails this test
-            does not belong within Forever Lotus.
+            {home.vow.description}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left mb-12">
-            {[
-              {
-                num: '01',
-                text: 'Publish annual dignity and impact metrics, not vanity metrics.',
-              },
-              {
-                num: '02',
-                text: 'Tie all initiatives to measurable suffering reduction and capability growth.',
-              },
-              {
-                num: '03',
-                text: 'Build learning systems that are open, multilingual, and culturally grounded.',
-              },
-            ].map(({ num, text }) => (
+            {home.vow.commitments.map(({ num, text }) => (
               <div
                 key={num}
                 className="card-glass rounded-xl p-5 border border-lotus-border-soft"
@@ -554,8 +427,8 @@ function VowSection() {
             ))}
           </div>
 
-          <Link href="/manifesto" className="btn-primary text-base">
-            Read the Full Manifesto →
+          <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base">
+            {home.vow.cta} →
           </Link>
         </ScrollReveal>
       </div>
@@ -565,7 +438,7 @@ function VowSection() {
 
 // ─── CTA Section ─────────────────────────────────────────────────────────────
 
-function CTASection() {
+function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
     <section className="py-28 px-5 sm:px-8 bg-lotus-bg border-t border-lotus-border-soft" aria-labelledby="cta-heading">
       <div className="max-w-3xl mx-auto text-center">
@@ -576,19 +449,18 @@ function CTASection() {
             className="font-serif font-black mb-5 text-lotus-cream"
             style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}
           >
-            Where One Person Chooses Compassion,{' '}
-            <span className="text-gold-shimmer">the Lotus Blooms Again.</span>
+            {home.closing.titlePrefix}{' '}
+            <span className="text-gold-shimmer">{home.closing.titleHighlight}</span>
           </h2>
           <p className="text-lotus-muted text-lg max-w-xl mx-auto leading-relaxed mb-10">
-            This is an invitation — not a doctrine. Co-create balance over
-            excess, peace over power theater, and shared futures over isolated gain.
+            {home.closing.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/manifesto" className="btn-primary text-base">
-              Read the Manifesto
+            <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base">
+              {home.closing.ctaPrimary}
             </Link>
-            <Link href="/about" className="btn-ghost text-base">
-              About Forever Lotus
+            <Link href={withLocale('/about', locale)} className="btn-ghost text-base">
+              {home.closing.ctaSecondary}
             </Link>
           </div>
         </ScrollReveal>
@@ -600,17 +472,26 @@ function CTASection() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
+  const [locale, setLocale] = useState(resolveLocale(undefined));
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setLocale(resolveLocale(params.get('lang') ?? undefined));
+  }, []);
+
+  const home = getMessages(locale).home;
+
   return (
     <>
-      <HeroSection />
-      <LotusPrinciple />
-      <QuoteSection />
-      <PillarsSection />
-      <StatsSection />
-      <TraditionsSection />
-      <ResearchSection />
-      <VowSection />
-      <CTASection />
+      <HeroSection home={home} locale={locale} />
+      <LotusPrinciple home={home} />
+      <QuoteSection home={home} />
+      <PillarsSection home={home} locale={locale} />
+      <StatsSection home={home} />
+      <TraditionsSection home={home} locale={locale} />
+      <ResearchSection home={home} locale={locale} />
+      <VowSection home={home} locale={locale} />
+      <CTASection home={home} locale={locale} />
     </>
   );
 }

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
+import { resolveLocale, withLocale } from '@/i18n';
 
 export const metadata: Metadata = {
   title: 'Philosophy',
@@ -96,7 +97,15 @@ const upanishads = [
   },
 ];
 
-export default function PhilosophyPage() {
+type PageProps = {
+  searchParams?: {
+    lang?: string | string[];
+  };
+};
+
+export default function PhilosophyPage({ searchParams }: PageProps) {
+  const locale = resolveLocale(searchParams?.lang);
+
   return (
     <>
       {/* Page hero */}
@@ -241,10 +250,10 @@ export default function PhilosophyPage() {
               contemporary scholarship.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/research" className="btn-primary">
+              <Link href={withLocale('/research', locale)} className="btn-primary">
                 Research Dossier →
               </Link>
-              <Link href="/manifesto" className="btn-ghost">
+              <Link href={withLocale('/manifesto', locale)} className="btn-ghost">
                 Read the Manifesto
               </Link>
             </div>

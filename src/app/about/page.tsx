@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
+import { resolveLocale, withLocale } from '@/i18n';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -70,7 +71,15 @@ const values = [
   },
 ];
 
-export default function AboutPage() {
+type PageProps = {
+  searchParams?: {
+    lang?: string | string[];
+  };
+};
+
+export default function AboutPage({ searchParams }: PageProps) {
+  const locale = resolveLocale(searchParams?.lang);
+
   return (
     <>
       {/* Page hero */}
@@ -265,10 +274,10 @@ export default function AboutPage() {
               &ldquo;Rooted. Rising. Untainted.&rdquo;
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/manifesto" className="btn-primary">
+              <Link href={withLocale('/manifesto', locale)} className="btn-primary">
                 Read the Manifesto →
               </Link>
-              <Link href="/research" className="btn-ghost">
+              <Link href={withLocale('/research', locale)} className="btn-ghost">
                 Research Dossier
               </Link>
             </div>

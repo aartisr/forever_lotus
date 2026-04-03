@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
+import { resolveLocale, withLocale } from '@/i18n';
 
 export const metadata: Metadata = {
   title: 'Manifesto',
@@ -89,7 +90,15 @@ const sections = [
   },
 ];
 
-export default function ManifestoPage() {
+type PageProps = {
+  searchParams?: {
+    lang?: string | string[];
+  };
+};
+
+export default function ManifestoPage({ searchParams }: PageProps) {
+  const locale = resolveLocale(searchParams?.lang);
+
   return (
     <>
       {/* Hero */}
@@ -178,10 +187,10 @@ export default function ManifestoPage() {
               The Philosophy Behind the Manifesto
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/philosophy" className="btn-primary">
+              <Link href={withLocale('/philosophy', locale)} className="btn-primary">
                 Eastern Philosophy →
               </Link>
-              <Link href="/research" className="btn-ghost">
+              <Link href={withLocale('/research', locale)} className="btn-ghost">
                 Research Dossier
               </Link>
             </div>

@@ -1,15 +1,27 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import LotusIcon from './LotusIcon';
-
-const links = [
-  { label: 'Manifesto', href: '/manifesto' },
-  { label: 'Philosophy', href: '/philosophy' },
-  { label: 'Research', href: '/research' },
-  { label: 'About', href: '/about' },
-];
+import { getMessages, resolveLocale, withLocale } from '@/i18n';
 
 export default function Footer() {
+  const [locale, setLocale] = useState(resolveLocale(undefined));
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setLocale(resolveLocale(params.get('lang') ?? undefined));
+  }, []);
+
+  const messages = getMessages(locale);
+
+  const links = [
+    { label: messages.nav.links.manifesto, href: '/manifesto' },
+    { label: messages.nav.links.philosophy, href: '/philosophy' },
+    { label: messages.nav.links.research, href: '/research' },
+    { label: messages.nav.links.about, href: '/about' },
+  ];
+
   return (
     <footer className="relative bg-lotus-bg-2 border-t border-lotus-border-soft overflow-hidden" role="contentinfo">
       {/* Subtle glow */}
@@ -19,22 +31,22 @@ export default function Footer() {
         {/* Top row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-12">
           <div className="max-w-sm">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
+            <Link href={withLocale('/', locale)} className="flex items-center gap-2.5 mb-4 group">
               <LotusIcon size={30} variant="nav" />
-              <span className="font-serif text-lg font-bold text-lotus-cream">Forever Lotus</span>
+              <span className="font-serif text-lg font-bold text-lotus-cream">{messages.nav.brand}</span>
             </Link>
             <p className="text-lotus-muted text-sm leading-relaxed">
-              A civilizational call to conscious creation — rooted in compassion, rising through dignity, untainted by domination.
+              {messages.footer.description}
             </p>
           </div>
 
           <nav aria-label="Footer navigation">
-            <p className="eyebrow mb-4">Navigate</p>
+            <p className="eyebrow mb-4">{messages.footer.navigate}</p>
             <ul className="flex flex-col gap-2">
               {links.map(({ href, label }) => (
                 <li key={href}>
                   <Link
-                    href={href}
+                    href={withLocale(href, locale)}
                     className="text-lotus-muted hover:text-lotus-cream text-sm transition-colors duration-200"
                   >
                     {label}
@@ -45,9 +57,9 @@ export default function Footer() {
           </nav>
 
           <div className="max-w-xs">
-            <p className="eyebrow mb-4">The Standard</p>
+            <p className="eyebrow mb-4">{messages.footer.standard}</p>
             <blockquote className="font-serif text-lotus-cream/70 text-sm leading-relaxed italic border-l-2 border-lotus-gold/40 pl-4">
-              &ldquo;Build as if humanity matters. Lead as if dignity is non-negotiable. Innovate as if future generations are already watching.&rdquo;
+              &ldquo;{messages.footer.quote}&rdquo;
             </blockquote>
           </div>
         </div>
@@ -60,15 +72,15 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-lotus-muted-2">
           <p>
-            &copy; {new Date().getFullYear()} Forever Lotus. All rights reserved.
+            &copy; {new Date().getFullYear()} {messages.footer.rights}
           </p>
           <p className="font-serif italic text-lotus-gold/60 tracking-wide">
-            Rooted. Rising. Untainted.
+            {messages.footer.tagline}
           </p>
           <div className="flex flex-col sm:items-end gap-1">
             <p>
-              Author:{' '}
-              <span className="text-lotus-muted">Subasri Dorairaj</span>
+              {messages.footer.authorLabel}{' '}
+              <span className="text-lotus-muted">{messages.footer.authorName}</span>
             </p>
             <a
               href="https://github.com/aartisr/forever_lotus"
@@ -76,7 +88,7 @@ export default function Footer() {
               rel="noreferrer"
               className="text-lotus-gold/70 hover:text-lotus-gold transition-colors duration-200"
             >
-              Public repository
+              {messages.footer.repositoryLabel}
             </a>
           </div>
         </div>
