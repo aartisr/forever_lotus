@@ -79,6 +79,7 @@ export default function Navigation() {
           <Link
             href={withLocale('/manifesto', locale)}
             className="ml-3 btn-primary text-sm !py-2 !px-5"
+            data-track="nav_manifesto_cta"
           >
             {messages.nav.cta}
           </Link>

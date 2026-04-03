@@ -29,6 +29,7 @@ forever_lotus/
 │   ├── BENCHMARK.md                 # Top 25 comparable websites
 │   └── EASTERN_REFERENCES.md        # Eastern universities & primary texts
 │   └── VIRAL_SEARCH_PLAYBOOK.md     # Search growth and distribution execution checklist
+│   └── WEEKLY_CONTENT_PIPELINE.md   # Weekly SEO publishing and measurement workflow
 ├── src/
 │   ├── app/                         # Next.js App Router pages and metadata
 │   └── components/                  # Shared UI components
@@ -80,6 +81,11 @@ forever_lotus/
    - Indexing acceleration playbook
    - Backlink and distribution strategy
    - CTR and ranking measurement loop
+
+6. **WEEKLY_CONTENT_PIPELINE.md**
+   - Weekly publishing cadence
+   - Distribution checklist
+   - Search metrics review loop
 
 ### Website (`src/`)
 
@@ -155,8 +161,11 @@ npm run build
 - Global and per-page metadata with canonical + hreflang alternates
 - Structured data (`WebSite`, `Organization`, `WebPage`, `FAQPage`)
 - Generated social preview assets (`/opengraph-image`, `/twitter-image`)
+- GA4-ready tracking via `NEXT_PUBLIC_GA_ID`
+- CTA tracking using `data-track` instrumentation
 
 Execution guide: [docs/VIRAL_SEARCH_PLAYBOOK.md](docs/VIRAL_SEARCH_PLAYBOOK.md)
+Publishing guide: [docs/WEEKLY_CONTENT_PIPELINE.md](docs/WEEKLY_CONTENT_PIPELINE.md)
 
 ---
 

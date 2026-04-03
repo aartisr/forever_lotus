@@ -92,11 +92,11 @@ function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['h
           className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up"
           style={{ animationDelay: '700ms', animationFillMode: 'both' }}
         >
-          <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base">
+          <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base" data-track="home_hero_manifesto_cta">
             {home.hero.ctaPrimary}
             <span aria-hidden="true">→</span>
           </Link>
-          <Link href={withLocale('/philosophy', locale)} className="btn-ghost text-base">
+          <Link href={withLocale('/philosophy', locale)} className="btn-ghost text-base" data-track="home_hero_philosophy_cta">
             {home.hero.ctaSecondary}
           </Link>
         </div>
@@ -372,7 +372,7 @@ function ResearchSection({ home, locale }: { home: ReturnType<typeof getMessages
             <p className="font-serif italic text-lotus-cream/80 text-xl leading-relaxed mb-5">
               &ldquo;{home.research.quote}&rdquo;
             </p>
-            <Link href={withLocale('/research', locale)} className="btn-primary text-sm !py-2.5">
+            <Link href={withLocale('/research', locale)} className="btn-primary text-sm !py-2.5" data-track="home_research_cta">
               {home.research.cta} →
             </Link>
           </div>
@@ -427,7 +427,7 @@ function VowSection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
             ))}
           </div>
 
-          <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base">
+          <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base" data-track="home_vow_manifesto_cta">
             {home.vow.cta} →
           </Link>
         </ScrollReveal>
@@ -456,10 +456,10 @@ function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
             {home.closing.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base">
+            <Link href={withLocale('/manifesto', locale)} className="btn-primary text-base" data-track="home_final_manifesto_cta">
               {home.closing.ctaPrimary}
             </Link>
-            <Link href={withLocale('/about', locale)} className="btn-ghost text-base">
+            <Link href={withLocale('/about', locale)} className="btn-ghost text-base" data-track="home_final_about_cta">
               {home.closing.ctaSecondary}
             </Link>
           </div>

@@ -49,6 +49,7 @@ export default function Footer() {
                   <Link
                     href={withLocale(href, locale)}
                     className="text-lotus-muted hover:text-lotus-cream text-sm transition-colors duration-200"
+                    data-track={`footer_${href.replace('/', '') || 'home'}`}
                   >
                     {label}
                   </Link>
@@ -88,6 +89,7 @@ export default function Footer() {
               target="_blank"
               rel="noreferrer"
               className="text-lotus-gold/70 hover:text-lotus-gold transition-colors duration-200"
+              data-track="footer_repository_click"
             >
               {messages.footer.repositoryLabel}
             </a>
