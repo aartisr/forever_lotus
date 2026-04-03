@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #07080f;
+    color: #f0ece4;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(201, 168, 76, 0.28);
+    color: #f0ece4;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #07080f;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(201, 168, 76, 0.35);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(201, 168, 76, 0.55);
+  }
+}
+
+@layer components {
+  /* Gold shimmer text effect */
+  .text-gold-shimmer {
+    background: linear-gradient(
+      90deg,
+      #c9a84c 0%,
+      #f0c650 30%,
+      #c9a84c 60%,
+      #e8b84b 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textShimmer 4s linear infinite;
+  }
+
+  /* Section reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger children */
+  .stagger-children > *:nth-child(1) { transition-delay: 0ms; }
+  .stagger-children > *:nth-child(2) { transition-delay: 100ms; }
+  .stagger-children > *:nth-child(3) { transition-delay: 200ms; }
+  .stagger-children > *:nth-child(4) { transition-delay: 300ms; }
+  .stagger-children > *:nth-child(5) { transition-delay: 400ms; }
+  .stagger-children > *:nth-child(6) { transition-delay: 500ms; }
+
+  /* Divider with lotus motif */
+  .lotus-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(201, 168, 76, 0.4);
+    font-size: 1.25rem;
+    letter-spacing: 0.3em;
+  }
+  .lotus-divider::before,
+  .lotus-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3), transparent);
+  }
+
+  /* Card glass effect */
+  .card-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .card-glass-gold {
+    background: linear-gradient(
+      135deg,
+      rgba(201, 168, 76, 0.07) 0%,
+      rgba(201, 168, 76, 0.02) 100%
+    );
+    border: 1px solid rgba(201, 168, 76, 0.18);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    font-family: var(--font-inter), sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #c9a84c;
+  }
+
+  /* CTA primary button */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: linear-gradient(135deg, #c9a84c, #a8841e);
+    color: #07080f;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    border-radius: 100px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201, 168, 76, 0.35);
+    background: linear-gradient(135deg, #e8b84b, #c9a84c);
+  }
+
+  /* CTA ghost button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: #f0ece4;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    border-radius: 100px;
+    border: 1px solid rgba(240, 236, 228, 0.25);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(201, 168, 76, 0.5);
+    color: #c9a84c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom keyframe for textShimmer (referenced in Tailwind config) */
+@keyframes textShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Starfield background */
+.starfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.starfield::before,
+.starfield::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 75%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 62% 45%, rgba(201,168,76,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 35%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 48% 92%, rgba(232,135,166,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 67% 8%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 70%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  animation: starTwinkle 5s ease-in-out infinite alternate;
+}
+.starfield::after {
+  background-image:
+    radial-gradient(1px 1px at 18% 5%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 33% 78%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 52% 22%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 48%, rgba(201,168,76,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 3% 68%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 44% 55%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  animation: starTwinkle 7s ease-in-out infinite alternate-reverse;
+}

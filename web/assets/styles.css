@@ -1,0 +1,150 @@
+:root {
+  --bg: #f4efe6;
+  --ink: #1f2a2a;
+  --muted: #445050;
+  --accent: #0f766e;
+  --accent-2: #b45309;
+  --card: rgba(255, 255, 255, 0.72);
+  --border: rgba(17, 24, 39, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 20% 10%, #fff7ea 0%, var(--bg) 45%, #e7ece9 100%);
+  line-height: 1.65;
+}
+
+.bg-orb {
+  position: fixed;
+  z-index: -1;
+  filter: blur(70px);
+  opacity: 0.55;
+}
+
+.orb-a {
+  width: 320px;
+  height: 320px;
+  background: #ffd9a8;
+  top: -60px;
+  left: -60px;
+}
+
+.orb-b {
+  width: 380px;
+  height: 380px;
+  background: #9ad7cb;
+  bottom: -120px;
+  right: -80px;
+}
+
+.hero {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 88px 20px 54px;
+  text-align: center;
+}
+
+.eyebrow {
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+h1, h2 {
+  font-family: "Fraunces", serif;
+  line-height: 1.18;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 4.8vw, 4rem);
+  margin-bottom: 14px;
+}
+
+.lead {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+.cta {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(135deg, var(--accent), #155e75);
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.24);
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px 72px;
+  display: grid;
+  gap: 16px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  backdrop-filter: blur(6px);
+}
+
+.card h2 {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  margin-bottom: 10px;
+  color: #102a2a;
+}
+
+.card p {
+  margin: 0;
+}
+
+.final {
+  border: 2px solid rgba(180, 83, 9, 0.28);
+}
+
+.signature {
+  margin-top: 12px;
+  color: var(--accent-2);
+  font-weight: 600;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 60px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+}

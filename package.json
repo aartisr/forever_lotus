@@ -1,0 +1,52 @@
+{
+  "name": "forever-lotus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Forever Lotus: A civilizational call to conscious creation rooted in compassion, dignity, and planetary stewardship.",
+  "author": "aartisr",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aartisr/forever_lotus.git"
+  },
+  "keywords": [
+    "conscious creation",
+    "compassion",
+    "dignity",
+    "planetary stewardship",
+    "humanitarian",
+    "education",
+    "peace",
+    "buddhism",
+    "hinduism",
+    "philosophy"
+  ],
+  "engines": {
+    "node": "20.x",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "framer-motion": "^11.3.0",
+    "next": "14.2.35",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.35",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.19",
+    "typescript": "5.4.5"
+  }
+}

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forever Lotus | Conscious Creation</title>
+    <meta
+      name="description"
+      content="Forever Lotus is a civilizational call to conscious creation rooted in compassion, dignity, and planetary stewardship."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+
+    <header class="hero">
+      <p class="eyebrow">FOREVER LOTUS</p>
+      <h1>A Civilizational Call to Conscious Creation</h1>
+      <p class="lead">
+        Humanity can create without domination. Progress can be kind. This is a practical moral architecture for an age of immense power.
+      </p>
+      <a href="#manifesto" class="cta">Read the Manifesto</a>
+    </header>
+
+    <main id="manifesto" class="container">
+      <section class="card reveal">
+        <h2>I. The Meaning of Forever Lotus</h2>
+        <p>Forever Lotus is not a campaign or a temporary brand idea. It is a durable civilizational stance: creation itself can be kind. Human progress does not need to be extractive, and goodness can rise from suffering without being stained by it.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>II. The Lotus Across Civilization</h2>
+        <p>Across Hindu, Buddhist, Egyptian, and Eastern philosophical traditions, the lotus stands for purity, resilience, and awakening. Rooted in darkness, nourished by difficulty, and rising toward light, it remains untainted. Forever Lotus adopts this not as motif, but as method.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>III. Brahma and Conscious Creation</h2>
+        <p>In Hindu cosmology, Brahma emerges from the lotus. Creation here is responsibility, not conquest. Forever Lotus extends that logic to our era: every institution, product, and policy is an act of creation that bends the future toward either harmony or fracture.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>IV. Kindness Without Expectation</h2>
+        <p>Kindness is not a transaction. It is not a bid for status, recognition, or return. Forever Lotus rejects performative compassion and honors giving as alignment with life itself.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>V. Earth Consciousness</h2>
+        <p>The lotus survives in ecological balance. So must civilization. Earth consciousness is gratitude made practical. Stewardship is not an optional virtue; it is baseline respect for the conditions that sustain life.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>VI. Humanitarian Dignity</h2>
+        <p>Humanitarian action must restore dignity, not produce dependency. Forever Lotus stands for aid that educates, empowers, and protects autonomy.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>VII. Education as Liberation</h2>
+        <p>Education is humanity's sacred inheritance: the transfer of awareness, skill, and ethical memory. It is not credential theater. It is liberation from ignorance and fear.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>VIII. Peace and Inner Harmony</h2>
+        <p>Peace does not start with treaties. It starts with restraint, awareness, and self-governance. Inner coherence and outward action belong together.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>IX. A Brand That Serves Humanity</h2>
+        <p>Forever Lotus is a brand in form, and a vow in substance: reduce suffering, elevate dignity, and refuse domination.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>X. Invitation to Co-Create</h2>
+        <p>This is an invitation to create balance over excess and peace over power theater. The lotus blooms wherever one person chooses compassion with courage.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>XI. Strategic Positioning and Global Credibility</h2>
+        <p>Forever Lotus occupies a rare position: neither bureaucratic nor dogmatic, neither merely activist nor abstract. It integrates humanitarian action, ecology, education, peacebuilding, and ancient wisdom into one coherent identity.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>XII. Public Credibility and Moral Lineage</h2>
+        <p>Forever Lotus draws from humanity's shared moral inheritance and claims no monopoly on authority. It claims responsibility: to act with humility, rigor, and long-range care for life.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>XIII. Founder's White Paper Position</h2>
+        <p>Humanity now holds unprecedented power and unprecedented fragility. Intelligence, technology, and wealth must serve harmony, not dominance.</p>
+      </section>
+
+      <section class="card reveal">
+        <h2>XIV. Stewardship and Continuity</h2>
+        <p>This framework is meant to guide, not conclude. It must be protected from commercialization of compassion and dilution of purpose.</p>
+      </section>
+
+      <section class="card reveal final">
+        <h2>The Standard</h2>
+        <p>Forever Lotus asks us to build as if humanity matters, lead as if dignity is non-negotiable, and innovate as if future generations are already watching.</p>
+        <p class="signature">Rooted. Rising. Untainted.</p>
+      </section>
+    </main>
+
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
