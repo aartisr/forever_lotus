@@ -472,6 +472,7 @@ function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com';
   const [locale, setLocale] = useState(resolveLocale(undefined));
 
   useEffect(() => {
@@ -480,9 +481,72 @@ export default function HomePage() {
   }, []);
 
   const home = getMessages(locale).home;
+  const pageUrl = locale === 'es' ? `${siteUrl}/?lang=es` : `${siteUrl}/`;
+
+  const webPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Forever Lotus',
+    url: pageUrl,
+    inLanguage: locale,
+    description: home.hero.description,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Forever Lotus',
+      url: siteUrl,
+    },
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name:
+          locale === 'es'
+            ? 'Que es Forever Lotus?'
+            : 'What is Forever Lotus?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: home.principle.description,
+        },
+      },
+      {
+        '@type': 'Question',
+        name:
+          locale === 'es'
+            ? 'En que se basa este marco?'
+            : 'What evidence supports this framework?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: home.research.description,
+        },
+      },
+      {
+        '@type': 'Question',
+        name:
+          locale === 'es'
+            ? 'Cual es el objetivo principal?' 
+            : 'What is the central objective?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: home.vow.description,
+        },
+      },
+    ],
+  };
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <HeroSection home={home} locale={locale} />
       <LotusPrinciple home={home} />
       <QuoteSection home={home} />

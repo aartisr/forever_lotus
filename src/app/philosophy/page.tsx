@@ -4,20 +4,40 @@ import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
-
-export function generateMetadata(): Metadata {
-  const messages = getMessages(resolveLocale(undefined));
-  return {
-    title: messages.philosophy.meta.title,
-    description: messages.philosophy.meta.description,
-  };
-}
+import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
 type PageProps = {
   searchParams?: {
     lang?: string | string[];
   };
 };
+
+export function generateMetadata({ searchParams }: PageProps): Metadata {
+  const locale = resolveLocale(searchParams?.lang);
+  const messages = getMessages(locale);
+  const path = '/philosophy';
+
+  return {
+    title: messages.philosophy.meta.title,
+    description: messages.philosophy.meta.description,
+    alternates: buildAlternates(path, locale),
+    openGraph: {
+      type: 'article',
+      url: buildPageUrl(path, locale),
+      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      title: messages.philosophy.meta.title,
+      description: messages.philosophy.meta.description,
+      siteName,
+      images: [defaultOgImage],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: messages.philosophy.meta.title,
+      description: messages.philosophy.meta.description,
+      images: [defaultOgImage],
+    },
+  };
+}
 
 export default function PhilosophyPage({ searchParams }: PageProps) {
   const locale = resolveLocale(searchParams?.lang);

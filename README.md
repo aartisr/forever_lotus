@@ -28,6 +28,7 @@ forever_lotus/
 │   ├── RESEARCH_DOSSIER.md          # Evidence base with 25+ peer-reviewed sources
 │   ├── BENCHMARK.md                 # Top 25 comparable websites
 │   └── EASTERN_REFERENCES.md        # Eastern universities & primary texts
+│   └── VIRAL_SEARCH_PLAYBOOK.md     # Search growth and distribution execution checklist
 ├── src/
 │   ├── app/                         # Next.js App Router pages and metadata
 │   └── components/                  # Shared UI components
@@ -73,6 +74,12 @@ forever_lotus/
    - Vedic/Upanishadic canonical sources
    - Puranic creation narratives
    - Authenticity protocol for citations
+
+5. **VIRAL_SEARCH_PLAYBOOK.md**
+   - Search engine submission checklist
+   - Indexing acceleration playbook
+   - Backlink and distribution strategy
+   - CTR and ranking measurement loop
 
 ### Website (`src/`)
 
@@ -139,6 +146,17 @@ The production build has been validated locally with:
 ```bash
 npm run build
 ```
+
+### SEO Foundations Included
+
+- `src/app/sitemap.ts` for XML sitemap generation
+- `src/app/robots.ts` for crawler directives
+- `src/app/manifest.ts` for web app manifest and icon metadata
+- Global and per-page metadata with canonical + hreflang alternates
+- Structured data (`WebSite`, `Organization`, `WebPage`, `FAQPage`)
+- Generated social preview assets (`/opengraph-image`, `/twitter-image`)
+
+Execution guide: [docs/VIRAL_SEARCH_PLAYBOOK.md](docs/VIRAL_SEARCH_PLAYBOOK.md)
 
 ---
 
