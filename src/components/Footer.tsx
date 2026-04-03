@@ -20,6 +20,7 @@ export default function Footer() {
     { label: messages.nav.links.philosophy, href: '/philosophy' },
     { label: messages.nav.links.research, href: '/research' },
     { label: locale === 'es' ? 'Ideas' : 'Insights', href: '/insights' },
+    { label: locale === 'es' ? 'Crecimiento' : 'Growth', href: '/growth' },
     { label: messages.nav.links.about, href: '/about' },
   ];
 

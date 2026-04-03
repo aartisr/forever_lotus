@@ -30,6 +30,8 @@ forever_lotus/
 │   └── EASTERN_REFERENCES.md        # Eastern universities & primary texts
 │   └── VIRAL_SEARCH_PLAYBOOK.md     # Search growth and distribution execution checklist
 │   └── WEEKLY_CONTENT_PIPELINE.md   # Weekly SEO publishing and measurement workflow
+│   └── KPI_DASHBOARD_SPEC.md        # KPI definitions and decision rules
+│   └── SEO_SCORECARD_TEMPLATE.md    # Weekly scorecard template for execution
 ├── src/
 │   ├── app/                         # Next.js App Router pages and metadata
 │   └── components/                  # Shared UI components
@@ -86,6 +88,14 @@ forever_lotus/
    - Weekly publishing cadence
    - Distribution checklist
    - Search metrics review loop
+
+7. **KPI_DASHBOARD_SPEC.md**
+   - KPI model for discovery, engagement, conversion, and authority
+   - Weekly and monthly decision framework
+
+8. **SEO_SCORECARD_TEMPLATE.md**
+   - Reusable weekly growth review template
+   - Operational prompts for next-week planning
 
 ### Website (`src/`)
 
@@ -166,6 +176,8 @@ npm run build
 
 Execution guide: [docs/VIRAL_SEARCH_PLAYBOOK.md](docs/VIRAL_SEARCH_PLAYBOOK.md)
 Publishing guide: [docs/WEEKLY_CONTENT_PIPELINE.md](docs/WEEKLY_CONTENT_PIPELINE.md)
+KPI guide: [docs/KPI_DASHBOARD_SPEC.md](docs/KPI_DASHBOARD_SPEC.md)
+Scorecard template: [docs/SEO_SCORECARD_TEMPLATE.md](docs/SEO_SCORECARD_TEMPLATE.md)
 
 ---
 

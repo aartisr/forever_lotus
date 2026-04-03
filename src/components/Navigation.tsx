@@ -18,6 +18,7 @@ export default function Navigation() {
     { href: '/philosophy', label: messages.nav.links.philosophy },
     { href: '/research', label: messages.nav.links.research },
     { href: '/insights', label: locale === 'es' ? 'Ideas' : 'Insights' },
+    { href: '/growth', label: locale === 'es' ? 'Crecimiento' : 'Growth' },
     { href: '/about', label: messages.nav.links.about },
   ];
 

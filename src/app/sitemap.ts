@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 import { buildPageUrl } from '@/lib/seo';
 import { insightSlugs } from '@/content/insights';
 
-const coreRoutes = ['/', '/about', '/manifesto', '/philosophy', '/research', '/insights'] as const;
+const coreRoutes = ['/', '/about', '/manifesto', '/philosophy', '/research', '/insights', '/growth'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
