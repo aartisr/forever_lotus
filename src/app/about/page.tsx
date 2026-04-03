@@ -43,7 +43,7 @@ export default function AboutPage({ searchParams }: PageProps) {
   const locale = resolveLocale(searchParams?.lang);
   const messages = getMessages(locale);
   const founderLotusImage =
-    'https://upload.wikimedia.org/wikipedia/commons/3/3a/Nelumbo_nucifera_pink_flower.jpg';
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nelumbo_nucifera_flower_in_full_bloom.jpg/1920px-Nelumbo_nucifera_flower_in_full_bloom.jpg';
 
   return (
     <>
@@ -116,11 +116,12 @@ export default function AboutPage({ searchParams }: PageProps) {
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(15,12,31,0.88) 0%, rgba(15,12,31,0.78) 100%), url(${founderLotusImage})`,
+            backgroundImage: `linear-gradient(180deg, rgba(15,12,31,0.72) 0%, rgba(15,12,31,0.58) 100%), url(${founderLotusImage})`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center 36%',
-            filter: 'saturate(0.85) blur(1px)',
-            opacity: 0.33,
+            backgroundPosition: 'center center',
+            filter: 'saturate(1.05) contrast(1.04)',
+            transform: 'scale(1.08)',
+            opacity: 0.52,
           }}
         />
         <div
@@ -128,7 +129,7 @@ export default function AboutPage({ searchParams }: PageProps) {
           aria-hidden="true"
           style={{
             background:
-              'radial-gradient(ellipse 65% 55% at 72% 36%, rgba(232,135,166,0.22) 0%, transparent 66%), radial-gradient(ellipse 45% 40% at 30% 70%, rgba(201,168,76,0.1) 0%, transparent 72%)',
+              'radial-gradient(ellipse 62% 52% at 50% 42%, rgba(232,135,166,0.2) 0%, rgba(232,135,166,0.04) 58%, transparent 74%), radial-gradient(ellipse 48% 42% at 30% 72%, rgba(201,168,76,0.11) 0%, transparent 72%)',
           }}
         />
         <div className="max-w-4xl mx-auto">
