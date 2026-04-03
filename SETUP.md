@@ -39,47 +39,92 @@ Author: Subasri Dorairaj
 
 ### Static Hosting (Recommended)
 ```bash
-# Vercel
-vercel deploy
+# Forever Lotus - Setup Guide
 
-# Netlify
-netlify deploy --prod --dir web
+## Local Development
 
-# GitHub Pages
-git push origin main  # (if set up)
-```
+This project now runs as a root-level Next.js application.
 
-### Local Development
+### Install dependencies
+
 ```bash
-cd web
-python -m http.server 8000
-# Visit http://localhost:8000
+npm install
 ```
 
-## Visual Identity
+### Start the development server
 
-- **Color**: Warm palette (#f4efe6, #1f2a2a, #0f766e, #b45309)
-- **Typography**: Fraunces (serif headings) + Work Sans (body)
-- **Motion**: Scroll-triggered card reveals (Intersection Observer)
-- **Aesthetic**: Calm authority, contemplative, premium
+```bash
+npm run dev
+```
 
-## Author & Attribution
+Then open: `http://localhost:3000`
 
-**Subasri Dorairaj** — Concept, research, and all content.
+## Production Validation
 
-All sources are peer-reviewed (DOI-indexed) or university-hosted. See `RESEARCH_DOSSIER.md` for full citations.
+Run the production build before deployment:
 
-## About Forever Lotus
+```bash
+npm run build
+```
 
-Forever Lotus is a call to conscious creation in an age of unprecedented power and fragility. It draws from:
-- Buddhist philosophy (lotus symbolism, compassion)
-- Hindu cosmology (Brahma, creation as responsibility)
-- Humanitarian practice (dignity, agency, stewardship)
-- Contemporary wellbeing science (peace, flourishing, prosocial behavior)
-- Ancient wisdom integrated with modern moral clarity
+To preview the production app locally:
 
-**Operating principle:** Kindness, rigor, and respect for life.
+```bash
+npm run start
+```
 
----
+## Vercel Deployment
 
-*Rooted. Rising. Untainted.*
+Recommended deployment path:
+
+1. Import the public repository: `https://github.com/aartisr/forever_lotus`
+2. Let Vercel detect the framework as `Next.js`
+3. Use the repository root as the project root
+4. Leave the default install/build behavior in place
+
+Current expected commands:
+
+- Install: `npm install`
+- Build: `next build`
+- Dev: `next dev`
+
+Optional environment variable:
+
+- `NEXT_PUBLIC_SITE_URL=https://your-domain`
+
+## Project Structure
+
+```text
+forever_lotus/
+├── docs/
+├── src/
+│   ├── app/
+│   └── components/
+├── web/
+│   └── README.md
+├── package.json
+├── vercel.json
+├── README.md
+├── PROJECT_MIGRATION_SUMMARY.md
+├── LICENSE
+└── SETUP.md
+```
+
+## Content And Attribution
+
+- Public website attribution: `Subasri Dorairaj`
+- Developer / repository steward: `aartisr`
+- Public repository: `https://github.com/aartisr/forever_lotus`
+
+## Legacy Notes
+
+The `web/` directory is retained only as historical context from the original static-site version. It is not the deployment target for Vercel.
+
+## Troubleshooting
+
+If Vercel deployment fails, check:
+
+1. The project root is the repository root, not `web/`
+2. The framework preset is `Next.js`
+3. Dependencies install successfully with `npm install`
+4. The app builds locally with `npm run build`

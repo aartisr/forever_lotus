@@ -176,6 +176,14 @@ export default function AboutPage() {
                 <footer className="text-lotus-gold/60 text-xs tracking-wide">
                   — Subasri Dorairaj, Forever Lotus Manifesto, Section XIII
                 </footer>
+                <a
+                  href="https://github.com/aartisr/forever_lotus"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex mt-6 text-sm text-lotus-gold/75 hover:text-lotus-gold transition-colors duration-200"
+                >
+                  View the public repository
+                </a>
               </div>
             </ScrollReveal>
           </div>

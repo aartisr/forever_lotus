@@ -1,10 +1,6 @@
 {
   "framework": "nextjs",
   "buildCommand": "next build",
-  "outputDirectory": ".next",
   "installCommand": "npm install",
-  "devCommand": "next dev",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/$1" }
-  ]
+  "devCommand": "next dev"
 }

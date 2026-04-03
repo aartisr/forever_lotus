@@ -28,12 +28,13 @@ forever_lotus/
 │   ├── RESEARCH_DOSSIER.md          # Evidence base with 25+ peer-reviewed sources
 │   ├── BENCHMARK.md                 # Top 25 comparable websites
 │   └── EASTERN_REFERENCES.md        # Eastern universities & primary texts
+├── src/
+│   ├── app/                         # Next.js App Router pages and metadata
+│   └── components/                  # Shared UI components
 ├── web/
-│   ├── index.html                   # Standalone website (14 narrative sections)
-│   ├── assets/
-│   │   └── styles.css               # Visual system (gradients, animations, typography)
-│   └── README.md                    # Web folder docs
+│   └── README.md                    # Legacy static-site notes / archived context
 ├── package.json
+├── vercel.json
 ├── README.md                        # This file
 └── LICENSE
 ```
@@ -73,19 +74,15 @@ forever_lotus/
    - Puranic creation narratives
    - Authenticity protocol for citations
 
-### Website (`web/`)
+### Website (`src/`)
 
-**Standalone, zero-dependency website** with production-grade design:
+**Production Next.js website** with Vercel-ready deployment:
 
-- **index.html**: Complete 14-section narrative with scroll-reveal animations
-- **assets/styles.css**: Visual system
-  - CSS custom properties for semantic theming
-  - Radial gradient background with floating blur orbs
-  - Responsive typography (clamp-based scaling)
-  - Smooth scroll-triggered animations via Intersection Observer API
-  - Color palette: warm neutrals (#f4efe6), rich ink (#1f2a2a), teal and amber accents
-
-**Open directly in browser—no build tools required.**
+- App Router architecture for future app growth
+- Reusable component system under `src/components`
+- Static generation for fast page delivery
+- TypeScript + Tailwind CSS stack for maintainability
+- Public repository: https://github.com/aartisr/forever_lotus
 
 ---
 
@@ -97,8 +94,13 @@ Start with [docs/MANIFESTO.md](docs/MANIFESTO.md) for the full philosophical fra
 ### 2. Explore the Research
 Review [docs/RESEARCH_DOSSIER.md](docs/RESEARCH_DOSSIER.md) to understand the evidence base and scholarly grounding.
 
-### 3. View the Website
-Open `web/index.html` directly in a modern browser to see the interactive narrative experience.
+### 3. Run the Website
+```bash
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000`.
 
 ### 4. Strategic Positioning
 Review [docs/BENCHMARK.md](docs/BENCHMARK.md) for design and positioning inspiration from 25 comparable organizations.
@@ -117,6 +119,29 @@ The website embodies Forever Lotus values through:
 
 ---
 
+## Deployment
+
+### Vercel
+
+This project is configured to deploy directly from the repository root as a Next.js application.
+
+1. Import the public repository: `https://github.com/aartisr/forever_lotus`
+2. Vercel should auto-detect `Next.js`
+3. Install command: `npm install`
+4. Build command: `next build`
+5. Optional environment variable:
+   - `NEXT_PUBLIC_SITE_URL=https://your-domain`
+
+### Build Verification
+
+The production build has been validated locally with:
+
+```bash
+npm run build
+```
+
+---
+
 ## Citation & Attribution
 
 All materials are authored by **Subasri Dorairaj** and grounded in:
@@ -127,6 +152,16 @@ All materials are authored by **Subasri Dorairaj** and grounded in:
 - Contemporary wellbeing and prosocial research
 
 See [RESEARCH_DOSSIER.md](docs/RESEARCH_DOSSIER.md) for full citation details.
+
+## Attribution & Repository Stewardship
+
+- **Website attribution:** Subasri Dorairaj
+- **Concept, research, and public-facing content attribution:** Subasri Dorairaj
+- **Repository owner / developer stewardship:** aartisr
+
+This repository preserves **Subasri Dorairaj** as the credited author of the website content and public project materials, while the GitHub repository and codebase are maintained under the `aartisr` developer account.
+
+Public repository: https://github.com/aartisr/forever_lotus
 
 ---
 

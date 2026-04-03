@@ -65,10 +65,20 @@ export default function Footer() {
           <p className="font-serif italic text-lotus-gold/60 tracking-wide">
             Rooted. Rising. Untainted.
           </p>
-          <p>
-            Author:{' '}
-            <span className="text-lotus-muted">Subasri Dorairaj</span>
-          </p>
+          <div className="flex flex-col sm:items-end gap-1">
+            <p>
+              Author:{' '}
+              <span className="text-lotus-muted">Subasri Dorairaj</span>
+            </p>
+            <a
+              href="https://github.com/aartisr/forever_lotus"
+              target="_blank"
+              rel="noreferrer"
+              className="text-lotus-gold/70 hover:text-lotus-gold transition-colors duration-200"
+            >
+              Public repository
+            </a>
+          </div>
         </div>
       </div>
     </footer>
