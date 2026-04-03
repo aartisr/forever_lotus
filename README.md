@@ -97,6 +97,45 @@ forever_lotus/
    - Reusable weekly growth review template
    - Operational prompts for next-week planning
 
+9. **MANIFESTO_EVALUATOR.md**
+   - Complete guide to the website evaluation engine
+   - 7 principles, 21+ criteria for manifesto alignment
+   - Integration guide for real assessment engines
+   - Full API reference
+
+10. **EVALUATOR_QUICK_REFERENCE.md**
+   - Quick start guide for evaluating websites
+   - Understanding scores and grades
+   - Common improvements checklist
+   - FAQ and support
+
+### Features
+
+#### Manifesto Evaluation Engine
+
+**Generic, extensible system for assessing websites against Forever Lotus principles.**
+
+- **7 Core Principles**: Compassion, Kindness, Earth Consciousness, Dignity, Education, Peace, Transparency
+- **21+ Evaluation Criteria**: Specific, measurable, evidence-based
+- **Beautiful Dashboard**: Gauges, principle cards, checklist mapping, recommendations
+- **Submission Checklist Integration**: Automatically maps evaluation results to onboarding criteria
+- **Multilingual**: English/Spanish support
+- **Reusable**: Generic algorithm works for any website or organization
+
+**Location:** `/evaluate` on the website  
+**Documentation:** [docs/MANIFESTO_EVALUATOR.md](docs/MANIFESTO_EVALUATOR.md)  
+**Quick Start:** [docs/EVALUATOR_QUICK_REFERENCE.md](docs/EVALUATOR_QUICK_REFERENCE.md)  
+
+_Currently in demo mode with sample data generation. Production integration with real content analysis engines is extensible through `ManifestoEvaluationService`._
+
+#### Ecosystem & Onboarding
+
+**Pathways for aligned websites to join and be promoted.**
+
+- **Aligned Websites Showcase** (`/ecosystem`) - Browse and submit websites aligned with the manifesto
+- **Generic Onboarding Menu** (`/onboarding-websites`) - Reusable intake form for any website type
+- **Manifesto Evaluator** (`/evaluate`) - Self-serve assessment with actionable feedback
+
 ### Website (`src/`)
 
 **Production Next.js website** with Vercel-ready deployment:
