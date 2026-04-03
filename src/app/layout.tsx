@@ -18,16 +18,22 @@ const playfair = Playfair_Display({
   display: 'swap',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com';
+const siteTitle = 'Forever Lotus | A Civilizational Call to Conscious Creation';
+const siteDescription =
+  'Forever Lotus is a moral architecture for the 21st century — rooted in compassion, dignity, and planetary stewardship. Grounded in 4,000 years of Eastern wisdom and contemporary evidence.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com'
-  ),
+  metadataBase: new URL(siteUrl),
+  applicationName: 'Forever Lotus',
   title: {
-    default: 'Forever Lotus | A Civilizational Call to Conscious Creation',
+    default: siteTitle,
     template: '%s | Forever Lotus',
   },
-  description:
-    'Forever Lotus is a moral architecture for the 21st century — rooted in compassion, dignity, and planetary stewardship. Grounded in 4,000 years of Eastern wisdom and contemporary evidence.',
+  description: siteDescription,
+  alternates: {
+    canonical: '/',
+  },
   keywords: [
     'conscious creation',
     'compassion',
@@ -43,18 +49,23 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Subasri Dorairaj' }],
   creator: 'Subasri Dorairaj',
+  publisher: 'Forever Lotus',
+  category: 'philosophy',
   openGraph: {
     type: 'website',
-    title: 'Forever Lotus | Conscious Creation',
-    description:
-      'A civilizational call to conscious creation rooted in compassion, dignity, and planetary stewardship.',
+    url: '/',
+    locale: 'en_US',
+    title: siteTitle,
+    description: siteDescription,
     siteName: 'Forever Lotus',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Forever Lotus | Conscious Creation',
-    description:
-      'A civilizational call to conscious creation rooted in compassion, dignity, and planetary stewardship.',
+    title: siteTitle,
+    description: siteDescription,
+  },
+  other: {
+    'github:repo': 'https://github.com/aartisr/forever_lotus',
   },
   robots: { index: true, follow: true },
 };
