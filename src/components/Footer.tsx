@@ -22,6 +22,7 @@ export default function Footer() {
     { label: locale === 'es' ? 'Ideas' : 'Insights', href: '/insights' },
     { label: locale === 'es' ? 'Crecimiento' : 'Growth', href: '/growth' },
     { label: locale === 'es' ? 'Sitios aliados' : 'Aligned Websites', href: '/ecosystem' },
+    { label: locale === 'es' ? 'Evaluador de manifiesto' : 'Manifesto Evaluator', href: '/evaluate' },
     { label: locale === 'es' ? 'Onboarding de sitios' : 'Onboard Website', href: '/onboarding-websites' },
     { label: messages.nav.links.about, href: '/about' },
   ];

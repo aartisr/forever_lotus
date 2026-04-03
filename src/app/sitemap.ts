@@ -11,6 +11,7 @@ const coreRoutes = [
   '/insights',
   '/growth',
   '/ecosystem',
+  '/evaluate',
   '/onboarding-websites',
 ] as const;
 

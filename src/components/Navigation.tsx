@@ -52,6 +52,7 @@ export default function Navigation() {
       label: locale === 'es' ? 'Ecosistema' : 'Ecosystem',
       items: [
         { href: '/ecosystem', label: locale === 'es' ? 'Sitios aliados' : 'Aligned Websites' },
+        { href: '/evaluate', label: locale === 'es' ? 'Evaluador de manifiesto' : 'Manifesto Evaluator' },
         { href: '/onboarding-websites', label: locale === 'es' ? 'Onboarding de sitios' : 'Onboard Your Website' },
       ],
     },
