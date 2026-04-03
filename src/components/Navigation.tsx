@@ -6,6 +6,17 @@ import { usePathname } from 'next/navigation';
 import LotusIcon from './LotusIcon';
 import { getMessages, resolveLocale, supportedLocales, withLocale } from '@/i18n';
 
+type NavChild = {
+  href: string;
+  label: string;
+};
+
+type NavGroup = {
+  key: string;
+  label: string;
+  items: NavChild[];
+};
+
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,13 +24,37 @@ export default function Navigation() {
   const pathname = usePathname();
   const messages = getMessages(locale);
 
-  const navLinks = [
-    { href: '/manifesto', label: messages.nav.links.manifesto },
-    { href: '/philosophy', label: messages.nav.links.philosophy },
-    { href: '/research', label: messages.nav.links.research },
-    { href: '/insights', label: locale === 'es' ? 'Ideas' : 'Insights' },
-    { href: '/growth', label: locale === 'es' ? 'Crecimiento' : 'Growth' },
-    { href: '/about', label: messages.nav.links.about },
+  const menuGroups: NavGroup[] = [
+    {
+      key: 'framework',
+      label: locale === 'es' ? 'Marco' : 'Framework',
+      items: [
+        { href: '/manifesto', label: messages.nav.links.manifesto },
+        { href: '/philosophy', label: messages.nav.links.philosophy },
+        { href: '/about', label: messages.nav.links.about },
+      ],
+    },
+    {
+      key: 'knowledge',
+      label: locale === 'es' ? 'Conocimiento' : 'Knowledge',
+      items: [
+        { href: '/research', label: messages.nav.links.research },
+        { href: '/insights', label: locale === 'es' ? 'Ideas' : 'Insights' },
+      ],
+    },
+    {
+      key: 'growth',
+      label: locale === 'es' ? 'Crecimiento' : 'Growth',
+      items: [{ href: '/growth', label: locale === 'es' ? 'Panel de crecimiento' : 'Growth Dashboard' }],
+    },
+    {
+      key: 'ecosystem',
+      label: locale === 'es' ? 'Ecosistema' : 'Ecosystem',
+      items: [
+        { href: '/ecosystem', label: locale === 'es' ? 'Sitios aliados' : 'Aligned Websites' },
+        { href: '/onboarding-websites', label: locale === 'es' ? 'Onboarding de sitios' : 'Onboard Your Website' },
+      ],
+    },
   ];
 
   useEffect(() => {
@@ -63,20 +98,41 @@ export default function Navigation() {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={withLocale(href, locale)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                pathname === href
-                  ? 'text-lotus-gold bg-lotus-gold-dim'
-                  : 'text-lotus-muted hover:text-lotus-cream hover:bg-lotus-border-soft'
-              }`}
-            >
-              {label}
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center gap-2">
+          {menuGroups.map((group) => {
+            const active = group.items.some((item) => pathname === item.href);
+            return (
+              <div key={group.key} className="relative group">
+                <button
+                  type="button"
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                    active
+                      ? 'text-lotus-gold bg-lotus-gold-dim'
+                      : 'text-lotus-muted hover:text-lotus-cream hover:bg-lotus-border-soft'
+                  }`}
+                >
+                  {group.label}
+                </button>
+                <div className="absolute left-0 top-full pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200">
+                  <div className="min-w-56 rounded-2xl border border-lotus-border-soft bg-lotus-bg/95 backdrop-blur-xl shadow-[0_10px_32px_rgba(0,0,0,0.45)] p-2">
+                    {group.items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={withLocale(item.href, locale)}
+                        className={`block rounded-xl px-3 py-2 text-sm transition-colors ${
+                          pathname === item.href
+                            ? 'text-lotus-gold bg-lotus-gold-dim'
+                            : 'text-lotus-muted hover:text-lotus-cream hover:bg-lotus-border-soft'
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
           <Link
             href={withLocale('/manifesto', locale)}
             className="ml-3 btn-primary text-sm !py-2 !px-5"
@@ -126,22 +182,27 @@ export default function Navigation() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-400 ${
-          menuOpen ? 'max-h-96' : 'max-h-0'
+          menuOpen ? 'max-h-[42rem]' : 'max-h-0'
         } bg-lotus-bg/95 backdrop-blur-xl border-b border-lotus-border-soft`}
       >
         <div className="px-5 pb-6 pt-2 flex flex-col gap-1">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={withLocale(href, locale)}
-              className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
-                pathname === href
-                  ? 'text-lotus-gold bg-lotus-gold-dim'
-                  : 'text-lotus-muted hover:text-lotus-cream hover:bg-lotus-border-soft'
-              }`}
-            >
-              {label}
-            </Link>
+          {menuGroups.map((group) => (
+            <div key={group.key} className="rounded-xl border border-lotus-border-soft p-2">
+              <p className="px-2 pb-1 text-xs uppercase tracking-[0.14em] text-lotus-muted-2">{group.label}</p>
+              {group.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={withLocale(item.href, locale)}
+                  className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    pathname === item.href
+                      ? 'text-lotus-gold bg-lotus-gold-dim'
+                      : 'text-lotus-muted hover:text-lotus-cream hover:bg-lotus-border-soft'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           ))}
           <Link href={withLocale('/manifesto', locale)} className="mt-3 btn-primary justify-center text-sm">
             {messages.nav.cta}

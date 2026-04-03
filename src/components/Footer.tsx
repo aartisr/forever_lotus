@@ -21,6 +21,8 @@ export default function Footer() {
     { label: messages.nav.links.research, href: '/research' },
     { label: locale === 'es' ? 'Ideas' : 'Insights', href: '/insights' },
     { label: locale === 'es' ? 'Crecimiento' : 'Growth', href: '/growth' },
+    { label: locale === 'es' ? 'Sitios aliados' : 'Aligned Websites', href: '/ecosystem' },
+    { label: locale === 'es' ? 'Onboarding de sitios' : 'Onboard Website', href: '/onboarding-websites' },
     { label: messages.nav.links.about, href: '/about' },
   ];
 
@@ -39,6 +41,11 @@ export default function Footer() {
             </Link>
             <p className="text-lotus-muted text-sm leading-relaxed">
               {messages.footer.description}
+            </p>
+            <p className="text-lotus-muted-2 text-xs leading-relaxed mt-3">
+              {locale === 'es'
+                ? 'Tambien destacamos y promovemos sitios web alineados con el Manifiesto Forever Lotus.'
+                : 'We also highlight and promote websites aligned with the Forever Lotus Manifesto.'}
             </p>
           </div>
 
