@@ -42,6 +42,8 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
 export default function AboutPage({ searchParams }: PageProps) {
   const locale = resolveLocale(searchParams?.lang);
   const messages = getMessages(locale);
+  const founderLotusImage =
+    'https://upload.wikimedia.org/wikipedia/commons/3/3a/Nelumbo_nucifera_pink_flower.jpg';
 
   return (
     <>
@@ -109,9 +111,28 @@ export default function AboutPage({ searchParams }: PageProps) {
       </section>
 
       {/* Founder section */}
-      <section className="py-24 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="founder-heading">
+      <section className="relative py-24 px-5 sm:px-8 bg-lotus-bg overflow-hidden" aria-labelledby="founder-heading">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(15,12,31,0.88) 0%, rgba(15,12,31,0.78) 100%), url(${founderLotusImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 36%',
+            filter: 'saturate(0.85) blur(1px)',
+            opacity: 0.33,
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background:
+              'radial-gradient(ellipse 65% 55% at 72% 36%, rgba(232,135,166,0.22) 0%, transparent 66%), radial-gradient(ellipse 45% 40% at 30% 70%, rgba(201,168,76,0.1) 0%, transparent 72%)',
+          }}
+        />
         <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="relative z-10 grid md:grid-cols-2 gap-12 items-start">
             <ScrollReveal>
               <p className="eyebrow mb-4">{messages.about.founder.eyebrow}</p>
               <h2
