@@ -12,6 +12,7 @@ export const esMessages: MessageSchema = {
       insights: 'Ideas',
       growthDashboard: 'Panel de crecimiento',
       alignedWebsites: 'Sitios aliados',
+      awaricon: 'Awaricon',
       manifestoEvaluator: 'Evaluador de manifiesto',
       onboardWebsite: 'Onboarding de sitios',
     },
@@ -29,6 +30,7 @@ export const esMessages: MessageSchema = {
       insights: 'Articulos y reflexiones',
       growthDashboard: 'Metricas e impacto',
       alignedWebsites: 'Ecosistema consciente',
+      awaricon: 'Insignias premium de prueba de presencia',
       manifestoEvaluator: 'Verificador de alineacion',
       onboardWebsite: 'Unirse a la red',
     },
@@ -57,6 +59,7 @@ export const esMessages: MessageSchema = {
     authorLabel: 'Autora:',
     alignedNote: 'Tambien destacamos y promovemos sitios web alineados con el Manifiesto Forever Lotus.',
     repositoryLabel: 'Repositorio publico',
+    legalPolicyLabel: 'Politica legal de Awaricon',
   },
   notFound: {
     ...enMessages.notFound,

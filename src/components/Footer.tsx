@@ -106,6 +106,13 @@ export default function Footer() {
               {messages.footer.authorLabel}{' '}
               <span className="text-lotus-muted">{messages.footer.authorName}</span>
             </p>
+            <Link
+              href={withLocale('/awaricon/legal', locale)}
+              className="text-lotus-muted hover:text-lotus-cream transition-colors duration-200"
+              data-track="footer_awaricon_legal"
+            >
+              {messages.footer.legalPolicyLabel}
+            </Link>
           </div>
         </div>
       </div>

@@ -258,6 +258,29 @@ For Supabase, set:
 
 Supabase table (generic record envelope):
 
+---
+
+## Awaricon Legal and Copyright
+
+- Awaricon marks, icon variants, and badge designs are proprietary assets of Forever Lotus.
+- Copyright notices are embedded in downloadable badge assets.
+- In-product legal policy page: `/awaricon/legal`
+- In-product admin console page: `/awaricon/admin`
+- Source of legal notice values: `src/content/awaricon.ts`
+
+Badge verification environment variables:
+
+- `AWARICON_BADGE_SIGNING_SECRET` for signed badge token generation and validation.
+- `AWARICON_APPROVED_SITES` as comma-separated baseline domains (for example: `example.com,partner.org`).
+- `AWARICON_ADMIN_KEY` required to use admin APIs and the `/awaricon/admin` management console.
+
+Approved domains added via the admin console are persisted through the active data layer driver (`supabase` or `memory`). With `DATA_LAYER_DRIVER=supabase` and Supabase credentials configured, domain approvals and the full audit log survive server restarts. With `memory` they are session-scoped.
+
+Audit log endpoint: `GET /api/awaricon/admin/audit` (requires `x-awaricon-admin-key` header).
+Entities stored: `awaricon_approved_sites`, `awaricon_audit_log` — both use the shared `app_records` table.
+
+For any commercial licensing or redistribution rights, request written permission from the project maintainers before use.
+
 ```sql
 create table if not exists public.app_records (
    id text primary key,

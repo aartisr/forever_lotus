@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LotusIcon from './LotusIcon';
+import AwariconMark, { type AwariconMarkVariant } from './AwariconMark';
 import { getMessages, resolveLocale, supportedLocales, withLocale } from '@/i18n';
 
 type NavChild = {
@@ -46,6 +47,7 @@ export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [locale, setLocale] = useState(resolveLocale(undefined));
   const [langOpen, setLangOpen] = useState(false);
+  const [awariconVariant, setAwariconVariant] = useState<AwariconMarkVariant>('crystal');
   const langRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const messages = getMessages(locale);
@@ -170,6 +172,35 @@ export default function Navigation() {
     setLangOpen(false);
   }, [pathname]);
 
+  // Keep Awaricon icon variant synced with user selection from Awaricon Icon Studio.
+  useEffect(() => {
+    const key = 'awaricon-icon-variant';
+
+    const read = () => {
+      if (typeof window === 'undefined') return;
+      const value = window.localStorage.getItem(key);
+      if (value === 'crystal' || value === 'luxury' || value === 'heraldic') {
+        setAwariconVariant(value);
+      }
+    };
+
+    const onCustom = (event: Event) => {
+      const detail = (event as CustomEvent<string>).detail;
+      if (detail === 'crystal' || detail === 'luxury' || detail === 'heraldic') {
+        setAwariconVariant(detail);
+      }
+    };
+
+    read();
+    window.addEventListener('storage', read);
+    window.addEventListener('awaricon-icon-variant-change', onCustom as EventListener);
+
+    return () => {
+      window.removeEventListener('storage', read);
+      window.removeEventListener('awaricon-icon-variant-change', onCustom as EventListener);
+    };
+  }, []);
+
   // Close language dropdown on outside click
   useEffect(() => {
     function onOutsideClick(e: MouseEvent) {
@@ -279,6 +310,22 @@ export default function Navigation() {
               </div>
             );
           })}
+
+          {/* Featured destination */}
+          <Link
+            href={withLocale('/awaricon', locale)}
+            className={`ml-2 awaricon-nav-link group/aw relative inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-[0.78rem] font-semibold tracking-[0.06em] uppercase transition-all duration-300 ${
+              pathname === '/awaricon'
+                ? 'text-[#fff3d2] ring-1 ring-[#ffd369]/45 bg-[linear-gradient(120deg,rgba(255,214,107,0.24),rgba(232,135,166,0.18),rgba(184,216,255,0.2))]'
+                : 'text-[#ffe9b3] bg-[linear-gradient(120deg,rgba(255,214,107,0.16),rgba(232,135,166,0.1),rgba(184,216,255,0.1))] hover:text-[#fff4d9] hover:shadow-[0_0_0_1px_rgba(255,214,107,0.35),0_12px_36px_rgba(255,214,107,0.16)]'
+            }`}
+            aria-label={messages.nav.links.awaricon}
+            data-track="nav_awaricon_spotlight"
+          >
+            <span className="absolute inset-[1px] rounded-full bg-[linear-gradient(110deg,rgba(255,255,255,0.08),transparent_40%,rgba(255,255,255,0.12)_62%,transparent_78%)] awaricon-nav-sheen" aria-hidden="true" />
+            <AwariconMark size={20} variant={awariconVariant} className="relative z-[1] awaricon-nav-icon" />
+            <span className="relative z-[1]">{messages.nav.links.awaricon}</span>
+          </Link>
 
           {/* ── CTA ── */}
           <Link
@@ -399,6 +446,22 @@ export default function Navigation() {
               </div>
             </div>
           ))}
+
+          <Link
+            href={withLocale('/awaricon', locale)}
+            className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-[0.85rem] font-semibold tracking-[0.06em] uppercase transition-all duration-200 border ${
+              pathname === '/awaricon'
+                ? 'text-[#fff3d2] border-[#ffd369]/40 bg-[linear-gradient(120deg,rgba(255,214,107,0.23),rgba(232,135,166,0.16),rgba(184,216,255,0.17))]'
+                : 'text-[#ffe2a0] border-white/[0.12] bg-[linear-gradient(120deg,rgba(255,214,107,0.12),rgba(232,135,166,0.09),rgba(184,216,255,0.08))]'
+            }`}
+            data-track="mobile_nav_awaricon_spotlight"
+          >
+            <AwariconMark size={20} variant={awariconVariant} />
+            <div>
+              <div>{messages.nav.links.awaricon}</div>
+              <div className="text-[0.7rem] text-lotus-muted-2 font-normal mt-0.5">{messages.nav.descriptions.awaricon}</div>
+            </div>
+          </Link>
 
           {/* CTA */}
           <Link href={withLocale('/manifesto', locale)} className="mt-1 btn-primary justify-center text-sm">

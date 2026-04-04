@@ -9,6 +9,7 @@ export const enMessages = {
       insights: 'Insights',
       growthDashboard: 'Growth Dashboard',
       alignedWebsites: 'Aligned Websites',
+      awaricon: 'Awaricon',
       manifestoEvaluator: 'Manifesto Evaluator',
       onboardWebsite: 'Onboard Your Website',
     },
@@ -26,6 +27,7 @@ export const enMessages = {
       insights: 'Articles and reflections',
       growthDashboard: 'Metrics and impact',
       alignedWebsites: 'Conscious ecosystem',
+      awaricon: 'Premium proof-of-presence badges',
       manifestoEvaluator: 'Alignment checker',
       onboardWebsite: 'Join the network',
     },
@@ -55,6 +57,7 @@ export const enMessages = {
     authorName: 'Subasri Dorairaj',
     alignedNote: 'We also highlight and promote websites aligned with the Forever Lotus Manifesto.',
     repositoryLabel: 'Public repository',
+    legalPolicyLabel: 'Awaricon legal policy',
   },
   notFound: {
     code: '404',
