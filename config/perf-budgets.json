@@ -1,0 +1,23 @@
+{
+  "maxSharedJsKb": 360,
+  "defaultMaxEstimatedFirstLoadKb": 450,
+  "defaultMaxRouteExtraJsKb": 90,
+  "routes": {
+    "/": {
+      "maxEstimatedFirstLoadKb": 450,
+      "maxRouteExtraJsKb": 90
+    },
+    "/evaluate": {
+      "maxEstimatedFirstLoadKb": 450,
+      "maxRouteExtraJsKb": 90
+    },
+    "/insights/indexing": {
+      "maxEstimatedFirstLoadKb": 390,
+      "maxRouteExtraJsKb": 40
+    },
+    "/insights/indexing/portfolio": {
+      "maxEstimatedFirstLoadKb": 365,
+      "maxRouteExtraJsKb": 15
+    }
+  }
+}

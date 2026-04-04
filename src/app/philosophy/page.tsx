@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
-import { getMessages, getOgLocale, resolveLocale, withLocale } from '@/i18n';
-import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import PageCta from '@/components/sections/PageCta';
+import { getMessages, resolveLocale, withLocale } from '@/i18n';
+import { buildLocalizedPageMetadata } from '@/lib/page-metadata';
 
 type PageProps = {
   searchParams?: Promise<{
@@ -17,28 +17,13 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const params = await searchParams;
   const locale = resolveLocale(params?.lang);
   const messages = getMessages(locale);
-  const path = '/philosophy';
 
-  return {
+  return buildLocalizedPageMetadata({
+    path: '/philosophy',
+    locale,
     title: messages.philosophy.meta.title,
     description: messages.philosophy.meta.description,
-    alternates: buildAlternates(path, locale),
-    openGraph: {
-      type: 'article',
-      url: buildPageUrl(path, locale),
-      locale: getOgLocale(locale),
-      title: messages.philosophy.meta.title,
-      description: messages.philosophy.meta.description,
-      siteName,
-      images: [defaultOgImage],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: messages.philosophy.meta.title,
-      description: messages.philosophy.meta.description,
-      images: [defaultOgImage],
-    },
-  };
+  });
 }
 
 export default async function PhilosophyPage({ searchParams }: PageProps) {
@@ -160,29 +145,14 @@ export default async function PhilosophyPage({ searchParams }: PageProps) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-24 px-5 sm:px-8 bg-lotus-bg text-center border-t border-lotus-border-soft">
-        <div className="max-w-2xl mx-auto">
-          <ScrollReveal>
-            <h2
-              className="font-serif font-bold text-lotus-cream mb-6"
-              style={{ fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}
-            >
-              {messages.philosophy.cta.title}
-            </h2>
-            <p className="text-lotus-muted mb-8 leading-relaxed">
-              {messages.philosophy.cta.description}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={withLocale('/research', locale)} className="btn-primary">
-                {messages.philosophy.cta.primary} →
-              </Link>
-              <Link href={withLocale('/manifesto', locale)} className="btn-ghost">
-                {messages.philosophy.cta.secondary}
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <PageCta
+        title={messages.philosophy.cta.title}
+        description={messages.philosophy.cta.description}
+        links={[
+          { href: withLocale('/research', locale), label: messages.philosophy.cta.primary, primary: true },
+          { href: withLocale('/manifesto', locale), label: messages.philosophy.cta.secondary },
+        ]}
+      />
     </>
   );
 }

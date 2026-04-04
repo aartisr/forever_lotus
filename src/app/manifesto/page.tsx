@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
-import { getMessages, getOgLocale, resolveLocale, withLocale } from '@/i18n';
-import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import PageCta from '@/components/sections/PageCta';
+import { getMessages, resolveLocale, withLocale } from '@/i18n';
+import { buildLocalizedPageMetadata } from '@/lib/page-metadata';
 
 type PageProps = {
   searchParams?: Promise<{
@@ -17,28 +17,13 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const params = await searchParams;
   const locale = resolveLocale(params?.lang);
   const messages = getMessages(locale);
-  const path = '/manifesto';
 
-  return {
+  return buildLocalizedPageMetadata({
+    path: '/manifesto',
+    locale,
     title: messages.manifesto.meta.title,
     description: messages.manifesto.meta.description,
-    alternates: buildAlternates(path, locale),
-    openGraph: {
-      type: 'article',
-      url: buildPageUrl(path, locale),
-      locale: getOgLocale(locale),
-      title: messages.manifesto.meta.title,
-      description: messages.manifesto.meta.description,
-      siteName,
-      images: [defaultOgImage],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: messages.manifesto.meta.title,
-      description: messages.manifesto.meta.description,
-      images: [defaultOgImage],
-    },
-  };
+  });
 }
 
 export default async function ManifestoPage({ searchParams }: PageProps) {
@@ -108,27 +93,14 @@ export default async function ManifestoPage({ searchParams }: PageProps) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-24 px-5 sm:px-8 bg-lotus-bg text-center border-t border-lotus-border-soft">
-        <div className="max-w-2xl mx-auto">
-          <ScrollReveal>
-            <p className="eyebrow mb-4">{messages.manifesto.cta.eyebrow}</p>
-            <h2
-              className="font-serif font-bold text-lotus-cream mb-6"
-              style={{ fontSize: 'clamp(1.6rem, 3vw, 2.6rem)' }}
-            >
-              {messages.manifesto.cta.title}
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={withLocale('/philosophy', locale)} className="btn-primary">
-                {messages.manifesto.cta.primary} →
-              </Link>
-              <Link href={withLocale('/research', locale)} className="btn-ghost">
-                {messages.manifesto.cta.secondary}
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <PageCta
+        eyebrow={messages.manifesto.cta.eyebrow}
+        title={messages.manifesto.cta.title}
+        links={[
+          { href: withLocale('/philosophy', locale), label: messages.manifesto.cta.primary, primary: true },
+          { href: withLocale('/research', locale), label: messages.manifesto.cta.secondary },
+        ]}
+      />
     </>
   );
 }

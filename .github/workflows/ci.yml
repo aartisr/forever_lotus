@@ -34,4 +34,7 @@ jobs:
         run: npm test
 
       - name: Build
-        run: npm run build
+        run: npm run build:ci
+
+      - name: Bundle Budget Check
+        run: npm run perf:budgets

@@ -1,30 +1,31 @@
-import { InMemoryStore } from '@/lib/in-memory-store';
 import { KpiBaselineRecord } from '@/lib/impact-kpi';
+import { createDataRepository } from '@/services/data-layer/factory';
 
 export class ImpactKpiStorage {
-  private static store = new InMemoryStore<KpiBaselineRecord>();
+  private static readonly repository =
+    createDataRepository<KpiBaselineRecord>('impact_kpi_baselines');
 
   static async save(record: KpiBaselineRecord): Promise<void> {
-    await this.store.save(record);
+    await this.repository.save(record);
   }
 
   static async get(id: string): Promise<KpiBaselineRecord | null> {
-    return this.store.get(id);
+    return this.repository.get(id);
   }
 
   static async list(limit: number = 100): Promise<KpiBaselineRecord[]> {
-    return this.store.list(limit);
+    return this.repository.list(limit);
   }
 
   static async update(
     id: string,
     updates: Partial<KpiBaselineRecord>
   ): Promise<KpiBaselineRecord | null> {
-    return this.store.update(id, updates);
+    return this.repository.update(id, updates);
   }
 
   static async remove(id: string): Promise<void> {
-    await this.store.delete(id);
+    await this.repository.remove(id);
   }
 
   static generateId(): string {

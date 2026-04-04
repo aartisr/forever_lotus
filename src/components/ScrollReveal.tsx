@@ -15,20 +15,35 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
     const el = ref.current;
     if (!el) return;
 
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('visible');
+      return;
+    }
+
+    if (typeof IntersectionObserver === 'undefined') {
+      el.classList.add('visible');
+      return;
+    }
+
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
+          timeoutId = setTimeout(() => {
             el.classList.add('visible');
           }, delay);
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.12, rootMargin: '0px 0px -10% 0px' }
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [delay]);
 
   return (

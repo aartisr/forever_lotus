@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
-import { getMessages, getOgLocale, resolveLocale, withLocale } from '@/i18n';
-import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import PageCta from '@/components/sections/PageCta';
+import { getMessages, resolveLocale, withLocale } from '@/i18n';
+import { buildLocalizedPageMetadata } from '@/lib/page-metadata';
 
 type PageProps = {
   searchParams?: Promise<{
@@ -17,28 +17,13 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const params = await searchParams;
   const locale = resolveLocale(params?.lang);
   const messages = getMessages(locale);
-  const path = '/about';
 
-  return {
+  return buildLocalizedPageMetadata({
+    path: '/about',
+    locale,
     title: messages.about.meta.title,
     description: messages.about.meta.description,
-    alternates: buildAlternates(path, locale),
-    openGraph: {
-      type: 'article',
-      url: buildPageUrl(path, locale),
-      locale: getOgLocale(locale),
-      title: messages.about.meta.title,
-      description: messages.about.meta.description,
-      siteName,
-      images: [defaultOgImage],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: messages.about.meta.title,
-      description: messages.about.meta.description,
-      images: [defaultOgImage],
-    },
-  };
+  });
 }
 
 export default async function AboutPage({ searchParams }: PageProps) {
@@ -224,26 +209,13 @@ export default async function AboutPage({ searchParams }: PageProps) {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 px-5 sm:px-8 bg-lotus-bg text-center border-t border-lotus-border-soft">
-        <div className="max-w-2xl mx-auto">
-          <ScrollReveal>
-            <p
-              className="font-serif italic font-bold text-gold-shimmer mb-8"
-              style={{ fontSize: 'clamp(1.5rem, 3vw, 2.4rem)' }}
-            >
-              &ldquo;{messages.about.cta.quote}&rdquo;
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={withLocale('/manifesto', locale)} className="btn-primary">
-                {messages.about.cta.primary} →
-              </Link>
-              <Link href={withLocale('/research', locale)} className="btn-ghost">
-                {messages.about.cta.secondary}
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <PageCta
+        quote={messages.about.cta.quote}
+        links={[
+          { href: withLocale('/manifesto', locale), label: messages.about.cta.primary, primary: true },
+          { href: withLocale('/research', locale), label: messages.about.cta.secondary },
+        ]}
+      />
     </>
   );
 }

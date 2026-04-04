@@ -12,8 +12,20 @@ export default function Footer() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    setLocale(resolveLocale(params.get('lang') ?? undefined));
+
+    const syncLocaleFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      setLocale(resolveLocale(params.get('lang') ?? undefined));
+    };
+
+    syncLocaleFromUrl();
+    window.addEventListener('popstate', syncLocaleFromUrl);
+    window.addEventListener('pageshow', syncLocaleFromUrl);
+
+    return () => {
+      window.removeEventListener('popstate', syncLocaleFromUrl);
+      window.removeEventListener('pageshow', syncLocaleFromUrl);
+    };
   }, [pathname]);
 
   const messages = getMessages(locale);

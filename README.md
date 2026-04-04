@@ -229,6 +229,53 @@ The production build has been validated locally with:
 npm run build
 ```
 
+### Performance Guardrails
+
+- CI now enforces route bundle budgets after build.
+- Budget config: `config/perf-budgets.json`
+- Local check: `npm run build:ci && npm run perf:budgets`
+
+### Performance Telemetry
+
+- Lightweight client-side Web Performance telemetry is enabled via `PerformanceObserver`.
+- Endpoint: `POST /api/telemetry/performance`
+- Collected metrics: `TTFB`, `FCP`, `LCP`, `CLS`, `INP`, `NAV`.
+- Optional sampling control: `NEXT_PUBLIC_PERF_SAMPLE_RATE` (default: `0.2`).
+- Telemetry is skipped when browser `Do Not Track` is enabled.
+
+### Data Layer (Plug-and-Play)
+
+The KPI and transparency APIs use a generic repository abstraction with interchangeable drivers.
+
+- `DATA_LAYER_DRIVER=supabase` (default)
+- `DATA_LAYER_DRIVER=memory` (local/test fallback)
+
+For Supabase, set:
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- Optional: `SUPABASE_DATA_TABLE` (default: `app_records`)
+
+Supabase table (generic record envelope):
+
+```sql
+create table if not exists public.app_records (
+   id text primary key,
+   entity text not null,
+   payload jsonb not null,
+   created_at timestamptz not null,
+   updated_at timestamptz not null
+);
+
+create index if not exists idx_app_records_entity_updated
+on public.app_records (entity, updated_at desc);
+```
+
+Data layer health endpoint:
+
+- `GET /api/health/data-layer`
+- Returns active driver, readiness state, and table target for operational checks.
+
 ### SEO Foundations Included
 
 - `src/app/sitemap.ts` for XML sitemap generation

@@ -148,8 +148,20 @@ export default function Navigation() {
   // Keep locale in sync with URL query changes
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    setLocale(resolveLocale(params.get('lang') ?? undefined));
+
+    const syncLocaleFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      setLocale(resolveLocale(params.get('lang') ?? undefined));
+    };
+
+    syncLocaleFromUrl();
+    window.addEventListener('popstate', syncLocaleFromUrl);
+    window.addEventListener('pageshow', syncLocaleFromUrl);
+
+    return () => {
+      window.removeEventListener('popstate', syncLocaleFromUrl);
+      window.removeEventListener('pageshow', syncLocaleFromUrl);
+    };
   }, [pathname]);
 
   // Close all menus on route change
@@ -313,7 +325,10 @@ export default function Navigation() {
                   <Link
                     key={lang}
                     href={withLocale(pathname || '/', lang)}
-                    onClick={() => setLangOpen(false)}
+                    onClick={() => {
+                      setLocale(lang);
+                      setLangOpen(false);
+                    }}
                     role="option"
                     aria-selected={isSelected}
                     className={`flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[0.825rem] transition-all duration-150 ${
@@ -405,6 +420,7 @@ export default function Navigation() {
                   <Link
                     key={lang}
                     href={withLocale(pathname || '/', lang)}
+                    onClick={() => setLocale(lang)}
                     className={`flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-[0.825rem] transition-all duration-150 ${
                       isSelected
                         ? 'bg-lotus-gold-dim text-lotus-gold font-medium'

@@ -2,9 +2,8 @@ import './globals.css';
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import Analytics from '@/components/Analytics';
+import { Analytics, Footer, Navigation } from '@/components';
+import PerformanceTelemetry from '@/components/PerformanceTelemetry';
 import { buildAlternates, defaultOgImage, siteName, siteUrl } from '@/lib/seo';
 
 const inter = Inter({
@@ -144,6 +143,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <Analytics />
+        <PerformanceTelemetry />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only absolute top-3 left-3 z-[100] btn-primary text-sm"
