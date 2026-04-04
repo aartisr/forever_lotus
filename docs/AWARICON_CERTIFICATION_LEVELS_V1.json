@@ -1,0 +1,110 @@
+{
+  "standard": "Awaricon Certification",
+  "version": "2026.1",
+  "formula": "Aw = ∫Σ (Φ · Df) dω",
+  "scoring": {
+    "scale": "0-100",
+    "components": {
+      "phi": "Presence quality (0-10), weighted 35%",
+      "df": "Dignity fidelity (0-10), weighted 35%",
+      "omega": "Operating maturity (0-10), weighted 20%",
+      "integrity": "Integrity checklist completion (0-10), weighted 10%"
+    }
+  },
+  "levels": [
+    {
+      "key": "platinum",
+      "label": "Awaricon Platinum",
+      "metal": "Platinum",
+      "scoreRange": "Aw 92-100",
+      "minScore": 92,
+      "maxScore": 100,
+      "claim": "Global exemplar of ethical presence, epistemic clarity, and dignified agency.",
+      "manifestoFit": "Embodies conscious creation with measurable responsibility.",
+      "visual": {
+        "gradientFrom": "#dff7ff",
+        "gradientVia": "#b8d8ff",
+        "gradientTo": "#9ee6ff",
+        "aura": "Astral Whitefire",
+        "sigil": "Crown of Recursive Light"
+      }
+    },
+    {
+      "key": "gold",
+      "label": "Awaricon Gold",
+      "metal": "Gold",
+      "scoreRange": "Aw 80-91",
+      "minScore": 80,
+      "maxScore": 91,
+      "claim": "High-trust guardian of humane systems, transparency, and moral leadership.",
+      "manifestoFit": "Aligns with dignity-centered humanitarian design.",
+      "visual": {
+        "gradientFrom": "#ffe7a3",
+        "gradientVia": "#ffd369",
+        "gradientTo": "#f7b733",
+        "aura": "Solar Lotus Flame",
+        "sigil": "Helios Mandala"
+      }
+    },
+    {
+      "key": "silver",
+      "label": "Awaricon Silver",
+      "metal": "Silver",
+      "scoreRange": "Aw 65-79",
+      "minScore": 65,
+      "maxScore": 79,
+      "claim": "Reliable steward of authentic participation with strong reflective depth.",
+      "manifestoFit": "Supports peace through self-awareness and accountable action.",
+      "visual": {
+        "gradientFrom": "#f5f7fa",
+        "gradientVia": "#d8e1e8",
+        "gradientTo": "#b8c7d6",
+        "aura": "Moonglass Resonance",
+        "sigil": "Reflective Spiral Node"
+      }
+    },
+    {
+      "key": "bronze",
+      "label": "Awaricon Bronze",
+      "metal": "Bronze",
+      "scoreRange": "Aw 50-64",
+      "minScore": 50,
+      "maxScore": 64,
+      "claim": "Emerging practitioner committed to growth in conscious digital presence.",
+      "manifestoFit": "Represents the manifesto principle that transformation starts where we stand.",
+      "visual": {
+        "gradientFrom": "#f3c7a5",
+        "gradientVia": "#d28a5c",
+        "gradientTo": "#8c4f2e",
+        "aura": "Earthen Ember Pulse",
+        "sigil": "Foundation Coil"
+      }
+    }
+  ],
+  "complianceChecklist": [
+    {
+      "key": "no_dark_patterns",
+      "requirement": "No dark patterns or manipulative UX"
+    },
+    {
+      "key": "privacy_first",
+      "requirement": "Privacy-first design (no invasive tracking)"
+    },
+    {
+      "key": "accessible",
+      "requirement": "Accessible to all users (WCAG 2.1 AA or above)"
+    },
+    {
+      "key": "human_authored",
+      "requirement": "Content is human-authored or transparently AI-assisted"
+    },
+    {
+      "key": "ethical_data",
+      "requirement": "Ethical data practices (no unauthorized resale or harvesting)"
+    },
+    {
+      "key": "clear_ownership",
+      "requirement": "Clear authorship and organizational accountability"
+    }
+  ]
+}
