@@ -29,8 +29,8 @@ export default function EvaluationDashboardClient() {
         throw new Error('Please enter a valid website URL (e.g., https://example.com)');
       }
 
-      // Run evaluation service (in demo mode, generates sample data)
-      const result = await ManifestoEvaluationService.evaluateWebsite(
+      // Run real website evaluation
+      const result = await ManifestoEvaluationService.evaluateWebsiteReal(
         websiteUrl,
         new URL(websiteUrl).hostname
       );
@@ -123,12 +123,12 @@ export default function EvaluationDashboardClient() {
                 )}
               </button>
 
-              {/* Demo Notice */}
+              {/* Notice */}
               <div className="rounded-lg bg-lotus-gold-dim/20 border border-lotus-gold-dim p-4">
                 <p className="text-xs text-lotus-muted-2 leading-relaxed">
-                  <strong>Note:</strong> This is a demo evaluation system. In production, this would integrate with
-                  actual website crawling, content analysis, and manifesto principle assessment engines. The results
-                  below are generated samples for demonstration purposes.
+                  <strong>Note:</strong> This evaluation analyzes your website&apos;s static content against Forever Lotus
+                  manifesto principles. Real assessment based on homepage content analysis, accessibility features,
+                  language patterns, and transparency indicators.
                 </p>
               </div>
             </form>

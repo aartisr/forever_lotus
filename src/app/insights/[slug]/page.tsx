@@ -6,17 +6,18 @@ import { getInsightBySlug, insightArticles, insightSlugs } from '@/content/insig
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export function generateStaticParams() {
   return insightSlugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
-  const article = getInsightBySlug(params.slug);
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getInsightBySlug(slug);
 
   if (!article) {
     return {
@@ -49,8 +50,9 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function InsightArticlePage({ params }: PageProps) {
-  const article = getInsightBySlug(params.slug);
+export default async function InsightArticlePage({ params }: PageProps) {
+  const { slug } = await params;
+  const article = getInsightBySlug(slug);
 
   if (!article) {
     notFound();

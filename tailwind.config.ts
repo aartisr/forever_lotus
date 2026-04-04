@@ -57,6 +57,7 @@ const config: Config = {
         'pulse-gold': 'pulseGold 4s ease-in-out infinite',
         'star-twinkle': 'starTwinkle 3s ease-in-out infinite',
         'text-shimmer': 'textShimmer 4s linear infinite',
+        'nav-in': 'navIn 0.2s cubic-bezier(0.16,1,0.3,1) forwards',
       },
       keyframes: {
         lotusSpin: {
@@ -95,6 +96,10 @@ const config: Config = {
         textShimmer: {
           '0%': { backgroundPosition: '0% center' },
           '100%': { backgroundPosition: '200% center' },
+        },
+        navIn: {
+          '0%': { opacity: '0', transform: 'translateY(8px) scale(0.97)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
       },
     },

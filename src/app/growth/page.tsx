@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import PageHero from '@/components/PageHero';
 
 const title = 'Growth Operations Dashboard';
 const description =
@@ -93,25 +94,13 @@ export default function GrowthPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(dashboardSchema) }}
       />
 
-      <section className="relative pt-32 pb-16 px-5 sm:px-8 bg-lotus-bg text-center">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background:
-              'radial-gradient(ellipse 72% 52% at 50% 0%, rgba(20,184,166,0.12) 0%, transparent 62%)',
-          }}
-        />
-        <div className="relative max-w-3xl mx-auto">
-          <p className="eyebrow mb-4">Execution Layer</p>
-          <h1 className="font-serif font-black text-lotus-cream mb-5" style={{ fontSize: 'clamp(2.2rem, 6vw, 4.6rem)' }}>
-            Growth Operations Dashboard
-          </h1>
-          <p className="text-lotus-muted text-lg leading-relaxed">
-            This page defines the measurement system used to turn SEO and content into a compounding growth engine.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Execution Layer"
+        title="Growth Operations Dashboard"
+        description="This page defines the measurement system used to turn SEO and content into a compounding growth engine."
+        gradient="radial-gradient(ellipse 72% 52% at 50% 0%, rgba(20,184,166,0.12) 0%, transparent 62%)"
+        titleSize="clamp(2.2rem, 6vw, 4.6rem)"
+      />
 
       <section className="py-16 px-5 sm:px-8 bg-[#f5f0e8] text-[#1a1612]">
         <div className="max-w-6xl mx-auto">

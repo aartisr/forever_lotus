@@ -2,6 +2,9 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import { getFeaturedWebsite, alignmentCriteria } from '@/content/aligned-websites';
+import { WebsiteShowcase, WebsiteCard } from '@/components/WebsiteShowcase';
+import PageHero from '@/components/PageHero';
 
 const title = 'Aligned Websites Ecosystem';
 const description =
@@ -34,44 +37,68 @@ const highlights = [
 ];
 
 export default function EcosystemPage() {
+  const featuredWebsite = getFeaturedWebsite();
+
   return (
     <>
-      <section className="relative pt-32 pb-16 px-5 sm:px-8 text-center overflow-hidden bg-lotus-bg">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background:
-              'radial-gradient(ellipse 68% 52% at 50% 0%, rgba(20,184,166,0.1) 0%, transparent 62%)',
-          }}
-        />
-        <div className="relative max-w-3xl mx-auto">
-          <p className="eyebrow mb-4">Ecosystem</p>
-          <h1 className="font-serif font-black text-lotus-cream mb-5" style={{ fontSize: 'clamp(2.2rem, 6vw, 4.5rem)' }}>
-            Aligned Websites
-          </h1>
-          <p className="text-lotus-muted text-lg leading-relaxed">{description}</p>
+      <PageHero
+        eyebrow="Ecosystem"
+        title="Aligned Websites"
+        description={description}
+        gradient="radial-gradient(ellipse 68% 52% at 50% 0%, rgba(20,184,166,0.1) 0%, transparent 62%)"
+      />
+
+      {/* Featured Website Showcase */}
+      <section className="py-20 px-5 sm:px-8 bg-lotus-bg">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-6 text-center">
+            <p className="eyebrow mb-2">✨ Exemplary Alignment</p>
+            <h2 className="font-serif font-black text-3xl md:text-4xl text-lotus-cream">
+              Featured on Forever Lotus
+            </h2>
+          </div>
+          <WebsiteShowcase website={featuredWebsite} featured={true} />
         </div>
       </section>
 
+      {/* What Makes a Website "Aligned" */}
       <section className="py-16 px-5 sm:px-8 bg-[#f5f0e8] text-[#1a1612]">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
-          {highlights.map((item) => (
-            <article key={item} className="rounded-2xl border border-[rgba(26,22,18,0.12)] bg-white/70 p-6">
-              <p className="text-[#4a4640] text-sm leading-relaxed">{item}</p>
-            </article>
-          ))}
+        <div className="max-w-6xl mx-auto">
+          <h2 className="font-serif font-black text-3xl text-center mb-12">
+            What We Look For in Aligned Websites
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {alignmentCriteria.map((criterion) => (
+              <div key={criterion.principle} className="rounded-2xl bg-white/70 border border-[rgba(26,22,18,0.12)] p-6">
+                <h3 className="font-serif font-bold text-lg mb-3">{criterion.principle}</h3>
+                <p className="text-sm leading-relaxed text-[#4a4640]">{criterion.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="max-w-4xl mx-auto mt-10 rounded-2xl border border-[rgba(26,22,18,0.12)] bg-white/80 p-7 text-center">
-          <h2 className="font-serif text-2xl font-bold text-[#1a1612] mb-3">Want your website featured?</h2>
-          <p className="text-[#4a4640] text-sm leading-relaxed mb-5">
-            If your platform agrees with the Forever Lotus Manifesto and promotes ethical, dignity-first outcomes,
-            you can request onboarding for showcase and promotion.
-          </p>
-          <Link href="/onboarding-websites" className="inline-flex btn-primary" data-track="ecosystem_onboarding_cta">
-            Onboard Your Website
-          </Link>
+      {/* Highlights & CTA */}
+      <section className="py-16 px-5 sm:px-8 bg-lotus-bg">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+            {highlights.map((item) => (
+              <article key={item} className="rounded-2xl border border-lotus-border-soft bg-white/10 p-6">
+                <p className="text-lotus-muted text-sm leading-relaxed">{item}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="rounded-2xl border border-lotus-border-soft bg-white/5 p-7 text-center">
+            <h2 className="font-serif text-2xl font-bold text-lotus-cream mb-3">Want your website featured?</h2>
+            <p className="text-lotus-muted text-sm leading-relaxed mb-5">
+              If your platform exemplifies dignified, ethical, and purpose-driven design—we&apos;d love to amplify your work.
+              Showcase your commitment to compassion, transparency, and conscious creation.
+            </p>
+            <Link href="/onboarding-websites" className="inline-flex btn-primary" data-track="ecosystem_onboarding_cta">
+              Apply for Onboarding
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -2,18 +2,20 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
+import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
 type PageProps = {
-  searchParams?: {
+  searchParams?: Promise<{
     lang?: string | string[];
-  };
+  }>;
 };
 
-export function generateMetadata({ searchParams }: PageProps): Metadata {
-  const locale = resolveLocale(searchParams?.lang);
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const params = await searchParams;
+  const locale = resolveLocale(params?.lang);
   const messages = getMessages(locale);
   const path = '/philosophy';
 
@@ -39,38 +41,25 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
   };
 }
 
-export default function PhilosophyPage({ searchParams }: PageProps) {
-  const locale = resolveLocale(searchParams?.lang);
+export default async function PhilosophyPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const locale = resolveLocale(params?.lang);
   const messages = getMessages(locale);
 
   return (
     <>
-      {/* Page hero */}
-      <section className="relative pt-32 pb-20 px-5 sm:px-8 text-center overflow-hidden bg-lotus-bg">
-        <div
-          className="absolute inset-0 pointer-events-none"
-          aria-hidden="true"
-          style={{
-            background:
-              'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(232,135,166,0.08) 0%, transparent 60%)',
-          }}
-        />
-        <div className="relative max-w-3xl mx-auto">
-          <p className="eyebrow mb-4">{messages.philosophy.hero.eyebrow}</p>
-          <h1
-            className="font-serif font-black text-lotus-cream mb-5"
-            style={{ fontSize: 'clamp(2.6rem, 6vw, 5rem)' }}
-          >
-            {messages.philosophy.hero.title}
-          </h1>
-          <p className="text-lotus-muted text-lg max-w-xl mx-auto leading-relaxed">
-            {messages.philosophy.hero.description}
-          </p>
-          <div className="lotus-divider mt-12 max-w-sm mx-auto">
-            <LotusIcon size={22} variant="section" />
-          </div>
+      <PageHero
+        eyebrow={messages.philosophy.hero.eyebrow}
+        title={messages.philosophy.hero.title}
+        description={messages.philosophy.hero.description}
+        gradient="radial-gradient(ellipse 70% 50% at 50% 0%, rgba(232,135,166,0.08) 0%, transparent 60%)"
+        titleSize="clamp(2.6rem, 6vw, 5rem)"
+        paddingBottom="pb-20"
+      >
+        <div className="lotus-divider mt-12 max-w-sm mx-auto">
+          <LotusIcon size={22} variant="section" />
         </div>
-      </section>
+      </PageHero>
 
       {/* Traditions */}
       <div className="bg-lotus-bg">
