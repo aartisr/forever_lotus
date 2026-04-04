@@ -109,6 +109,33 @@ forever_lotus/
    - Common improvements checklist
    - FAQ and support
 
+11. **NOBEL_IMPACT_ROADMAP.md**
+   - Long-horizon impact strategy with phased milestones
+   - Evidence, governance, adoption, and transparency priorities
+
+12. **WORLD_CLASS_EXECUTION_PLAN.md**
+   - 10-workstream execution backbone and 90-day milestones
+
+13. **WORLD_CLASS_*.md standards**
+   - KPI framework
+   - Research validation standard
+   - Governance standard
+   - Reliability and SLO baseline
+   - Security baseline
+   - i18n quality standard
+   - Content and evidence standard
+   - Adoption playbook
+   - Transparency standard
+   - Team operating model
+
+14. **API_IMPACT_BASELINES.md**
+   - KPI baseline ingestion and update APIs
+   - Transparency report generation endpoint
+
+15. **INCIDENT_POSTMORTEM_TEMPLATE.md / TRANSPARENCY_REPORT_TEMPLATE.md**
+   - Production incident review template
+   - Public transparency report template
+
 ### Features
 
 #### Manifesto Evaluation Engine
@@ -119,7 +146,7 @@ forever_lotus/
 - **21+ Evaluation Criteria**: Specific, measurable, evidence-based
 - **Beautiful Dashboard**: Gauges, principle cards, checklist mapping, recommendations
 - **Submission Checklist Integration**: Automatically maps evaluation results to onboarding criteria
-- **Multilingual**: English/Spanish support
+- **Multilingual**: English, Spanish, Portuguese, Tamil, and Kannada support
 - **Reusable**: Generic algorithm works for any website or organization
 
 **Location:** `/evaluate` on the website  

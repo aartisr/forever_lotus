@@ -4,7 +4,7 @@ import Link from 'next/link';
 import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
-import { getMessages, resolveLocale, withLocale } from '@/i18n';
+import { getMessages, getOgLocale, resolveLocale, withLocale } from '@/i18n';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
 type PageProps = {
@@ -26,7 +26,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     openGraph: {
       type: 'article',
       url: buildPageUrl(path, locale),
-      locale: locale === 'es' ? 'es_ES' : 'en_US',
+      locale: getOgLocale(locale),
       title: messages.about.meta.title,
       description: messages.about.meta.description,
       siteName,

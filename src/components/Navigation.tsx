@@ -49,85 +49,90 @@ export default function Navigation() {
   const langRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const messages = getMessages(locale);
-
-  const isEs = locale === 'es';
+  const localeFlagMap: Record<string, string> = {
+    en: '🇺🇸',
+    es: '🇪🇸',
+    pt: '🇵🇹',
+    ta: '🇮🇳',
+    kn: '🇮🇳',
+  };
 
   const menuGroups: NavGroup[] = [
     {
       key: 'framework',
-      label: isEs ? 'Marco' : 'Framework',
+      label: messages.nav.groups.framework,
       items: [
         {
           href: '/manifesto',
           label: messages.nav.links.manifesto,
           icon: '📜',
-          description: isEs ? 'El documento fundacional' : 'The foundational document',
+          description: messages.nav.descriptions.manifesto,
         },
         {
           href: '/philosophy',
           label: messages.nav.links.philosophy,
           icon: '🪷',
-          description: isEs ? 'Principios y seis pilares' : 'Principles & six pillars',
+          description: messages.nav.descriptions.philosophy,
         },
         {
           href: '/about',
           label: messages.nav.links.about,
           icon: '✦',
-          description: isEs ? 'Origen y proposito' : 'Origin & purpose',
+          description: messages.nav.descriptions.about,
         },
       ],
     },
     {
       key: 'knowledge',
-      label: isEs ? 'Conocimiento' : 'Knowledge',
+      label: messages.nav.groups.knowledge,
       items: [
         {
           href: '/research',
           label: messages.nav.links.research,
           icon: '🔬',
-          description: isEs ? 'Fuentes orientales y modernas' : 'Eastern & modern sources',
+          description: messages.nav.descriptions.research,
         },
         {
           href: '/insights',
-          label: isEs ? 'Ideas' : 'Insights',
+          label: messages.nav.links.insights,
           icon: '💡',
-          description: isEs ? 'Articulos y reflexiones' : 'Articles & reflections',
+          description: messages.nav.descriptions.insights,
         },
       ],
     },
     {
       key: 'growth',
-      label: isEs ? 'Crecimiento' : 'Growth',
+      label: messages.nav.groups.growth,
       items: [
         {
           href: '/growth',
-          label: isEs ? 'Panel de crecimiento' : 'Growth Dashboard',
+          label: messages.nav.links.growthDashboard,
           icon: '📈',
-          description: isEs ? 'Metricas e impacto' : 'Metrics & impact',
+          description: messages.nav.descriptions.growthDashboard,
         },
       ],
     },
     {
       key: 'ecosystem',
-      label: isEs ? 'Ecosistema' : 'Ecosystem',
+      label: messages.nav.groups.ecosystem,
       items: [
         {
           href: '/ecosystem',
-          label: isEs ? 'Sitios aliados' : 'Aligned Websites',
+          label: messages.nav.links.alignedWebsites,
           icon: '🌐',
-          description: isEs ? 'Ecosistema consciente' : 'Conscious ecosystem',
+          description: messages.nav.descriptions.alignedWebsites,
         },
         {
           href: '/evaluate',
-          label: isEs ? 'Evaluador de manifiesto' : 'Manifesto Evaluator',
+          label: messages.nav.links.manifestoEvaluator,
           icon: '⚖️',
-          description: isEs ? 'Verificador de alineacion' : 'Alignment checker',
+          description: messages.nav.descriptions.manifestoEvaluator,
         },
         {
           href: '/onboarding-websites',
-          label: isEs ? 'Onboarding de sitios' : 'Onboard Your Website',
+          label: messages.nav.links.onboardWebsite,
           icon: '✚',
-          description: isEs ? 'Unirse a la red' : 'Join the network',
+          description: messages.nav.descriptions.onboardWebsite,
         },
       ],
     },
@@ -140,11 +145,12 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Read locale from URL on mount
+  // Keep locale in sync with URL query changes
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     setLocale(resolveLocale(params.get('lang') ?? undefined));
-  }, []);
+  }, [pathname]);
 
   // Close all menus on route change
   useEffect(() => {
@@ -316,7 +322,7 @@ export default function Navigation() {
                         : 'text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.05]'
                     }`}
                   >
-                    <span className="text-base">{lang === 'en' ? '🇺🇸' : '🇪🇸'}</span>
+                    <span className="text-base">{localeFlagMap[lang] ?? '🌐'}</span>
                     <span className="flex-1">{messages.nav.languages[lang]}</span>
                     {isSelected && <CheckIcon className="w-3.5 h-3.5 text-lotus-gold shrink-0" />}
                   </Link>
@@ -405,7 +411,7 @@ export default function Navigation() {
                         : 'text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.05]'
                     }`}
                   >
-                    <span className="text-sm">{lang === 'en' ? '🇺🇸' : '🇪🇸'}</span>
+                    <span className="text-sm">{localeFlagMap[lang] ?? '🌐'}</span>
                     <span>{messages.nav.languages[lang]}</span>
                     {isSelected && <CheckIcon className="w-3 h-3 text-lotus-gold shrink-0" />}
                   </Link>

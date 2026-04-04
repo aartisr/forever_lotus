@@ -9,6 +9,28 @@ export const esMessages: MessageSchema = {
       philosophy: 'Filosofia',
       research: 'Investigacion',
       about: 'Acerca de',
+      insights: 'Ideas',
+      growthDashboard: 'Panel de crecimiento',
+      alignedWebsites: 'Sitios aliados',
+      manifestoEvaluator: 'Evaluador de manifiesto',
+      onboardWebsite: 'Onboarding de sitios',
+    },
+    groups: {
+      framework: 'Marco',
+      knowledge: 'Conocimiento',
+      growth: 'Crecimiento',
+      ecosystem: 'Ecosistema',
+    },
+    descriptions: {
+      manifesto: 'El documento fundacional',
+      philosophy: 'Principios y seis pilares',
+      about: 'Origen y proposito',
+      research: 'Fuentes orientales y modernas',
+      insights: 'Articulos y reflexiones',
+      growthDashboard: 'Metricas e impacto',
+      alignedWebsites: 'Ecosistema consciente',
+      manifestoEvaluator: 'Verificador de alineacion',
+      onboardWebsite: 'Unirse a la red',
     },
     cta: 'Leer manifiesto',
     openMenu: 'Abrir menu',
@@ -18,6 +40,9 @@ export const esMessages: MessageSchema = {
     languages: {
       en: 'Ingles',
       es: 'Espanol',
+      pt: 'Portugues',
+      ta: 'Tamil',
+      kn: 'Kannada',
     },
   },
   footer: {
@@ -30,6 +55,7 @@ export const esMessages: MessageSchema = {
       'Construye como si la humanidad importara. Lidera como si la dignidad no fuera negociable. Innova como si las futuras generaciones ya te estuvieran observando.',
     rights: 'Forever Lotus. Todos los derechos reservados.',
     authorLabel: 'Autora:',
+    alignedNote: 'Tambien destacamos y promovemos sitios web alineados con el Manifiesto Forever Lotus.',
     repositoryLabel: 'Repositorio publico',
   },
   notFound: {
@@ -194,6 +220,11 @@ export const esMessages: MessageSchema = {
         'Esta es una invitacion, no una doctrina. Co-crear equilibrio en lugar de exceso, paz en lugar de teatro de poder y futuros compartidos en lugar de ganancia aislada.',
       ctaPrimary: 'Leer el manifiesto',
       ctaSecondary: 'Acerca de Forever Lotus',
+    },
+    faq: {
+      q1: 'Que es Forever Lotus?',
+      q2: 'En que se basa este marco?',
+      q3: 'Cual es el objetivo principal?',
     },
   },
   manifesto: {

@@ -2,16 +2,19 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import LotusIcon from './LotusIcon';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
 
 export default function Footer() {
   const [locale, setLocale] = useState(resolveLocale(undefined));
+  const pathname = usePathname();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     setLocale(resolveLocale(params.get('lang') ?? undefined));
-  }, []);
+  }, [pathname]);
 
   const messages = getMessages(locale);
 
@@ -19,11 +22,11 @@ export default function Footer() {
     { label: messages.nav.links.manifesto, href: '/manifesto' },
     { label: messages.nav.links.philosophy, href: '/philosophy' },
     { label: messages.nav.links.research, href: '/research' },
-    { label: locale === 'es' ? 'Ideas' : 'Insights', href: '/insights' },
-    { label: locale === 'es' ? 'Crecimiento' : 'Growth', href: '/growth' },
-    { label: locale === 'es' ? 'Sitios aliados' : 'Aligned Websites', href: '/ecosystem' },
-    { label: locale === 'es' ? 'Evaluador de manifiesto' : 'Manifesto Evaluator', href: '/evaluate' },
-    { label: locale === 'es' ? 'Onboarding de sitios' : 'Onboard Website', href: '/onboarding-websites' },
+    { label: messages.nav.links.insights, href: '/insights' },
+    { label: messages.nav.groups.growth, href: '/growth' },
+    { label: messages.nav.links.alignedWebsites, href: '/ecosystem' },
+    { label: messages.nav.links.manifestoEvaluator, href: '/evaluate' },
+    { label: messages.nav.links.onboardWebsite, href: '/onboarding-websites' },
     { label: messages.nav.links.about, href: '/about' },
   ];
 
@@ -44,9 +47,7 @@ export default function Footer() {
               {messages.footer.description}
             </p>
             <p className="text-lotus-muted-2 text-xs leading-relaxed mt-3">
-              {locale === 'es'
-                ? 'Tambien destacamos y promovemos sitios web alineados con el Manifiesto Forever Lotus.'
-                : 'We also highlight and promote websites aligned with the Forever Lotus Manifesto.'}
+              {messages.footer.alignedNote}
             </p>
           </div>
 
@@ -93,15 +94,6 @@ export default function Footer() {
               {messages.footer.authorLabel}{' '}
               <span className="text-lotus-muted">{messages.footer.authorName}</span>
             </p>
-            <a
-              href="https://github.com/aartisr/forever_lotus"
-              target="_blank"
-              rel="noreferrer"
-              className="text-lotus-gold/70 hover:text-lotus-gold transition-colors duration-200"
-              data-track="footer_repository_click"
-            >
-              {messages.footer.repositoryLabel}
-            </a>
           </div>
         </div>
       </div>

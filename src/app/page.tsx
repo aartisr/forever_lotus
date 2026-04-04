@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
@@ -474,14 +475,16 @@ function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
 export default function HomePage() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com';
   const [locale, setLocale] = useState(resolveLocale(undefined));
+  const pathname = usePathname();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const params = new URLSearchParams(window.location.search);
     setLocale(resolveLocale(params.get('lang') ?? undefined));
-  }, []);
+  }, [pathname]);
 
   const home = getMessages(locale).home;
-  const pageUrl = locale === 'es' ? `${siteUrl}/?lang=es` : `${siteUrl}/`;
+  const pageUrl = withLocale(`${siteUrl}/`, locale);
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -503,10 +506,7 @@ export default function HomePage() {
     mainEntity: [
       {
         '@type': 'Question',
-        name:
-          locale === 'es'
-            ? 'Que es Forever Lotus?'
-            : 'What is Forever Lotus?',
+        name: home.faq.q1,
         acceptedAnswer: {
           '@type': 'Answer',
           text: home.principle.description,
@@ -514,10 +514,7 @@ export default function HomePage() {
       },
       {
         '@type': 'Question',
-        name:
-          locale === 'es'
-            ? 'En que se basa este marco?'
-            : 'What evidence supports this framework?',
+        name: home.faq.q2,
         acceptedAnswer: {
           '@type': 'Answer',
           text: home.research.description,
@@ -525,10 +522,7 @@ export default function HomePage() {
       },
       {
         '@type': 'Question',
-        name:
-          locale === 'es'
-            ? 'Cual es el objetivo principal?' 
-            : 'What is the central objective?',
+        name: home.faq.q3,
         acceptedAnswer: {
           '@type': 'Answer',
           text: home.vow.description,
