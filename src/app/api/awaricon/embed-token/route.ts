@@ -12,9 +12,34 @@ import {
 import { appendAuditEntry } from '@/lib/awariconApprovalRegistry';
 import { NextRequest } from 'next/server';
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Accept, x-awaricon-admin-key',
+  'Access-Control-Max-Age': '86400',
+  Vary: 'Origin',
+};
+
+function jsonWithCors(payload: unknown, init?: ResponseInit) {
+  return NextResponse.json(payload, {
+    ...init,
+    headers: {
+      ...CORS_HEADERS,
+      ...(init?.headers ?? {}),
+    },
+  });
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: CORS_HEADERS,
+  });
+}
+
 export async function GET(request: NextRequest) {
   if (isAwariconAdminConfigured() && !isAwariconAdminAuthorized(request)) {
-    return NextResponse.json({ error: 'Invalid admin key.' }, { status: 401 });
+    return jsonWithCors({ error: 'Invalid admin key.' }, { status: 401 });
   }
 
   const { searchParams } = new URL(request.url);
@@ -24,21 +49,21 @@ export async function GET(request: NextRequest) {
 
   const validTier = awariconTiers.find((item) => item.key === tier);
   if (!validTier) {
-    return NextResponse.json({ error: 'Invalid tier.' }, { status: 400 });
+    return jsonWithCors({ error: 'Invalid tier.' }, { status: 400 });
   }
 
   const site = normalizeSite(siteParam);
   if (!site) {
-    return NextResponse.json({ error: 'Invalid site domain.' }, { status: 400 });
+    return jsonWithCors({ error: 'Invalid site domain.' }, { status: 400 });
   }
 
   if (!await isSiteApproved(site)) {
-    return NextResponse.json({ error: 'Site is not approved for signed badges.' }, { status: 403 });
+    return jsonWithCors({ error: 'Site is not approved for signed badges.' }, { status: 403 });
   }
 
   const secret = process.env.AWARICON_BADGE_SIGNING_SECRET;
   if (!secret) {
-    return NextResponse.json({ error: 'Signing secret not configured.' }, { status: 503 });
+    return jsonWithCors({ error: 'Signing secret not configured.' }, { status: 503 });
   }
 
   const clampedDays = Number.isFinite(expDays) ? Math.min(365, Math.max(1, Math.floor(expDays))) : 30;
@@ -47,7 +72,7 @@ export async function GET(request: NextRequest) {
 
   void appendAuditEntry('token_issued', site, { tier, exp });
 
-  return NextResponse.json({
+  return jsonWithCors({
     tier,
     site,
     exp,
