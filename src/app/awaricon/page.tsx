@@ -142,6 +142,7 @@ export default function AwariconPage() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/awaricon/apply" className="btn-primary">Apply for Certification →</Link>
+            <Link href="/awaricon/badge-generator" className="btn-ghost">Badge Embed Generator</Link>
             <Link href="/awaricon/compliance" className="btn-ghost">Public Compliance Guide</Link>
             <Link href="/api/awaricon/certification/levels" className="btn-ghost">Public Levels API</Link>
             <Link href="/manifesto" className="btn-ghost">Read Manifesto</Link>
