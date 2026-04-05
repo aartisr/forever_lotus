@@ -111,19 +111,24 @@ export default function AwariconBadge({ tier, index = 0 }: AwariconBadgeProps) {
           <circle cx="180" cy="180" r="132" fill="rgba(11,12,21,0.92)" stroke={`url(#${gradId})`} strokeWidth="8" />
           <circle cx="180" cy="180" r="111" fill="rgba(10,11,19,0.85)" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
 
-          <g fill={`url(#${gradId})`} opacity="0.98" transform="translate(180 180)">
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" />
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" transform="rotate(45)" />
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" transform="rotate(90)" />
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" transform="rotate(135)" />
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" transform="rotate(180)" />
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" transform="rotate(225)" />
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" transform="rotate(270)" />
-            <path d="M0,-78 C14,-50 14,-26 0,-6 C-14,-26 -14,-50 0,-78" transform="rotate(315)" />
+          <g fill={`url(#${gradId})`} opacity="0.82" stroke="rgba(255,255,255,0.16)" strokeWidth="1.2" transform="translate(180 180)">
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" />
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" transform="rotate(45)" />
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" transform="rotate(90)" />
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" transform="rotate(135)" />
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" transform="rotate(180)" />
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" transform="rotate(225)" />
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" transform="rotate(270)" />
+            <path d="M0,-66 C10,-46 10,-30 0,-16 C-10,-30 -10,-46 0,-66" transform="rotate(315)" />
           </g>
 
-          <circle cx="180" cy="180" r="56" fill="rgba(7,8,14,0.92)" stroke={`url(#${gradId})`} strokeWidth="3" />
-          <path d="M180 140 L198 176 L238 182 L208 209 L214 248 L180 228 L146 248 L152 209 L122 182 L162 176 Z" fill={`url(#${gradId})`} opacity="0.95" />
+          <circle cx="180" cy="180" r="52" fill="rgba(7,8,14,0.94)" stroke={`url(#${gradId})`} strokeWidth="3" />
+          <path d="M180 148 L191 170 L215 174 L197 191 L201 215 L180 204 L159 215 L163 191 L145 174 L169 170 Z" fill={`url(#${gradId})`} opacity="0.98" stroke="rgba(8,9,16,0.45)" strokeWidth="2" />
+          <g fill="#fff5c6" opacity="0.9">
+            <path d="M180 118 L184 126 L193 127 L186 133 L188 142 L180 138 L172 142 L174 133 L167 127 L176 126 Z" />
+            <path d="M226 180 L230 188 L239 189 L232 195 L234 204 L226 200 L218 204 L220 195 L213 189 L222 188 Z" />
+            <path d="M134 180 L138 188 L147 189 L140 195 L142 204 L134 200 L126 204 L128 195 L121 189 L130 188 Z" />
+          </g>
           <circle cx="180" cy="180" r="18" fill={`url(#${shineId})`} opacity="0.5" />
 
           <text x="180" y="292" textAnchor="middle" fill={tier.gradientFrom} fontSize="16" fontWeight="700" letterSpacing="2.6">

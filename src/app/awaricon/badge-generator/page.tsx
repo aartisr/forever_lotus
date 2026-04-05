@@ -12,6 +12,7 @@ export default function BadgeGeneratorPage() {
   const [host, setHost] = useState('https://buddhi-align.foreverlotus.com');
   const [site, setSite] = useState('buddhi-align.forever.com');
   const [tier, setTier] = useState('platinum');
+  const [embedSize, setEmbedSize] = useState('140');
   const [days, setDays] = useState('30');
   const [adminKey, setAdminKey] = useState('');
   const [loading, setLoading] = useState(false);
@@ -44,8 +45,9 @@ export default function BadgeGeneratorPage() {
 
       const json = JSON.parse(text);
       const badgeUrl = `${host.trim()}/api/awaricon/badge?tier=${tier}&site=${encodeURIComponent(json.site)}&exp=${json.exp}&sig=${json.sig}`;
-      const embedHtml = `<a href="${host.trim()}/awaricon/legal" target="_blank" rel="noopener noreferrer" aria-label="Awaricon ${tier.charAt(0).toUpperCase() + tier.slice(1)} compliance badge">
-  <img src="${badgeUrl}" alt="Awaricon ${tier.charAt(0).toUpperCase() + tier.slice(1)} compliance badge" width="180" height="180" loading="lazy" />
+        const safeSize = Number(embedSize);
+        const embedHtml = `<a href="${host.trim()}/awaricon/legal" target="_blank" rel="noopener noreferrer" aria-label="Awaricon ${tier.charAt(0).toUpperCase() + tier.slice(1)} compliance badge">
+      <img src="${badgeUrl}" alt="Awaricon ${tier.charAt(0).toUpperCase() + tier.slice(1)} compliance badge" width="${safeSize}" height="${safeSize}" loading="lazy" />
 </a>`;
 
       setResult({ badgeUrl, embedHtml });
@@ -111,7 +113,7 @@ export default function BadgeGeneratorPage() {
             />
           </div>
 
-          {/* Tier + Days row */}
+          {/* Tier + Size + Days row */}
           <div className="flex gap-4">
             <div className="flex-1">
               <label htmlFor="bg-tier" className="block text-xs font-semibold uppercase tracking-widest text-lotus-gold/80 mb-1.5">
@@ -128,6 +130,23 @@ export default function BadgeGeneratorPage() {
                 <option value="gold">Gold</option>
                 <option value="silver">Silver</option>
                 <option value="bronze">Bronze</option>
+              </select>
+            </div>
+            <div className="w-36">
+              <label htmlFor="bg-size" className="block text-xs font-semibold uppercase tracking-widest text-lotus-gold/80 mb-1.5">
+                Badge Size
+              </label>
+              <select
+                id="bg-size"
+                title="Embed badge size"
+                value={embedSize}
+                onChange={(e) => setEmbedSize(e.target.value)}
+                className="w-full rounded-lg border border-white/10 bg-[#0d0e1b] px-4 py-2.5 text-lotus-cream focus:outline-none focus:ring-2 focus:ring-lotus-gold/40"
+              >
+                <option value="96">96 px</option>
+                <option value="120">120 px</option>
+                <option value="140">140 px</option>
+                <option value="180">180 px</option>
               </select>
             </div>
             <div className="w-32">
@@ -188,7 +207,7 @@ export default function BadgeGeneratorPage() {
             {/* Badge preview */}
             <div className="flex flex-col items-center gap-4 rounded-xl border border-white/10 bg-white/5 py-8">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={result.badgeUrl} alt="Awaricon badge preview" width={120} height={120} />
+              <img src={result.badgeUrl} alt="Awaricon badge preview" width={Number(embedSize)} height={Number(embedSize)} />
               <p className="text-xs text-lotus-muted">Live badge preview</p>
             </div>
 
