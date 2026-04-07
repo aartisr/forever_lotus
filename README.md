@@ -321,6 +321,12 @@ Publishing guide: [docs/WEEKLY_CONTENT_PIPELINE.md](docs/WEEKLY_CONTENT_PIPELINE
 KPI guide: [docs/KPI_DASHBOARD_SPEC.md](docs/KPI_DASHBOARD_SPEC.md)
 Scorecard template: [docs/SEO_SCORECARD_TEMPLATE.md](docs/SEO_SCORECARD_TEMPLATE.md)
 
+Operations and security runbooks:
+
+- Incident response: [docs/runbooks/INCIDENT_RESPONSE.md](docs/runbooks/INCIDENT_RESPONSE.md)
+- Rollback steps: [docs/runbooks/ROLLBACK.md](docs/runbooks/ROLLBACK.md)
+- Contact threat model: [docs/security/CONTACT_THREAT_MODEL.md](docs/security/CONTACT_THREAT_MODEL.md)
+
 ---
 
 ## Citation & Attribution

@@ -36,7 +36,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "perf:budgets": "node scripts/check-bundle-budgets.mjs"
+    "perf:budgets": "node scripts/check-bundle-budgets.mjs",
+    "security:audit": "npm audit --audit-level=high"
   },
   "dependencies": {
     "framer-motion": "^11.3.0",
