@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-04-06",
+  "description": "Project tree mapped to Phase 0 and first 180-day execution.",
+  "projects": [
+    {
+      "key": "P1",
+      "title": "Baseline and Instrumentation",
+      "goalKey": "G3",
+      "description": "Create KPI baselines, metric owners, and observability needed for objective decision-making.",
+      "workstreams": [
+        "Data dictionary and KPI baselines",
+        "Dashboard instrumentation",
+        "Data quality and reconciliation"
+      ]
+    },
+    {
+      "key": "P2",
+      "title": "Research and Standards",
+      "goalKey": "G1",
+      "description": "Build epistemic authority through methods transparency, publications, and institutional co-authorship.",
+      "workstreams": [
+        "Awaricon technical spec",
+        "Research publication pipeline",
+        "Advisory and peer-review process"
+      ]
+    },
+    {
+      "key": "P3",
+      "title": "Anchor 50 Adoption",
+      "goalKey": "G2",
+      "description": "Acquire and onboard anchor organizations across NGO, media, tech, education, and public-interest brands.",
+      "workstreams": [
+        "Prospect profiling",
+        "Outreach and demos",
+        "Pilot onboarding and case studies"
+      ]
+    },
+    {
+      "key": "P4",
+      "title": "Awaricon Platform and Integrations",
+      "goalKey": "G2",
+      "description": "Ship reliable verification APIs, integration kits, and plugin pathways for easy adoption.",
+      "workstreams": [
+        "Verification API",
+        "Plugin ecosystem",
+        "Security and reliability"
+      ]
+    },
+    {
+      "key": "P5",
+      "title": "Global Distribution Mesh",
+      "goalKey": "G1",
+      "description": "Create compounding loops across SEO, social proof, partnerships, and multilingual content.",
+      "workstreams": [
+        "Pillar content and search programs",
+        "Partner and referral channels",
+        "Regional growth pods"
+      ]
+    },
+    {
+      "key": "P6",
+      "title": "Governance and Transparency",
+      "goalKey": "G3",
+      "description": "Operationalize manifesto guardrails, approvals, and public reporting discipline.",
+      "workstreams": [
+        "Approval matrix",
+        "Risk reviews and incident rehearsal",
+        "Transparency report cadence"
+      ]
+    }
+  ]
+}
