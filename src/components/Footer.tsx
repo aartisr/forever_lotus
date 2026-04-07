@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LotusIcon from './LotusIcon';
+import LogoMeaningPopover from './LogoMeaningPopover';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
 
 export default function Footer() {
@@ -52,10 +53,13 @@ export default function Footer() {
         {/* Top row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-12">
           <div className="max-w-sm">
-            <Link href={withLocale('/', locale)} className="flex items-center gap-2.5 mb-4 group">
-              <LotusIcon size={30} variant="nav" />
-              <span className="font-serif text-lg font-bold text-lotus-cream">{messages.nav.brand}</span>
+            <Link href={withLocale('/', locale)} className="flex items-center gap-3 mb-4 group">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-lotus-gold/30 bg-[rgba(255,214,107,0.08)] shadow-[0_0_0_1px_rgba(255,255,255,0.03)]">
+                <LotusIcon size={34} variant="nav" />
+              </span>
+              <span className="font-serif text-lg font-bold tracking-[0.02em] text-lotus-cream">{messages.nav.brand}</span>
             </Link>
+            <LogoMeaningPopover locale={locale} className="mb-4" align="left" />
             <p className="text-lotus-muted text-sm leading-relaxed">
               {messages.footer.description}
             </p>

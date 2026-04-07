@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LotusIcon from './LotusIcon';
+import LogoMeaningPopover from './LogoMeaningPopover';
 import AwariconMark, { type AwariconMarkVariant } from './AwariconMark';
 import { getMessages, resolveLocale, supportedLocales, withLocale } from '@/i18n';
 
@@ -240,14 +241,19 @@ export default function Navigation() {
         {/* ── Logo ── */}
         <Link
           href={withLocale('/', locale)}
-          className="flex items-center gap-2.5 group shrink-0"
+          className="flex items-center gap-3 group shrink-0"
           aria-label={messages.nav.homeAria}
         >
-          <LotusIcon size={30} variant="nav" className="transition-transform duration-700 group-hover:rotate-45" />
-          <span className="font-serif text-[1.05rem] font-bold tracking-wide text-lotus-cream">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-lotus-gold/30 bg-[rgba(255,214,107,0.08)] shadow-[0_0_0_1px_rgba(255,255,255,0.03)]">
+            <LotusIcon size={34} variant="nav" />
+          </span>
+          <span className="font-serif text-[1.08rem] font-bold tracking-[0.02em] text-lotus-cream">
             {messages.nav.brand}
           </span>
         </Link>
+        <div className="hidden xl:block">
+          <LogoMeaningPopover locale={locale} align="left" />
+        </div>
 
         {/* ── Desktop nav ── */}
         <div className="hidden md:flex items-center gap-0.5 ml-auto">

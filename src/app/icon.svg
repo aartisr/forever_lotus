@@ -1,22 +1,50 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Forever Lotus Icon</title>
-  <desc id="desc">Golden lotus symbol on deep indigo background.</desc>
+  <title id="title">Forever Lotus Manifesto Mark</title>
+  <desc id="desc">A rooted lotus rising from water, symbolizing conscious creation with compassion, dignity, and clarity.</desc>
   <defs>
     <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#0f0c1f"/>
-      <stop offset="100%" stop-color="#191331"/>
+      <stop offset="0%" stop-color="#100E22"/>
+      <stop offset="100%" stop-color="#1D1738"/>
     </linearGradient>
     <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#e5c96b"/>
-      <stop offset="100%" stop-color="#b0892f"/>
+      <stop offset="0%" stop-color="#F6D27A"/>
+      <stop offset="100%" stop-color="#BC8B2C"/>
+    </linearGradient>
+    <linearGradient id="pink" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F0A2C2"/>
+      <stop offset="100%" stop-color="#D871A2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 222) rotate(90) scale(148)">
+      <stop offset="0%" stop-color="#F6D27A" stop-opacity="0.36"/>
+      <stop offset="100%" stop-color="#F6D27A" stop-opacity="0"/>
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="96" fill="url(#bg)"/>
-  <g fill="none" stroke="url(#gold)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" transform="translate(64 68)">
-    <path d="M192 292c-40-2-80-20-112-54 24-66 72-112 112-132 40 20 88 66 112 132-32 34-72 52-112 54z"/>
-    <path d="M192 292c-26-2-52-14-74-36 16-44 46-76 74-92 28 16 58 48 74 92-22 22-48 34-74 36z"/>
-    <path d="M192 292v74"/>
-    <path d="M134 216c-36-12-64-40-86-76 36-8 74-4 108 16"/>
-    <path d="M250 216c34-12 62-40 84-76-36-8-74-4-108 16"/>
+  <circle cx="256" cy="222" r="148" fill="url(#glow)"/>
+
+  <g transform="translate(0 0)">
+    <g>
+      <path d="M256 256 C 224 178, 236 94, 256 42 C 276 94, 288 178, 256 256" fill="url(#gold)"/>
+      <path d="M256 256 C 178 224, 94 236, 42 256 C 94 276, 178 288, 256 256" fill="url(#gold)" transform="rotate(45 256 256)"/>
+      <path d="M256 256 C 224 178, 236 94, 256 42 C 276 94, 288 178, 256 256" fill="url(#gold)" transform="rotate(90 256 256)"/>
+      <path d="M256 256 C 178 224, 94 236, 42 256 C 94 276, 178 288, 256 256" fill="url(#gold)" transform="rotate(135 256 256)"/>
+    </g>
+
+    <g>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(22.5 256 256)"/>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(67.5 256 256)"/>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(112.5 256 256)"/>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(157.5 256 256)"/>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(202.5 256 256)"/>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(247.5 256 256)"/>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(292.5 256 256)"/>
+      <path d="M256 256 C 236 208, 244 160, 256 122 C 268 160, 276 208, 256 256" fill="url(#pink)" transform="rotate(337.5 256 256)"/>
+    </g>
+
+    <circle cx="256" cy="256" r="26" fill="#D19B39"/>
+    <circle cx="256" cy="256" r="10" fill="#2E1D06" fill-opacity="0.35"/>
+
+    <path d="M116 336 C 168 308, 214 304, 256 318 C 298 304, 344 308, 396 336" stroke="#E4B355" stroke-width="14" stroke-linecap="round"/>
+    <path d="M142 374 C 188 354, 226 350, 256 358 C 286 350, 324 354, 370 374" stroke="#79BEB2" stroke-width="10" stroke-linecap="round"/>
   </g>
 </svg>
