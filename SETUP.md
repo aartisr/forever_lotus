@@ -92,6 +92,13 @@ Optional environment variable:
 
 - `NEXT_PUBLIC_SITE_URL=https://your-domain`
 
+Recommended contact environment variables:
+
+- `RESEND_API_KEY=...`
+- `CONTACT_EMAIL=investor-inbox@your-domain`
+- `CONTACT_FROM_EMAIL=contact@your-domain`
+- `CONTACT_ALLOWED_ORIGINS=https://your-domain,https://www.your-domain`
+
 ## Project Structure
 
 ```text

@@ -220,6 +220,10 @@ This project is configured to deploy directly from the repository root as a Next
 4. Build command: `next build`
 5. Optional environment variable:
    - `NEXT_PUBLIC_SITE_URL=https://your-domain`
+   - `RESEND_API_KEY=...` (required for contact form delivery)
+   - `CONTACT_EMAIL=investor-inbox@your-domain`
+   - `CONTACT_FROM_EMAIL=contact@your-domain`
+   - `CONTACT_ALLOWED_ORIGINS=https://your-domain,https://www.your-domain`
 
 ### Build Verification
 
@@ -228,6 +232,8 @@ The production build has been validated locally with:
 ```bash
 npm run build
 ```
+
+Note: `npm run build` now blocks if a local `next dev` process is already running, preventing `.next` manifest race conditions during local verification.
 
 ### Performance Guardrails
 
@@ -314,6 +320,12 @@ Execution guide: [docs/VIRAL_SEARCH_PLAYBOOK.md](docs/VIRAL_SEARCH_PLAYBOOK.md)
 Publishing guide: [docs/WEEKLY_CONTENT_PIPELINE.md](docs/WEEKLY_CONTENT_PIPELINE.md)
 KPI guide: [docs/KPI_DASHBOARD_SPEC.md](docs/KPI_DASHBOARD_SPEC.md)
 Scorecard template: [docs/SEO_SCORECARD_TEMPLATE.md](docs/SEO_SCORECARD_TEMPLATE.md)
+
+Operations and security runbooks:
+
+- Incident response: [docs/runbooks/INCIDENT_RESPONSE.md](docs/runbooks/INCIDENT_RESPONSE.md)
+- Rollback steps: [docs/runbooks/ROLLBACK.md](docs/runbooks/ROLLBACK.md)
+- Contact threat model: [docs/security/CONTACT_THREAT_MODEL.md](docs/security/CONTACT_THREAT_MODEL.md)
 
 ---
 

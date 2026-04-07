@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import GuidedScrollNav from '@/components/GuidedScrollNav';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
@@ -31,6 +32,7 @@ function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['h
 
   return (
     <section
+      id="home-hero"
       ref={heroRef}
       className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden"
       aria-labelledby="hero-heading"
@@ -104,16 +106,23 @@ function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['h
       </div>
 
       {/* Scroll cue */}
-      <div
+      <button
+        type="button"
+        onClick={() => {
+          const next = document.getElementById('home-principle');
+          if (!next) return;
+          const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          next.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-up"
         style={{ animationDelay: '1200ms', animationFillMode: 'both' }}
-        aria-hidden="true"
+        aria-label="Scroll to next section"
       >
         <span className="text-lotus-muted-2 text-xs tracking-widest uppercase">
           {home.hero.scroll}
         </span>
         <div className="w-px h-10 bg-gradient-to-b from-lotus-gold/40 to-transparent animate-float" />
-      </div>
+      </button>
     </section>
   );
 }
@@ -122,7 +131,7 @@ function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['h
 
 function LotusPrinciple({ home }: { home: ReturnType<typeof getMessages>['home'] }) {
   return (
-    <section className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="principle-heading">
+    <section id="home-principle" className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="principle-heading">
       <div className="max-w-5xl mx-auto text-center">
         <ScrollReveal>
           <p className="eyebrow mb-4">{home.principle.eyebrow}</p>
@@ -168,7 +177,7 @@ function LotusPrinciple({ home }: { home: ReturnType<typeof getMessages>['home']
 
 function QuoteSection({ home }: { home: ReturnType<typeof getMessages>['home'] }) {
   return (
-    <section className="relative py-28 px-5 sm:px-8 overflow-hidden bg-lotus-bg-2">
+    <section id="home-quote" className="relative py-28 px-5 sm:px-8 overflow-hidden bg-lotus-bg-2">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
@@ -219,7 +228,7 @@ const pillarIconBg: Record<string, string> = {
 
 function PillarsSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
-    <section className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="pillars-heading">
+    <section id="home-pillars" className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="pillars-heading">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16">
           <p className="eyebrow mb-4">{home.pillars.eyebrow}</p>
@@ -271,7 +280,7 @@ function PillarsSection({ home, locale }: { home: ReturnType<typeof getMessages>
 
 function StatsSection({ home }: { home: ReturnType<typeof getMessages>['home'] }) {
   return (
-    <section className="py-20 px-5 sm:px-8 bg-lotus-bg-2 border-y border-lotus-border-soft">
+    <section id="home-stats" className="py-20 px-5 sm:px-8 bg-lotus-bg-2 border-y border-lotus-border-soft">
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 stagger-children">
           {home.stats.map(({ value, label }) => (
@@ -295,7 +304,7 @@ function StatsSection({ home }: { home: ReturnType<typeof getMessages>['home'] }
 
 function TraditionsSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
-    <section className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="traditions-heading">
+    <section id="home-traditions" className="py-28 px-5 sm:px-8 bg-lotus-bg" aria-labelledby="traditions-heading">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16">
           <p className="eyebrow mb-4">{home.traditions.eyebrow}</p>
@@ -341,7 +350,7 @@ function TraditionsSection({ home, locale }: { home: ReturnType<typeof getMessag
 
 function ResearchSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
-    <section className="py-28 px-5 sm:px-8 bg-lotus-bg-2" aria-labelledby="research-heading">
+    <section id="home-research" className="py-28 px-5 sm:px-8 bg-lotus-bg-2" aria-labelledby="research-heading">
       <div className="max-w-5xl mx-auto text-center">
         <ScrollReveal>
           <p className="eyebrow mb-4">{home.research.eyebrow}</p>
@@ -387,7 +396,7 @@ function ResearchSection({ home, locale }: { home: ReturnType<typeof getMessages
 
 function VowSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
-    <section className="relative py-32 px-5 sm:px-8 overflow-hidden bg-lotus-bg-3" aria-labelledby="vow-heading">
+    <section id="home-vow" className="relative py-32 px-5 sm:px-8 overflow-hidden bg-lotus-bg-3" aria-labelledby="vow-heading">
       <div
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
@@ -441,7 +450,7 @@ function VowSection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
 
 function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
   return (
-    <section className="py-28 px-5 sm:px-8 bg-lotus-bg border-t border-lotus-border-soft" aria-labelledby="cta-heading">
+    <section id="home-cta" className="py-28 px-5 sm:px-8 bg-lotus-bg border-t border-lotus-border-soft" aria-labelledby="cta-heading">
       <div className="max-w-3xl mx-auto text-center">
         <ScrollReveal>
           <LotusIcon size={52} variant="section" className="mx-auto mb-8 animate-float" />
@@ -485,6 +494,17 @@ export default function HomePage() {
 
   const home = getMessages(locale).home;
   const pageUrl = withLocale(`${siteUrl}/`, locale);
+  const guidedSections = [
+    { id: 'home-hero', label: 'Hero' },
+    { id: 'home-principle', label: 'Lotus Principle' },
+    { id: 'home-quote', label: 'Quote' },
+    { id: 'home-pillars', label: 'Six Pillars' },
+    { id: 'home-stats', label: 'Evidence Snapshot' },
+    { id: 'home-traditions', label: 'Traditions' },
+    { id: 'home-research', label: 'Research' },
+    { id: 'home-vow', label: 'The Vow' },
+    { id: 'home-cta', label: 'Next Step' },
+  ] as const;
 
   const webPageSchema = {
     '@context': 'https://schema.org',
@@ -541,6 +561,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
+      <GuidedScrollNav sections={[...guidedSections]} contactHref={withLocale('/contact', locale)} />
       <HeroSection home={home} locale={locale} />
       <LotusPrinciple home={home} />
       <QuoteSection home={home} />
