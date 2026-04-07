@@ -40,6 +40,7 @@ export default function Footer() {
     { label: messages.nav.links.manifestoEvaluator, href: '/evaluate' },
     { label: messages.nav.links.onboardWebsite, href: '/onboarding-websites' },
     { label: messages.nav.links.about, href: '/about' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   return (
