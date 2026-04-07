@@ -2,8 +2,26 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? 'ravikumar.raman@gmail.com';
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? 'contact@foreverlotus.com';
+const EXPECTED_CONTACT_HOST = process.env.EXPECTED_CONTACT_HOST ?? 'foreverlotus.com';
+const CONTACT_WEBHOOK_URL = process.env.CONTACT_WEBHOOK_URL;
 
 const rateMap = new Map<string, { count: number; resetAt: number }>();
+const idempotencyMap = new Map<string, number>();
+
+type ContactIntent = 'intro' | 'diligence';
+
+type ContactPayload = {
+  kind?: unknown;
+  fullName?: unknown;
+  workEmail?: unknown;
+  organization?: unknown;
+  stageFocus?: unknown;
+  timeline?: unknown;
+  notes?: unknown;
+  consent?: unknown;
+  website?: unknown;
+  requestId?: unknown;
+};
 
 function isLimited(ip: string): boolean {
   const now = Date.now();
@@ -22,7 +40,30 @@ function isLimited(ip: string): boolean {
   return false;
 }
 
-function buildCtaCopy(kind: string) {
+function isDuplicateRequest(requestId: string): boolean {
+  const now = Date.now();
+  for (const [key, expiresAt] of idempotencyMap.entries()) {
+    if (now > expiresAt) idempotencyMap.delete(key);
+  }
+
+  if (idempotencyMap.has(requestId)) {
+    return true;
+  }
+
+  idempotencyMap.set(requestId, now + 10 * 60_000);
+  return false;
+}
+
+function sanitise(value: unknown, max = 240): string {
+  if (typeof value !== 'string') return '';
+  return value.replace(/[<>"'`]/g, '').trim().slice(0, max);
+}
+
+function validEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function buildCtaCopy(kind: ContactIntent) {
   if (kind === 'diligence') {
     return {
       subject: '[Forever Lotus] Diligence Pack Requested',
@@ -38,7 +79,18 @@ function buildCtaCopy(kind: string) {
   };
 }
 
-function emailHtml(copy: { title: string; message: string }, metadata: Record<string, string>) {
+function emailHtml(
+  copy: { title: string; message: string },
+  lead: {
+    fullName: string;
+    workEmail: string;
+    organization: string;
+    stageFocus: string;
+    timeline: string;
+    notes: string;
+  },
+  metadata: Record<string, string>,
+) {
   const metaRows = Object.entries(metadata)
     .map(([key, value]) => `<li style="margin:0 0 6px;"><strong>${key}:</strong> ${value}</li>`)
     .join('');
@@ -60,6 +112,18 @@ function emailHtml(copy: { title: string; message: string }, metadata: Record<st
             <tr>
               <td style="padding:8px 24px 18px;">
                 <p style="margin:0;color:#d6dfeb;font-size:15px;line-height:1.6;">${copy.message}</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 24px 18px;">
+                <ul style="margin:0;padding-left:18px;color:#c4d0df;font-size:13px;line-height:1.6;">
+                  <li style="margin:0 0 6px;"><strong>Name:</strong> ${lead.fullName}</li>
+                  <li style="margin:0 0 6px;"><strong>Email:</strong> ${lead.workEmail}</li>
+                  <li style="margin:0 0 6px;"><strong>Organization:</strong> ${lead.organization || 'Not provided'}</li>
+                  <li style="margin:0 0 6px;"><strong>Stage:</strong> ${lead.stageFocus || 'Not specified'}</li>
+                  <li style="margin:0 0 6px;"><strong>Timeline:</strong> ${lead.timeline || 'Not specified'}</li>
+                  <li style="margin:0 0 6px;"><strong>Notes:</strong> ${lead.notes || 'None'}</li>
+                </ul>
               </td>
             </tr>
             <tr>
@@ -97,29 +161,74 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid request payload.' }, { status: 400 });
   }
 
-  const kind = body.kind === 'diligence' ? 'diligence' : 'intro';
+  const payload = body as ContactPayload;
+
+  if (payload.website) {
+    return NextResponse.json({ success: true });
+  }
+
+  const requestId = sanitise(payload.requestId, 120);
+  if (!requestId) {
+    return NextResponse.json({ error: 'Missing request id.' }, { status: 400 });
+  }
+  if (isDuplicateRequest(requestId)) {
+    return NextResponse.json({ success: true, requestId });
+  }
+
+  const kind: ContactIntent = payload.kind === 'diligence' ? 'diligence' : 'intro';
+  const fullName = sanitise(payload.fullName, 120);
+  const workEmail = sanitise(payload.workEmail, 200).toLowerCase();
+  const organization = sanitise(payload.organization, 160);
+  const stageFocus = sanitise(payload.stageFocus, 100);
+  const timeline = sanitise(payload.timeline, 100);
+  const notes = sanitise(payload.notes, 600);
+  const consent = payload.consent === true;
+
+  if (!fullName || !workEmail) {
+    return NextResponse.json(
+      { error: 'Full name and work email are required.' },
+      { status: 400 },
+    );
+  }
+
+  if (!validEmail(workEmail)) {
+    return NextResponse.json({ error: 'Please enter a valid work email.' }, { status: 400 });
+  }
+
+  if (!consent) {
+    return NextResponse.json(
+      { error: 'Consent is required before submitting.' },
+      { status: 422 },
+    );
+  }
+
   const copy = buildCtaCopy(kind);
 
   const metadata = {
     path: '/contact',
     cta: kind,
+    requestId,
     timestamp: new Date().toISOString(),
-    ip,
-    userAgent: req.headers.get('user-agent') ?? 'unknown',
-    language: req.headers.get('accept-language') ?? 'unknown',
     referer: req.headers.get('referer') ?? 'direct',
   };
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    console.log('[Contact CTA - dev mode, RESEND_API_KEY missing]', {
-      to: CONTACT_EMAIL,
-      ...metadata,
-    });
-    return NextResponse.json({ success: true });
+    return NextResponse.json(
+      { error: 'Contact channel is temporarily unavailable. Please try again shortly.' },
+      { status: 503 },
+    );
   }
 
   try {
+    const fromHost = FROM_EMAIL.split('@')[1] ?? '';
+    if (!fromHost || !fromHost.includes(EXPECTED_CONTACT_HOST)) {
+      return NextResponse.json(
+        { error: 'Contact sender is misconfigured. Please notify support.' },
+        { status: 500 },
+      );
+    }
+
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -129,8 +238,20 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         from: `Forever Lotus <${FROM_EMAIL}>`,
         to: [CONTACT_EMAIL],
+        reply_to: workEmail,
         subject: copy.subject,
-        html: emailHtml(copy, metadata),
+        html: emailHtml(
+          copy,
+          {
+            fullName,
+            workEmail,
+            organization,
+            stageFocus,
+            timeline,
+            notes,
+          },
+          metadata,
+        ),
       }),
     });
 
@@ -143,7 +264,28 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true });
+    if (CONTACT_WEBHOOK_URL) {
+      fetch(CONTACT_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          requestId,
+          kind,
+          fullName,
+          workEmail,
+          organization,
+          stageFocus,
+          timeline,
+          notes,
+          submittedAt: metadata.timestamp,
+          source: 'forever_lotus_contact',
+        }),
+      }).catch((err) => {
+        console.error('[Contact webhook error]', err);
+      });
+    }
+
+    return NextResponse.json({ success: true, requestId });
   } catch (err) {
     console.error('[Contact CTA route error]', err);
     return NextResponse.json({ error: 'Network error. Please try again.' }, { status: 500 });
