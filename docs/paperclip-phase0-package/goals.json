@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-04-06",
+  "description": "Phase 0 goals for Forever Lotus x Awaricon market leadership program",
+  "goals": [
+    {
+      "key": "G1",
+      "title": "Global trust category leadership",
+      "description": "Establish Forever Lotus as the canonical authority for ethical growth and proof-of-presence.",
+      "priority": "critical",
+      "successMetrics": [
+        "Top category share-of-voice in target trust terms",
+        "Institutional citations and standards references",
+        "Quarterly trust index improvement"
+      ]
+    },
+    {
+      "key": "G2",
+      "title": "Awaricon adoption at scale",
+      "description": "Drive verifiable certification adoption across high-impact sectors and geographies.",
+      "priority": "critical",
+      "successMetrics": [
+        "Certified organizations growth",
+        "Verification API request volume",
+        "Anchor account conversion and retention"
+      ]
+    },
+    {
+      "key": "G3",
+      "title": "Manifesto-compliant growth system",
+      "description": "Ensure every growth initiative remains aligned with Forever Lotus principles and measurable transparency.",
+      "priority": "high",
+      "successMetrics": [
+        "100% principle-mapped campaigns",
+        "Quarterly transparency report publication",
+        "Zero unresolved critical ethics incidents"
+      ]
+    }
+  ]
+}

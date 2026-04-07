@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-04-06",
+  "description": "Paperclip issue templates for execution consistency.",
+  "templates": [
+    {
+      "key": "campaign",
+      "titlePattern": "[Campaign] <initiative-name>",
+      "requiredFields": [
+        "hypothesis",
+        "targetAudience",
+        "manifestoPrinciples",
+        "kpiTarget",
+        "experimentDesign",
+        "evidenceLink"
+      ],
+      "descriptionTemplate": "## Objective\n<what this campaign is intended to achieve>\n\n## Hypothesis\n<testable assumption and why it should work>\n\n## Audience\n<segment, region, and context>\n\n## Manifesto Mapping\n- Compassion: <yes/no + rationale>\n- Dignity: <yes/no + rationale>\n- Stewardship: <yes/no + rationale>\n- Transparency: <yes/no + rationale>\n\n## KPI Target\n<metric, baseline, target, timeline>\n\n## Experiment Design\n<variants, sample, stop rules>\n\n## Evidence\n<link to source docs/dashboards>"
+    },
+    {
+      "key": "partnership",
+      "titlePattern": "[Partnership] <organization-name>",
+      "requiredFields": [
+        "organizationProfile",
+        "valueThesis",
+        "riskReview",
+        "approvalNeeded",
+        "nextAction"
+      ],
+      "descriptionTemplate": "## Organization Profile\n<sector, relevance, trust profile>\n\n## Value Thesis\n<why this partner is strategic>\n\n## Offer Structure\n<pilot terms, expected outcomes>\n\n## Risk Review\n<reputational/legal/operational risks>\n\n## Required Approvals\n<who must sign off>\n\n## Next Action\n<single immediate action with owner and deadline>"
+    },
+    {
+      "key": "product",
+      "titlePattern": "[Product] <feature-name>",
+      "requiredFields": [
+        "userStory",
+        "acceptanceCriteria",
+        "threatModel",
+        "observabilityChecklist",
+        "rolloutPlan"
+      ],
+      "descriptionTemplate": "## User Story\n<as a ... I need ... so that ...>\n\n## Acceptance Criteria\n- <criteria 1>\n- <criteria 2>\n\n## Threat Model\n<abuse vectors and mitigations>\n\n## Observability\n<logs, metrics, alerts, SLO impact>\n\n## Rollout Plan\n<staged launch + rollback path>"
+    },
+    {
+      "key": "research",
+      "titlePattern": "[Research] <study-or-paper-name>",
+      "requiredFields": [
+        "researchQuestion",
+        "methods",
+        "sourceQuality",
+        "uncertainty",
+        "publicationPlan"
+      ],
+      "descriptionTemplate": "## Research Question\n<precise question being answered>\n\n## Methods\n<methodology and data collection protocol>\n\n## Source Quality\n<source classes and inclusion criteria>\n\n## Uncertainty and Limits\n<what cannot be concluded>\n\n## Publication Plan\n<target outlet and timeline>"
+    },
+    {
+      "key": "transparency",
+      "titlePattern": "[Transparency] <reporting-cycle>",
+      "requiredFields": [
+        "metricsIncluded",
+        "sourceReferences",
+        "caveats",
+        "correctionPolicy"
+      ],
+      "descriptionTemplate": "## Reporting Scope\n<period and systems covered>\n\n## Metrics Included\n<list with definitions>\n\n## Source References\n<link every claim to evidence>\n\n## Caveats\n<known limitations and confidence level>\n\n## Correction Policy\n<how errors are disclosed and fixed>"
+    }
+  ]
+}

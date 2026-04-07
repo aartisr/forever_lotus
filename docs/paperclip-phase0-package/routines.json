@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-04-06",
+  "description": "Recurring routines for Phase 0 governance and growth operations.",
+  "routines": [
+    {
+      "key": "daily-growth-anomaly",
+      "title": "Daily growth telemetry anomaly scan",
+      "cadence": "daily",
+      "cron": "30 7 * * *",
+      "timezone": "UTC",
+      "purpose": "Detect conversion, traffic, and funnel anomalies early.",
+      "issueTemplateKey": "campaign"
+    },
+    {
+      "key": "daily-manifesto-drift",
+      "title": "Daily manifesto compliance drift check",
+      "cadence": "daily",
+      "cron": "0 10 * * *",
+      "timezone": "UTC",
+      "purpose": "Flag any growth initiative violating constitutional constraints.",
+      "issueTemplateKey": "transparency"
+    },
+    {
+      "key": "weekly-pipeline-health",
+      "title": "Weekly pipeline health and blockers review",
+      "cadence": "weekly",
+      "cron": "0 9 * * 1",
+      "timezone": "UTC",
+      "purpose": "Review prospect progression, stuck deals, and intervention actions.",
+      "issueTemplateKey": "partnership"
+    },
+    {
+      "key": "weekly-outreach-followup",
+      "title": "Weekly institutional outreach follow-up",
+      "cadence": "weekly",
+      "cron": "0 14 * * 3",
+      "timezone": "UTC",
+      "purpose": "Ensure anchor prospect outreach cadence and response quality.",
+      "issueTemplateKey": "partnership"
+    },
+    {
+      "key": "weekly-transparency-delta",
+      "title": "Weekly transparency draft delta",
+      "cadence": "weekly",
+      "cron": "0 17 * * 5",
+      "timezone": "UTC",
+      "purpose": "Prepare public transparency updates with evidence links.",
+      "issueTemplateKey": "transparency"
+    },
+    {
+      "key": "monthly-kpi-reconciliation",
+      "title": "Monthly KPI baseline reconciliation",
+      "cadence": "monthly",
+      "cron": "0 8 1 * *",
+      "timezone": "UTC",
+      "purpose": "Reconcile source systems and lock baseline truth for reporting.",
+      "issueTemplateKey": "research"
+    },
+    {
+      "key": "monthly-risk-rehearsal",
+      "title": "Monthly risk and incident rehearsal",
+      "cadence": "monthly",
+      "cron": "0 15 3 * *",
+      "timezone": "UTC",
+      "purpose": "Practice incident and ethics response pathways before crises.",
+      "issueTemplateKey": "transparency"
+    },
+    {
+      "key": "quarterly-standards-review",
+      "title": "Quarterly standards and policy influence review",
+      "cadence": "quarterly",
+      "cron": "0 11 5 */3 *",
+      "timezone": "UTC",
+      "purpose": "Track standards traction, policy opportunities, and strategic positioning.",
+      "issueTemplateKey": "research"
+    }
+  ]
+}
