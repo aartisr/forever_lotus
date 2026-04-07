@@ -18,9 +18,15 @@ function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+function isMobileViewport(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(max-width: 767px)').matches;
+}
+
 export default function GuidedScrollNav({ sections, contactHref = '/contact' }: GuidedScrollNavProps) {
   const [progress, setProgress] = useState(0);
   const [activeId, setActiveId] = useState(sections[0]?.id ?? '');
+  const [isMobileGuideOpen, setIsMobileGuideOpen] = useState(false);
 
   const activeIndex = useMemo(
     () => sections.findIndex((section) => section.id === activeId),
@@ -33,38 +39,29 @@ export default function GuidedScrollNav({ sections, contactHref = '/contact' }: 
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
       setProgress(ratio);
+
+      const anchor = scrollTop + window.innerHeight * 0.32;
+      let closestId = sections[0]?.id ?? '';
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      sections.forEach((section) => {
+        const node = document.getElementById(section.id);
+        if (!node) return;
+        const distance = Math.abs(node.offsetTop - anchor);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestId = section.id;
+        }
+      });
+
+      if (closestId) {
+        setActiveId((current) => (current === closestId ? current : closestId));
+      }
     };
 
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    const nodes = sections
-      .map((section) => document.getElementById(section.id))
-      .filter((node): node is HTMLElement => Boolean(node));
-
-    if (!nodes.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) {
-          setActiveId(visible[0].target.id);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '-30% 0px -45% 0px',
-        threshold: [0.2, 0.35, 0.5, 0.7],
-      },
-    );
-
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
   }, [sections]);
 
   const scrollToSection = (id: string) => {
@@ -85,7 +82,21 @@ export default function GuidedScrollNav({ sections, contactHref = '/contact' }: 
         />
       </div>
 
-      <aside className="fixed bottom-4 right-4 z-40 w-[min(300px,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#090d1a]/92 p-3 shadow-[0_16px_40px_rgba(0,0,0,0.45)] backdrop-blur-sm">
+      <button
+        type="button"
+        onClick={() => setIsMobileGuideOpen((open) => !open)}
+        className="fixed bottom-4 right-4 z-40 rounded-full border border-lotus-gold/35 bg-[#090d1a]/90 px-3 py-2 text-xs font-semibold text-lotus-cream shadow-[0_10px_26px_rgba(0,0,0,0.45)] backdrop-blur-sm md:hidden"
+        aria-controls="reading-guide-panel"
+      >
+        {isMobileGuideOpen ? 'Hide Guide' : 'Reading Guide'}
+      </button>
+
+      <aside
+        id="reading-guide-panel"
+        className={`fixed right-4 z-40 w-[min(300px,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#090d1a]/92 p-3 shadow-[0_16px_40px_rgba(0,0,0,0.45)] backdrop-blur-sm ${
+          isMobileGuideOpen ? 'bottom-16 block md:bottom-4 md:block' : 'hidden md:bottom-4 md:block'
+        }`}
+      >
         <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-lotus-gold/80">Reading Guide</p>
         <p className="mb-2 text-sm font-semibold text-lotus-cream">
           {activeIndex >= 0 ? sections[activeIndex]?.label : sections[0]?.label}
@@ -102,7 +113,12 @@ export default function GuidedScrollNav({ sections, contactHref = '/contact' }: 
           </button>
           <button
             type="button"
-            onClick={() => scrollToSection(nextSection.id)}
+            onClick={() => {
+              scrollToSection(nextSection.id);
+              if (isMobileViewport()) {
+                setIsMobileGuideOpen(false);
+              }
+            }}
             disabled={activeIndex >= sections.length - 1}
             className="rounded-lg border border-lotus-gold/35 bg-lotus-gold/15 px-2.5 py-1.5 text-xs font-semibold text-lotus-cream transition-colors hover:bg-lotus-gold/25 disabled:cursor-not-allowed disabled:opacity-50"
           >
