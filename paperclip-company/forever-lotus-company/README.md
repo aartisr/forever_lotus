@@ -72,6 +72,10 @@ Import with Paperclip CLI:
 paperclipai company import --from ./paperclip-company/forever-lotus-company
 ```
 
+Operational runbook:
+
+- [IMPORT_ACTIVATION_RUNBOOK.md](IMPORT_ACTIVATION_RUNBOOK.md)
+
 ## References
 
 - Source repo: https://github.com/aartisr/forever_lotus
