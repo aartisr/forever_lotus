@@ -1,0 +1,20 @@
+schema: paperclip/v1
+agents:
+  ceo:
+    inputs:
+      env:
+        GH_TOKEN:
+          kind: secret
+          requirement: optional
+  platform-reliability:
+    inputs:
+      env:
+        GH_TOKEN:
+          kind: secret
+          requirement: optional
+  security-risk:
+    inputs:
+      env:
+        GH_TOKEN:
+          kind: secret
+          requirement: optional
