@@ -4,6 +4,10 @@ const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? 'ravikumar.raman@gmail.com';
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? 'contact@foreverlotus.com';
 const EXPECTED_CONTACT_HOST = process.env.EXPECTED_CONTACT_HOST ?? 'foreverlotus.com';
 const CONTACT_WEBHOOK_URL = process.env.CONTACT_WEBHOOK_URL;
+const CONTACT_ALLOWED_ORIGINS = (process.env.CONTACT_ALLOWED_ORIGINS ?? '')
+  .split(',')
+  .map((entry) => entry.trim())
+  .filter(Boolean);
 
 const rateMap = new Map<string, { count: number; resetAt: number }>();
 const idempotencyMap = new Map<string, number>();
@@ -61,6 +65,35 @@ function sanitise(value: unknown, max = 240): string {
 
 function validEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function toOrigin(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    return new URL(value).origin;
+  } catch {
+    return null;
+  }
+}
+
+function originAllowed(req: NextRequest): boolean {
+  const origin = toOrigin(req.headers.get('origin'));
+  if (!origin) return true;
+
+  const requestHost = req.headers.get('x-forwarded-host') ?? req.headers.get('host');
+  const requestProtocol = req.headers.get('x-forwarded-proto') ?? 'https';
+  const requestOrigin = requestHost ? `${requestProtocol}://${requestHost}` : null;
+
+  if (requestOrigin && origin === requestOrigin) return true;
+  if (CONTACT_ALLOWED_ORIGINS.includes(origin)) return true;
+
+  return false;
+}
+
+function json(body: Record<string, unknown>, init?: ResponseInit) {
+  const response = NextResponse.json(body, init);
+  response.headers.set('Cache-Control', 'no-store');
+  return response;
 }
 
 function buildCtaCopy(kind: ContactIntent) {
@@ -142,13 +175,17 @@ function emailHtml(
 }
 
 export async function POST(req: NextRequest) {
+  if (!originAllowed(req)) {
+    return json({ error: 'Origin is not allowed.' }, { status: 403 });
+  }
+
   const ip =
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     req.headers.get('x-real-ip') ??
     'unknown';
 
   if (isLimited(ip)) {
-    return NextResponse.json(
+    return json(
       { error: 'Too many requests. Please wait a minute and retry.' },
       { status: 429 },
     );
@@ -158,21 +195,21 @@ export async function POST(req: NextRequest) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: 'Invalid request payload.' }, { status: 400 });
+    return json({ error: 'Invalid request payload.' }, { status: 400 });
   }
 
   const payload = body as ContactPayload;
 
   if (payload.website) {
-    return NextResponse.json({ success: true });
+    return json({ success: true });
   }
 
   const requestId = sanitise(payload.requestId, 120);
   if (!requestId) {
-    return NextResponse.json({ error: 'Missing request id.' }, { status: 400 });
+    return json({ error: 'Missing request id.' }, { status: 400 });
   }
   if (isDuplicateRequest(requestId)) {
-    return NextResponse.json({ success: true, requestId });
+    return json({ success: true, requestId });
   }
 
   const kind: ContactIntent = payload.kind === 'diligence' ? 'diligence' : 'intro';
@@ -185,18 +222,18 @@ export async function POST(req: NextRequest) {
   const consent = payload.consent === true;
 
   if (!fullName || !workEmail) {
-    return NextResponse.json(
+    return json(
       { error: 'Full name and work email are required.' },
       { status: 400 },
     );
   }
 
   if (!validEmail(workEmail)) {
-    return NextResponse.json({ error: 'Please enter a valid work email.' }, { status: 400 });
+    return json({ error: 'Please enter a valid work email.' }, { status: 400 });
   }
 
   if (!consent) {
-    return NextResponse.json(
+    return json(
       { error: 'Consent is required before submitting.' },
       { status: 422 },
     );
@@ -214,7 +251,7 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    return NextResponse.json(
+    return json(
       { error: 'Contact channel is temporarily unavailable. Please try again shortly.' },
       { status: 503 },
     );
@@ -223,7 +260,7 @@ export async function POST(req: NextRequest) {
   try {
     const fromHost = FROM_EMAIL.split('@')[1] ?? '';
     if (!fromHost || !fromHost.includes(EXPECTED_CONTACT_HOST)) {
-      return NextResponse.json(
+      return json(
         { error: 'Contact sender is misconfigured. Please notify support.' },
         { status: 500 },
       );
@@ -258,7 +295,7 @@ export async function POST(req: NextRequest) {
     if (!response.ok) {
       const errText = await response.text();
       console.error('[Resend API error]', response.status, errText);
-      return NextResponse.json(
+      return json(
         { error: 'Could not submit right now. Please try again shortly.' },
         { status: 502 },
       );
@@ -285,9 +322,9 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    return NextResponse.json({ success: true, requestId });
+    return json({ success: true, requestId });
   } catch (err) {
     console.error('[Contact CTA route error]', err);
-    return NextResponse.json({ error: 'Network error. Please try again.' }, { status: 500 });
+    return json({ error: 'Network error. Please try again.' }, { status: 500 });
   }
 }

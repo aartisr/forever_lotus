@@ -220,6 +220,10 @@ This project is configured to deploy directly from the repository root as a Next
 4. Build command: `next build`
 5. Optional environment variable:
    - `NEXT_PUBLIC_SITE_URL=https://your-domain`
+   - `RESEND_API_KEY=...` (required for contact form delivery)
+   - `CONTACT_EMAIL=investor-inbox@your-domain`
+   - `CONTACT_FROM_EMAIL=contact@your-domain`
+   - `CONTACT_ALLOWED_ORIGINS=https://your-domain,https://www.your-domain`
 
 ### Build Verification
 
@@ -228,6 +232,8 @@ The production build has been validated locally with:
 ```bash
 npm run build
 ```
+
+Note: `npm run build` now blocks if a local `next dev` process is already running, preventing `.next` manifest race conditions during local verification.
 
 ### Performance Guardrails
 

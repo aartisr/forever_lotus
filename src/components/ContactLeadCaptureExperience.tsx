@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 
 type Intent = 'intro' | 'diligence';
@@ -37,6 +37,8 @@ const inputClass =
   'w-full rounded-xl border border-white/15 bg-[#090d1a] px-4 py-3 text-sm text-lotus-cream placeholder:text-lotus-muted/70 outline-none transition-colors focus:border-lotus-gold/70';
 
 export default function ContactLeadCaptureExperience({ investorEmail }: Props) {
+  const firstInputRef = useRef<HTMLInputElement | null>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [intent, setIntent] = useState<Intent>('intro');
   const [status, setStatus] = useState<Status>('idle');
@@ -60,6 +62,32 @@ export default function ContactLeadCaptureExperience({ investorEmail }: Props) {
         : 'Talk To The Investment Team',
     [intent],
   );
+
+  const canSubmit = fullName.trim().length > 0 && workEmail.trim().length > 0 && consent;
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
+    const timeout = window.setTimeout(() => firstInputRef.current?.focus(), 0);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      window.clearTimeout(timeout);
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previouslyFocusedRef.current?.focus();
+    };
+  }, [isOpen]);
 
   function openModal(nextIntent: Intent) {
     setIntent(nextIntent);
@@ -222,13 +250,13 @@ export default function ContactLeadCaptureExperience({ investorEmail }: Props) {
       </section>
 
       {isOpen ? (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-3 sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-labelledby="contact-capture-title">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-3 sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-labelledby="contact-capture-title" aria-describedby="contact-capture-description">
           <div className="w-full max-w-2xl rounded-2xl border border-white/10 bg-[#060913] p-5 shadow-[0_20px_80px_rgba(0,0,0,0.45)] sm:p-7">
             <div className="mb-5 flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-lotus-gold/80">Private Intake</p>
                 <h3 id="contact-capture-title" className="mt-2 font-serif text-2xl text-lotus-cream">{heading}</h3>
-                <p className="mt-2 text-sm text-lotus-muted">Takes less than 30 seconds. A human response is sent within one business day.</p>
+                <p id="contact-capture-description" className="mt-2 text-sm text-lotus-muted">Takes less than 30 seconds. A human response is sent within one business day.</p>
               </div>
               <button
                 type="button"
@@ -242,18 +270,43 @@ export default function ContactLeadCaptureExperience({ investorEmail }: Props) {
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label htmlFor="contact-name" className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-lotus-muted/80">Full Name *</label>
-                <input id="contact-name" value={fullName} onChange={(e) => setFullName(e.target.value)} placeholder="Your name" className={inputClass} />
+                <input
+                  ref={firstInputRef}
+                  id="contact-name"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Your name"
+                  className={inputClass}
+                  required
+                  autoComplete="name"
+                />
               </div>
               <div>
                 <label htmlFor="contact-email" className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-lotus-muted/80">Work Email *</label>
-                <input id="contact-email" type="email" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} placeholder="you@fund.com" className={inputClass} />
+                <input
+                  id="contact-email"
+                  type="email"
+                  value={workEmail}
+                  onChange={(e) => setWorkEmail(e.target.value)}
+                  placeholder="you@fund.com"
+                  className={inputClass}
+                  required
+                  autoComplete="email"
+                />
               </div>
             </div>
 
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div>
                 <label htmlFor="contact-org" className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-lotus-muted/80">Fund / Organization</label>
-                <input id="contact-org" value={organization} onChange={(e) => setOrganization(e.target.value)} placeholder="Optional" className={inputClass} />
+                <input
+                  id="contact-org"
+                  value={organization}
+                  onChange={(e) => setOrganization(e.target.value)}
+                  placeholder="Optional"
+                  className={inputClass}
+                  autoComplete="organization"
+                />
               </div>
               <div>
                 <label htmlFor="contact-stage" className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-lotus-muted/80">Stage Focus</label>
@@ -311,7 +364,7 @@ export default function ContactLeadCaptureExperience({ investorEmail }: Props) {
               <button
                 type="button"
                 onClick={submit}
-                disabled={status === 'submitting'}
+                disabled={status === 'submitting' || !canSubmit}
                 className="rounded-xl border border-lotus-gold/40 bg-lotus-gold/20 px-5 py-2.5 text-sm font-semibold text-lotus-cream transition-colors hover:bg-lotus-gold/30 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {status === 'submitting' ? 'Submitting...' : 'Submit Request'}
