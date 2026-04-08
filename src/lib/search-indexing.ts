@@ -97,6 +97,16 @@ export const TOP_SEARCH_ENGINES: SearchEngineDefinition[] = [
     docsUrl: 'https://www.bing.com/webmasters/url-submission-api',
   },
   {
+    id: 'indexnow',
+    name: 'IndexNow',
+    marketNote: 'Push URLs directly to participating search engines for faster discovery',
+    mode: 'api',
+    supportsApiSubmission: true,
+    supportsStatusApi: false,
+    requiresManualConsole: false,
+    docsUrl: 'https://www.indexnow.org/documentation',
+  },
+  {
     id: 'yahoo',
     name: 'Yahoo',
     marketNote: 'Mostly powered by Bing index distribution',
