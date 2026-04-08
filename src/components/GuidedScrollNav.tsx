@@ -23,10 +23,13 @@ function isMobileViewport(): boolean {
   return window.matchMedia('(max-width: 767px)').matches;
 }
 
+const GUIDE_VISIBILITY_KEY = 'forever-lotus-reading-guide-visible';
+
 export default function GuidedScrollNav({ sections, contactHref = '/contact' }: GuidedScrollNavProps) {
   const [progress, setProgress] = useState(0);
   const [activeId, setActiveId] = useState(sections[0]?.id ?? '');
   const [isMobileGuideOpen, setIsMobileGuideOpen] = useState(false);
+  const [isGuideVisible, setIsGuideVisible] = useState(true);
 
   const activeIndex = useMemo(
     () => sections.findIndex((section) => section.id === activeId),
@@ -34,7 +37,9 @@ export default function GuidedScrollNav({ sections, contactHref = '/contact' }: 
   );
 
   useEffect(() => {
-    const onScroll = () => {
+    let rafId = 0;
+
+    const runScrollWork = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
@@ -57,12 +62,39 @@ export default function GuidedScrollNav({ sections, contactHref = '/contact' }: 
       if (closestId) {
         setActiveId((current) => (current === closestId ? current : closestId));
       }
+
+      rafId = 0;
     };
 
-    onScroll();
+    const onScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(runScrollWork);
+    };
+
+    runScrollWork();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+      }
+    };
   }, [sections]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const stored = window.localStorage.getItem(GUIDE_VISIBILITY_KEY);
+    if (stored === '0') {
+      setIsGuideVisible(false);
+      return;
+    }
+    setIsGuideVisible(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.localStorage.setItem(GUIDE_VISIBILITY_KEY, isGuideVisible ? '1' : '0');
+  }, [isGuideVisible]);
 
   const scrollToSection = (id: string) => {
     const node = document.getElementById(id);
@@ -72,6 +104,11 @@ export default function GuidedScrollNav({ sections, contactHref = '/contact' }: 
 
   const nextSection = sections[Math.min(sections.length - 1, Math.max(0, activeIndex + 1))];
   const prevSection = sections[Math.max(0, activeIndex - 1)];
+  const panelVisibilityClass = !isGuideVisible
+    ? 'hidden'
+    : isMobileGuideOpen
+      ? 'bottom-16 block md:bottom-4 md:block'
+      : 'hidden md:bottom-4 md:block';
 
   return (
     <>
@@ -84,20 +121,49 @@ export default function GuidedScrollNav({ sections, contactHref = '/contact' }: 
 
       <button
         type="button"
-        onClick={() => setIsMobileGuideOpen((open) => !open)}
+        onClick={() => {
+          if (!isGuideVisible) {
+            setIsGuideVisible(true);
+            setIsMobileGuideOpen(true);
+            return;
+          }
+          setIsMobileGuideOpen((open) => !open);
+        }}
         className="fixed bottom-4 right-4 z-40 rounded-full border border-lotus-gold/35 bg-[#090d1a]/90 px-3 py-2 text-xs font-semibold text-lotus-cream shadow-[0_10px_26px_rgba(0,0,0,0.45)] backdrop-blur-sm md:hidden"
         aria-controls="reading-guide-panel"
       >
-        {isMobileGuideOpen ? 'Hide Guide' : 'Reading Guide'}
+        {!isGuideVisible || !isMobileGuideOpen ? 'Reading Guide' : 'Hide Guide'}
+      </button>
+
+      <button
+        type="button"
+        onClick={() => setIsGuideVisible(true)}
+        className={`fixed bottom-4 right-4 z-40 hidden rounded-full border border-lotus-gold/35 bg-[#090d1a]/90 px-3 py-2 text-xs font-semibold text-lotus-cream shadow-[0_10px_26px_rgba(0,0,0,0.45)] backdrop-blur-sm md:block ${
+          isGuideVisible ? 'pointer-events-none opacity-0' : 'opacity-100'
+        }`}
+      >
+        Reading Guide
       </button>
 
       <aside
         id="reading-guide-panel"
         className={`fixed right-4 z-40 w-[min(300px,calc(100vw-2rem))] rounded-2xl border border-white/10 bg-[#090d1a]/92 p-3 shadow-[0_16px_40px_rgba(0,0,0,0.45)] backdrop-blur-sm ${
-          isMobileGuideOpen ? 'bottom-16 block md:bottom-4 md:block' : 'hidden md:bottom-4 md:block'
+          panelVisibilityClass
         }`}
       >
-        <p className="mb-2 text-[10px] uppercase tracking-[0.16em] text-lotus-gold/80">Reading Guide</p>
+        <div className="mb-2 flex items-center justify-between gap-2">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-lotus-gold/80">Reading Guide</p>
+          <button
+            type="button"
+            onClick={() => {
+              setIsGuideVisible(false);
+              setIsMobileGuideOpen(false);
+            }}
+            className="rounded-md border border-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-lotus-muted transition-colors hover:text-lotus-cream"
+          >
+            Close
+          </button>
+        </div>
         <p className="mb-2 text-sm font-semibold text-lotus-cream">
           {activeIndex >= 0 ? sections[activeIndex]?.label : sections[0]?.label}
         </p>

@@ -1,35 +1,17 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import LotusIcon from './LotusIcon';
 import LogoMeaningPopover from './LogoMeaningPopover';
-import { getMessages, resolveLocale, withLocale } from '@/i18n';
+import { withLocale } from '@/i18n/core';
+import { getChromeMessages } from '@/i18n/chromeMessages';
+import { useResolvedLocale } from '@/hooks/useResolvedLocale';
 
 export default function Footer() {
-  const [locale, setLocale] = useState(resolveLocale(undefined));
-  const pathname = usePathname();
+  const locale = useResolvedLocale();
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const syncLocaleFromUrl = () => {
-      const params = new URLSearchParams(window.location.search);
-      setLocale(resolveLocale(params.get('lang') ?? undefined));
-    };
-
-    syncLocaleFromUrl();
-    window.addEventListener('popstate', syncLocaleFromUrl);
-    window.addEventListener('pageshow', syncLocaleFromUrl);
-
-    return () => {
-      window.removeEventListener('popstate', syncLocaleFromUrl);
-      window.removeEventListener('pageshow', syncLocaleFromUrl);
-    };
-  }, [pathname]);
-
-  const messages = getMessages(locale);
+  const messages = getChromeMessages(locale);
 
   const links = [
     { label: messages.nav.links.manifesto, href: '/manifesto' },

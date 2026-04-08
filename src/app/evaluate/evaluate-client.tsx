@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import { ManifestoEvaluationService } from '@/services/manifesto-evaluation-service';
 import EvaluationDashboard from '@/components/EvaluationDashboard';
 import { WebsiteEvaluationResult } from '@/lib/manifesto-evaluator';
-import { getMessages, resolveLocale } from '@/i18n';
+import { getMessages } from '@/i18n';
+import { useResolvedLocale } from '@/hooks/useResolvedLocale';
 
 export default function EvaluationDashboardClient() {
-  const locale = resolveLocale();
+  const locale = useResolvedLocale();
   const messages = getMessages(locale);
 
   const [websiteUrl, setWebsiteUrl] = useState('https://example.com');

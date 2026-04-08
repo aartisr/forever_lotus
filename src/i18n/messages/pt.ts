@@ -1,12 +1,13 @@
-import { enMessages, type MessageSchema } from './en';
+import { type MessageSchema } from './en';
+import { esMessages } from './es';
 
 export const ptMessages: MessageSchema = {
-  ...enMessages,
+  ...esMessages,
   nav: {
-    ...enMessages.nav,
+    ...esMessages.nav,
     languageLabel: 'Idioma',
     languages: {
-      ...enMessages.nav.languages,
+      ...esMessages.nav.languages,
       en: 'Ingles',
       es: 'Espanol',
       pt: 'Portugues',

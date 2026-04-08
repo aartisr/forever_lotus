@@ -1,12 +1,13 @@
-import { enMessages, type MessageSchema } from './en';
+import { type MessageSchema } from './en';
+import { esMessages } from './es';
 
 export const taMessages: MessageSchema = {
-  ...enMessages,
+  ...esMessages,
   nav: {
-    ...enMessages.nav,
+    ...esMessages.nav,
     languageLabel: 'மொழி',
     languages: {
-      ...enMessages.nav.languages,
+      ...esMessages.nav.languages,
       en: 'English',
       es: 'Espanol',
       pt: 'Portugues',
