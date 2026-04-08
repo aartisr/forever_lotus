@@ -220,6 +220,8 @@ This project is configured to deploy directly from the repository root as a Next
 4. Build command: `next build`
 5. Optional environment variable:
    - `NEXT_PUBLIC_SITE_URL=https://your-domain`
+   - `INDEXNOW_KEY=your-indexnow-key`
+   - `INDEXNOW_KEY_LOCATION=https://your-domain/your-indexnow-key.txt`
    - `RESEND_API_KEY=...` (required for contact form delivery)
    - `CONTACT_EMAIL=investor-inbox@your-domain`
    - `CONTACT_FROM_EMAIL=contact@your-domain`
@@ -310,6 +312,7 @@ Data layer health endpoint:
 - `src/app/sitemap.ts` for XML sitemap generation
 - `src/app/robots.ts` for crawler directives
 - `src/app/manifest.ts` for web app manifest and icon metadata
+- `POST /api/indexnow` to push URL updates to IndexNow
 - Global and per-page metadata with canonical + hreflang alternates
 - Structured data (`WebSite`, `Organization`, `WebPage`, `FAQPage`)
 - Generated social preview assets (`/opengraph-image`, `/twitter-image`)
