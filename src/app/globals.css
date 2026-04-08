@@ -401,3 +401,38 @@
     radial-gradient(1px 1px at 44% 55%, rgba(255,255,255,0.3) 0%, transparent 100%);
   animation: starTwinkle 7s ease-in-out infinite alternate-reverse;
 }
+
+/* Suppress Google Translate UI chrome (top banner/tooltips) while keeping translated content. */
+iframe.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-te-gadget,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-l4eHX-hSRGPd,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO,
+.VIpgJd-ZVi9od-aZ2wEe,
+iframe.VIpgJd-ZVi9od-xl07Ob-OEVmcd {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+html,
+html body {
+  margin-top: 0 !important;
+  top: 0 !important;
+}
+
+body.translated-ltr,
+body.translated-rtl {
+  top: 0 !important;
+}
+
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

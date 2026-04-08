@@ -3,10 +3,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSyncExternalStore } from 'react';
 import LotusIcon from './LotusIcon';
 import LogoMeaningPopover from './LogoMeaningPopover';
 import AwariconMark, { type AwariconMarkVariant } from './AwariconMark';
-import { getMessages, resolveLocale, supportedLocales, withLocale } from '@/i18n';
+import { selectableLocales, withLocale } from '@/i18n/core';
+import { getChromeMessages } from '@/i18n/chromeMessages';
+import { useResolvedLocale } from '@/hooks/useResolvedLocale';
 
 type NavChild = {
   href: string;
@@ -46,12 +49,31 @@ function DropdownAccentLine() {
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [locale, setLocale] = useState(resolveLocale(undefined));
   const [langOpen, setLangOpen] = useState(false);
   const [awariconVariant, setAwariconVariant] = useState<AwariconMarkVariant>('crystal');
   const langRef = useRef<HTMLDivElement>(null);
+  const locale = useResolvedLocale();
   const pathname = usePathname();
-  const messages = getMessages(locale);
+  const currentSearch = useSyncExternalStore(
+    (onStoreChange) => {
+      if (typeof window === 'undefined') return () => undefined;
+
+      const handler = () => onStoreChange();
+      window.addEventListener('popstate', handler);
+      window.addEventListener('pageshow', handler);
+      window.addEventListener('forever-lotus:locale-url-change', handler);
+
+      return () => {
+        window.removeEventListener('popstate', handler);
+        window.removeEventListener('pageshow', handler);
+        window.removeEventListener('forever-lotus:locale-url-change', handler);
+      };
+    },
+    () => (typeof window === 'undefined' ? '' : window.location.search || ''),
+    () => '',
+  );
+  const messages = getChromeMessages(locale);
+  const currentPathWithSearch = `${pathname || '/'}${currentSearch}`;
   const localeFlagMap: Record<string, string> = {
     en: '🇺🇸',
     es: '🇪🇸',
@@ -147,25 +169,6 @@ export default function Navigation() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Keep locale in sync with URL query changes
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const syncLocaleFromUrl = () => {
-      const params = new URLSearchParams(window.location.search);
-      setLocale(resolveLocale(params.get('lang') ?? undefined));
-    };
-
-    syncLocaleFromUrl();
-    window.addEventListener('popstate', syncLocaleFromUrl);
-    window.addEventListener('pageshow', syncLocaleFromUrl);
-
-    return () => {
-      window.removeEventListener('popstate', syncLocaleFromUrl);
-      window.removeEventListener('pageshow', syncLocaleFromUrl);
-    };
-  }, [pathname]);
 
   // Close all menus on route change
   useEffect(() => {
@@ -372,14 +375,13 @@ export default function Navigation() {
               aria-label={messages.nav.languageLabel}
             >
               <DropdownAccentLine />
-              {supportedLocales.map((lang) => {
+              {selectableLocales.map((lang) => {
                 const isSelected = locale === lang;
                 return (
                   <Link
                     key={lang}
-                    href={withLocale(pathname || '/', lang)}
+                    href={withLocale(currentPathWithSearch, lang)}
                     onClick={() => {
-                      setLocale(lang);
                       setLangOpen(false);
                     }}
                     role="option"
@@ -483,13 +485,13 @@ export default function Navigation() {
               </p>
             </div>
             <div className="p-1.5 flex gap-1.5">
-              {supportedLocales.map((lang) => {
+              {selectableLocales.map((lang) => {
                 const isSelected = locale === lang;
                 return (
                   <Link
                     key={lang}
-                    href={withLocale(pathname || '/', lang)}
-                    onClick={() => setLocale(lang)}
+                    href={withLocale(currentPathWithSearch, lang)}
+                    onClick={() => setMenuOpen(false)}
                     className={`flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-[0.825rem] transition-all duration-150 ${
                       isSelected
                         ? 'bg-lotus-gold-dim text-lotus-gold font-medium'

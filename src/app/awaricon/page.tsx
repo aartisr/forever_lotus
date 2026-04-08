@@ -1,11 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import AwariconBadge from '@/components/AwariconBadge';
-import AwariconCalculator from '@/components/AwariconCalculator';
 import AwariconCalculusExplainer from '@/components/AwariconCalculusExplainer';
 import AwariconFormulaPopover from '@/components/AwariconFormulaPopover';
-import AwariconIconStudio from '@/components/AwariconIconStudio';
-import AwariconEmbedKit from '@/components/AwariconEmbedKit';
+import AwariconInteractiveSuite from '@/components/AwariconInteractiveSuite';
 import { awariconDocAnchors, awariconFormula, awariconPrinciples, awariconTiers } from '@/content/awaricon';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
@@ -106,15 +103,7 @@ export default function AwariconPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2">
-            {awariconTiers.map((tier, index) => (
-              <AwariconBadge key={tier.key} tier={tier} index={index} />
-            ))}
-          </div>
-
-          <AwariconIconStudio />
-          <AwariconCalculator />
-          <AwariconEmbedKit />
+          <AwariconInteractiveSuite tiers={awariconTiers} />
         </div>
       </section>
 

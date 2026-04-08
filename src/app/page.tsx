@@ -2,11 +2,11 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import GuidedScrollNav from '@/components/GuidedScrollNav';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
+import { useResolvedLocale } from '@/hooks/useResolvedLocale';
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 
@@ -483,14 +483,7 @@ function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
 
 export default function HomePage() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com';
-  const [locale, setLocale] = useState(resolveLocale(undefined));
-  const pathname = usePathname();
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    setLocale(resolveLocale(params.get('lang') ?? undefined));
-  }, [pathname]);
+  const locale = useResolvedLocale();
 
   const home = getMessages(locale).home;
   const pageUrl = withLocale(`${siteUrl}/`, locale);
