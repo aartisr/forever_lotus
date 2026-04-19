@@ -18,6 +18,7 @@ export default function Footer() {
     { label: messages.nav.links.philosophy, href: '/philosophy' },
     { label: messages.nav.links.research, href: '/research' },
     { label: messages.nav.links.insights, href: '/insights' },
+    { label: 'Backlink & Citation Kit', href: '/backlinks' },
     { label: messages.nav.groups.growth, href: '/growth' },
     { label: messages.nav.links.alignedWebsites, href: '/ecosystem' },
     { label: messages.nav.links.manifestoEvaluator, href: '/evaluate' },
