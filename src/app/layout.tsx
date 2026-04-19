@@ -4,7 +4,22 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
 import { Footer, Navigation } from '@/components';
 import ClientRuntime from '@/components/ClientRuntime';
-import { buildAlternates, defaultOgImage, siteName, siteUrl } from '@/lib/seo';
+import {
+  buildAlternates,
+  buildPageUrl,
+  defaultOgImage,
+  defaultTwitterImage,
+  founderName,
+  getSameAsLinks,
+  getTwitterHandle,
+  githubRepoUrl,
+  siteDescription,
+  siteKeywords,
+  siteName,
+  siteUrl,
+} from '@/lib/seo';
+import { getOgLocale, supportedLocales } from '@/i18n';
+import { buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/structured-data';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,45 +35,36 @@ const playfair = Playfair_Display({
 });
 
 const siteTitle = 'Forever Lotus | Conscious Creation, Compassion, and Eastern Wisdom';
-const siteDescription =
-  'Forever Lotus is a civilizational framework for conscious creation, humanitarian dignity, and peacebuilding, grounded in 4,000 years of Eastern wisdom and modern research.';
+const twitterHandle = getTwitterHandle();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteName,
+  manifest: '/manifest.webmanifest',
   title: {
     default: siteTitle,
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
-  alternates: buildAlternates('/', 'en'),
-  keywords: [
-    'Forever Lotus',
-    'conscious leadership',
-    'conscious creation',
-    'compassion',
-    'dignity',
-    'Eastern wisdom',
-    'civilizational framework',
-    'planetary stewardship',
-    'Buddhist philosophy',
-    'Hindu philosophy',
-    'Lotus Sutra',
-    'Brahma creation philosophy',
-    'humanitarian',
-    'education',
-    'peace',
-    'lotus',
-    'Subasri Dorairaj',
-  ],
-  authors: [{ name: 'Subasri Dorairaj' }],
-  creator: 'Subasri Dorairaj',
+  alternates: {
+    ...buildAlternates('/', 'en'),
+    types: {
+      'application/rss+xml': buildPageUrl('/rss.xml'),
+      'text/plain': buildPageUrl('/llms.txt'),
+    },
+  },
+  keywords: [...siteKeywords, 'lotus'],
+  authors: [{ name: founderName, url: buildPageUrl('/about') }],
+  creator: founderName,
   publisher: siteName,
   category: 'philosophy',
   openGraph: {
     type: 'website',
     url: '/',
     locale: 'en_US',
+    alternateLocale: supportedLocales
+      .filter((locale) => locale !== 'en')
+      .map((locale) => getOgLocale(locale)),
     title: siteTitle,
     description: siteDescription,
     siteName,
@@ -75,9 +81,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: [defaultOgImage],
-    creator: '@foreverlotus',
-    site: '@foreverlotus',
+    images: [defaultTwitterImage],
+    creator: twitterHandle,
+    site: twitterHandle,
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
@@ -85,7 +91,16 @@ export const metadata: Metadata = {
     yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION,
   },
   other: {
-    'github:repo': 'https://github.com/aartisr/forever_lotus',
+    'github:repo': githubRepoUrl,
+    ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION
+      ? { 'facebook-domain-verification': process.env.NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION }
+      : {}),
+    ...(process.env.NEXT_PUBLIC_PINTEREST_DOMAIN_VERIFICATION
+      ? { 'p:domain_verify': process.env.NEXT_PUBLIC_PINTEREST_DOMAIN_VERIFICATION }
+      : {}),
   },
   robots: {
     index: true,
@@ -109,31 +124,11 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const structuredData = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: siteName,
-      url: siteUrl,
-      inLanguage: ['en', 'es'],
-      description: siteDescription,
-      publisher: {
-        '@type': 'Organization',
-        name: siteName,
-      },
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: siteName,
-      url: siteUrl,
-      sameAs: ['https://github.com/aartisr/forever_lotus'],
-      founder: {
-        '@type': 'Person',
-        name: 'Subasri Dorairaj',
-      },
-    },
-  ];
+  const structuredData = [buildWebsiteJsonLd(), buildOrganizationJsonLd()].map((entry) => ({
+    ...entry,
+    inLanguage: supportedLocales,
+    sameAs: entry['@type'] === 'Organization' ? getSameAsLinks() : entry.sameAs,
+  }));
 
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
