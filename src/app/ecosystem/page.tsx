@@ -95,9 +95,14 @@ export default function EcosystemPage() {
               If your platform exemplifies dignified, ethical, and purpose-driven design—we&apos;d love to amplify your work.
               Showcase your commitment to compassion, transparency, and conscious creation.
             </p>
-            <Link href="/onboarding-websites" className="inline-flex btn-primary" data-track="ecosystem_onboarding_cta">
-              Apply for Onboarding
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link href="/onboarding-websites" className="inline-flex btn-primary" data-track="ecosystem_onboarding_cta">
+                Apply for Onboarding
+              </Link>
+              <Link href="/backlinks" className="inline-flex btn-ghost" data-track="ecosystem_backlink_kit_cta">
+                Get Backlink Kit
+              </Link>
+            </div>
           </div>
         </div>
       </section>
