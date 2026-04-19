@@ -2,8 +2,11 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getInsightBySlug, insightArticles, insightSlugs } from '@/content/insights';
-import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import ShareActions from '@/components/ShareActions';
+import { getInsightBySlug, getInsightReadTime, getInsightWordCount, insightSlugs } from '@/content/insights';
+import { buildAlternates, buildPageUrl, founderName, siteKeywords, siteName } from '@/lib/seo';
+import { getOgLocale } from '@/i18n';
+import { buildArticleJsonLd, buildBreadcrumbJsonLd } from '@/lib/structured-data';
 
 type PageProps = {
   params: Promise<{
@@ -27,26 +30,35 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const path = `/insights/${article.slug}`;
+  const socialImage = buildPageUrl(`${path}/opengraph-image`, 'en');
+  const keywords = Array.from(
+    new Set([article.keyword, article.title, 'Forever Lotus', 'conscious creation', 'ethical leadership'])
+  );
 
   return {
     title: article.title,
     description: article.description,
+    keywords: [...siteKeywords, ...keywords],
+    authors: [{ name: founderName, url: buildPageUrl('/about') }],
     alternates: buildAlternates(path, 'en'),
     openGraph: {
       type: 'article',
       url: buildPageUrl(path, 'en'),
+      locale: getOgLocale('en'),
       title: article.title,
       description: article.description,
       siteName,
-      images: [defaultOgImage],
+      images: [socialImage],
+      authors: [founderName],
+      section: 'Insights',
+      tags: keywords,
     },
     twitter: {
       card: 'summary_large_image',
       title: article.title,
       description: article.description,
-      images: [defaultOgImage],
+      images: [socialImage],
     },
-    keywords: [article.keyword, 'Forever Lotus', 'conscious creation', 'ethical leadership'],
   };
 }
 
@@ -63,22 +75,26 @@ export default async function InsightArticlePage({ params }: PageProps) {
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
   const articlePath = `/insights/${article.slug}`;
+  const articleUrl = buildPageUrl(articlePath);
+  const socialImage = buildPageUrl(`${articlePath}/opengraph-image`);
+  const readTime = getInsightReadTime(article);
+  const wordCount = getInsightWordCount(article);
 
-  const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
+  const articleSchema = buildArticleJsonLd({
+    path: articlePath,
+    title: article.title,
     description: article.description,
-    mainEntityOfPage: buildPageUrl(articlePath),
-    author: {
-      '@type': 'Person',
-      name: 'Subasri Dorairaj',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Forever Lotus',
-    },
-  };
+    image: socialImage,
+    keywords: [article.keyword, article.title, ...article.relatedSlugs],
+    articleSection: article.sections.map((section) => section.heading),
+    wordCount,
+  });
+
+  const breadcrumbSchema = buildBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Insights', path: '/insights' },
+    { name: article.title, path: articlePath },
+  ]);
 
   const faqSchema = {
     '@context': 'https://schema.org',
@@ -95,6 +111,10 @@ export default async function InsightArticlePage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
@@ -114,16 +134,44 @@ export default async function InsightArticlePage({ params }: PageProps) {
           }}
         />
         <div className="relative max-w-4xl mx-auto text-center">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex flex-wrap items-center justify-center gap-2 text-xs uppercase tracking-[0.16em] text-lotus-gold/75">
+              <li>
+                <Link href="/" className="hover:text-lotus-gold transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href="/insights" className="hover:text-lotus-gold transition-colors">
+                  Insights
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li className="text-lotus-cream/90">{article.keyword}</li>
+            </ol>
+          </nav>
           <p className="eyebrow mb-4">{article.keyword}</p>
           <h1 className="font-serif font-black text-lotus-cream mb-5" style={{ fontSize: 'clamp(2.1rem, 5.4vw, 4rem)' }}>
             {article.title}
           </h1>
           <p className="text-lotus-muted text-lg leading-relaxed max-w-3xl mx-auto">{article.description}</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-lotus-muted">
+            <span>{founderName}</span>
+            <span aria-hidden="true">•</span>
+            <span>{readTime} min read</span>
+            <span aria-hidden="true">•</span>
+            <span>{wordCount} words</span>
+          </div>
         </div>
       </section>
 
       <section className="py-14 px-5 sm:px-8 bg-[#f5f0e8] text-[#1a1612]">
         <article className="max-w-4xl mx-auto">
+          <div className="mb-8">
+            <ShareActions title={article.title} url={articleUrl} description={article.description} />
+          </div>
+
           <p className="text-[#423d36] text-base sm:text-lg leading-relaxed mb-8">{article.intro}</p>
 
           <div className="space-y-8">

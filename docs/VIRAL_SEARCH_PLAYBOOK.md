@@ -12,6 +12,9 @@ This checklist is built to maximize ranking velocity after deployment.
 - Deploy and confirm these URLs are live:
   - `/robots.txt`
   - `/sitemap.xml`
+  - `/llms.txt`
+  - `/llms-full.txt`
+  - `/rss.xml`
   - `/manifest.webmanifest`
   - `/opengraph-image`
   - `/twitter-image`
@@ -32,6 +35,8 @@ Note: Some engines consume Bing/IndexNow feeds indirectly, but direct submission
 ## 3) Indexing Acceleration
 
 - Connect Cloudflare + enable IndexNow ping support (or a separate IndexNow pinger).
+- Use the built-in API endpoint to push URL batches after each content update:
+  - `POST /api/indexnow` with `urlList`, `websiteUrl`, and `sitemapUrl`
 - Publish 5-10 supporting articles that link into core pages:
   - Manifesto
   - Philosophy
@@ -91,7 +96,14 @@ If impressions rise but CTR is flat, improve metadata copy.
 If indexed pages are flat, improve internal linking and publish fresh pages.
 If average position is flat, prioritize backlinks and topical depth.
 
-## 9) Reality Check
+## 9) AI Search Surface Area
+
+- Keep `/llms.txt` concise and updated with top canonical pages.
+- Keep `/llms-full.txt` comprehensive with all critical URLs and topic labels.
+- Maintain structured data on high-intent pages (Article, FAQ, WebSite, Organization).
+- Syndicate insights through `/rss.xml` so AI retrieval systems can detect fresh updates quickly.
+
+## 10) Reality Check
 
 No team can guarantee rank #1 across all top search engines for competitive terms.
 The reliable path is: technical SEO + topical authority + quality backlinks + high CTR over time.

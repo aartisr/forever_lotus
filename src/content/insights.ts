@@ -422,3 +422,51 @@ export const insightSlugs = insightArticles.map((article) => article.slug);
 export function getInsightBySlug(slug: string): InsightArticle | undefined {
   return insightBySlug[slug];
 }
+
+function tokenizeInsightText(value: string): string[] {
+  return value
+    .toLowerCase()
+    .split(/[^a-z0-9]+/i)
+    .filter(Boolean);
+}
+
+export function searchInsights(query?: string): InsightArticle[] {
+  const normalizedQuery = query?.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    return insightArticles;
+  }
+
+  const queryTerms = tokenizeInsightText(normalizedQuery);
+
+  return insightArticles.filter((article) => {
+    const corpus = [
+      article.keyword,
+      article.title,
+      article.description,
+      article.intro,
+      ...article.sections.flatMap((section) => [section.heading, section.body]),
+      ...article.faq.flatMap((item) => [item.question, item.answer]),
+    ]
+      .join(' ')
+      .toLowerCase();
+
+    return queryTerms.every((term) => corpus.includes(term));
+  });
+}
+
+export function getInsightWordCount(article: InsightArticle): number {
+  const content = [
+    article.title,
+    article.description,
+    article.intro,
+    ...article.sections.flatMap((section) => [section.heading, section.body]),
+    ...article.faq.flatMap((item) => [item.question, item.answer]),
+  ].join(' ');
+
+  return tokenizeInsightText(content).length;
+}
+
+export function getInsightReadTime(article: InsightArticle): number {
+  return Math.max(3, Math.ceil(getInsightWordCount(article) / 220));
+}

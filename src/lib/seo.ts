@@ -1,9 +1,71 @@
-import { defaultLocale, type Locale } from '@/i18n';
+import { defaultLocale, supportedLocales, type Locale } from '@/i18n';
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com';
 export const siteName = 'Forever Lotus';
+export const founderName = 'Subasri Dorairaj';
+export const githubRepoUrl = 'https://github.com/aartisr/forever_lotus';
+export const siteDescription =
+  'Forever Lotus is a civilizational framework for conscious creation, humanitarian dignity, and peacebuilding, grounded in 4,000 years of Eastern wisdom and modern research.';
+export const siteKeywords = [
+  'Forever Lotus',
+  'conscious leadership',
+  'conscious creation',
+  'compassion',
+  'dignity',
+  'Eastern wisdom',
+  'civilizational framework',
+  'planetary stewardship',
+  'Buddhist philosophy',
+  'Hindu philosophy',
+  'Lotus Sutra',
+  'Brahma creation philosophy',
+  'humanitarian',
+  'education',
+  'peace',
+  'Subasri Dorairaj',
+] as const;
 
 export const defaultOgImage = '/opengraph-image';
+export const defaultTwitterImage = '/twitter-image';
+
+function normalizeUrl(value?: string): string | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  try {
+    return new URL(value).toString();
+  } catch {
+    return undefined;
+  }
+}
+
+export function getTwitterHandle(): string | undefined {
+  const handle =
+    process.env.NEXT_PUBLIC_X_HANDLE ||
+    process.env.NEXT_PUBLIC_TWITTER_HANDLE;
+
+  if (!handle) {
+    return undefined;
+  }
+
+  return handle.startsWith('@') ? handle : `@${handle}`;
+}
+
+export function getSameAsLinks(): string[] {
+  return Array.from(
+    new Set(
+      [
+        githubRepoUrl,
+        normalizeUrl(process.env.NEXT_PUBLIC_X_PROFILE_URL),
+        normalizeUrl(process.env.NEXT_PUBLIC_LINKEDIN_PROFILE_URL),
+        normalizeUrl(process.env.NEXT_PUBLIC_INSTAGRAM_PROFILE_URL),
+        normalizeUrl(process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_URL),
+        normalizeUrl(process.env.NEXT_PUBLIC_FACEBOOK_PAGE_URL),
+      ].filter((value): value is string => Boolean(value))
+    )
+  );
+}
 
 export function localizedPath(path: string, locale: Locale): string {
   if (locale === defaultLocale) {
@@ -23,13 +85,18 @@ export function buildPageUrl(path: string, locale: Locale = defaultLocale): stri
   return new URL(canonicalPath, siteUrl).toString();
 }
 
+export function buildLanguageAlternates(path: string) {
+  return Object.fromEntries(
+    supportedLocales.map((locale) => [locale, localizedPath(path, locale)])
+  );
+}
+
 export function buildAlternates(path: string, locale: Locale) {
   return {
     canonical: localizedPath(path, locale),
     languages: {
       'x-default': path,
-      en: path,
-      es: localizedPath(path, 'es'),
+      ...buildLanguageAlternates(path),
     },
   };
 }
