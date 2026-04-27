@@ -2,13 +2,13 @@ import './globals.css';
 import React from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
-import { Footer, Navigation } from '@/components';
+import { Footer, JsonLd, Navigation } from '@/components';
 import ClientRuntime from '@/components/ClientRuntime';
 import {
   buildAlternates,
+  buildOpenGraphImage,
   buildPageUrl,
-  defaultOgImage,
-  defaultTwitterImage,
+  buildTwitterImage,
   founderName,
   getSameAsLinks,
   getTwitterHandle,
@@ -19,7 +19,12 @@ import {
   siteUrl,
 } from '@/lib/seo';
 import { getOgLocale, supportedLocales } from '@/i18n';
-import { buildOrganizationJsonLd, buildWebsiteJsonLd } from '@/lib/structured-data';
+import {
+  buildJsonLdGraph,
+  buildOrganizationJsonLd,
+  buildPersonJsonLd,
+  buildWebsiteJsonLd,
+} from '@/lib/structured-data';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -68,20 +73,13 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     siteName,
-    images: [
-      {
-        url: defaultOgImage,
-        width: 1200,
-        height: 630,
-        alt: 'Forever Lotus - Conscious Creation',
-      },
-    ],
+    images: [buildOpenGraphImage(undefined, 'Forever Lotus - Conscious Creation')],
   },
   twitter: {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: [defaultTwitterImage],
+    images: [buildTwitterImage(undefined, 'Forever Lotus - Conscious Creation')],
     creator: twitterHandle,
     site: twitterHandle,
   },
@@ -124,19 +122,20 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const structuredData = [buildWebsiteJsonLd(), buildOrganizationJsonLd()].map((entry) => ({
-    ...entry,
-    inLanguage: supportedLocales,
-    sameAs: entry['@type'] === 'Organization' ? getSameAsLinks() : entry.sameAs,
-  }));
+  const structuredData = buildJsonLdGraph([
+    buildWebsiteJsonLd(),
+    {
+      ...buildOrganizationJsonLd(),
+      inLanguage: supportedLocales,
+      sameAs: getSameAsLinks(),
+    },
+    buildPersonJsonLd(),
+  ]);
 
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body className="bg-lotus-bg text-lotus-cream font-sans antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
+        <JsonLd data={structuredData} />
         <ClientRuntime />
         <a
           href="#main-content"

@@ -10,19 +10,7 @@ import AwariconMark, { type AwariconMarkVariant } from './AwariconMark';
 import { selectableLocales, withLocale } from '@/i18n/core';
 import { getChromeMessages } from '@/i18n/chromeMessages';
 import { useResolvedLocale } from '@/hooks/useResolvedLocale';
-
-type NavChild = {
-  href: string;
-  label: string;
-  icon: string;
-  description: string;
-};
-
-type NavGroup = {
-  key: string;
-  label: string;
-  items: NavChild[];
-};
+import { getJourneyLinks, getNavigationGroups } from '@/components/chrome/siteChromeModel';
 
 // Chevron SVG inline for tree-shaking friendliness
 function ChevronDown({ className }: { className?: string }) {
@@ -73,7 +61,10 @@ export default function Navigation() {
     () => '',
   );
   const messages = getChromeMessages(locale);
+  const menuGroups = getNavigationGroups(messages);
+  const journeyLinks = getJourneyLinks(messages);
   const currentPathWithSearch = `${pathname || '/'}${currentSearch}`;
+  const isActivePath = (href: string) => pathname === href || pathname?.startsWith(`${href}/`);
   const localeFlagMap: Record<string, string> = {
     en: '🇺🇸',
     es: '🇪🇸',
@@ -81,87 +72,6 @@ export default function Navigation() {
     ta: '🇮🇳',
     kn: '🇮🇳',
   };
-
-  const menuGroups: NavGroup[] = [
-    {
-      key: 'framework',
-      label: messages.nav.groups.framework,
-      items: [
-        {
-          href: '/manifesto',
-          label: messages.nav.links.manifesto,
-          icon: '📜',
-          description: messages.nav.descriptions.manifesto,
-        },
-        {
-          href: '/philosophy',
-          label: messages.nav.links.philosophy,
-          icon: '🪷',
-          description: messages.nav.descriptions.philosophy,
-        },
-        {
-          href: '/about',
-          label: messages.nav.links.about,
-          icon: '✦',
-          description: messages.nav.descriptions.about,
-        },
-      ],
-    },
-    {
-      key: 'knowledge',
-      label: messages.nav.groups.knowledge,
-      items: [
-        {
-          href: '/research',
-          label: messages.nav.links.research,
-          icon: '🔬',
-          description: messages.nav.descriptions.research,
-        },
-        {
-          href: '/insights',
-          label: messages.nav.links.insights,
-          icon: '💡',
-          description: messages.nav.descriptions.insights,
-        },
-      ],
-    },
-    {
-      key: 'growth',
-      label: messages.nav.groups.growth,
-      items: [
-        {
-          href: '/growth',
-          label: messages.nav.links.growthDashboard,
-          icon: '📈',
-          description: messages.nav.descriptions.growthDashboard,
-        },
-      ],
-    },
-    {
-      key: 'ecosystem',
-      label: messages.nav.groups.ecosystem,
-      items: [
-        {
-          href: '/ecosystem',
-          label: messages.nav.links.alignedWebsites,
-          icon: '🌐',
-          description: messages.nav.descriptions.alignedWebsites,
-        },
-        {
-          href: '/evaluate',
-          label: messages.nav.links.manifestoEvaluator,
-          icon: '⚖️',
-          description: messages.nav.descriptions.manifestoEvaluator,
-        },
-        {
-          href: '/onboarding-websites',
-          label: messages.nav.links.onboardWebsite,
-          icon: '✚',
-          description: messages.nav.descriptions.onboardWebsite,
-        },
-      ],
-    },
-  ];
 
   // Scroll state
   useEffect(() => {
@@ -254,28 +164,85 @@ export default function Navigation() {
             {messages.nav.brand}
           </span>
         </Link>
-        <div className="hidden xl:block">
+        <div className="hidden 2xl:block">
           <LogoMeaningPopover locale={locale} align="left" />
         </div>
 
         {/* ── Desktop nav ── */}
-        <div className="hidden md:flex items-center gap-0.5 ml-auto">
+        <div className="hidden xl:flex items-center gap-0.5 ml-auto">
+          <div className="relative group/start">
+            <Link
+              href={withLocale('/manifesto', locale)}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[0.825rem] font-semibold transition-all duration-200 select-none ${
+                journeyLinks.some((item) => isActivePath(item.href))
+                  ? 'text-lotus-gold bg-lotus-gold-dim'
+                  : 'text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.06]'
+              }`}
+              aria-haspopup="true"
+              data-track="nav_start_here"
+            >
+              {messages.nav.startHere}
+              <ChevronDown className="w-[9px] h-[9px] opacity-50 transition-transform duration-300 group-hover/start:rotate-180" />
+            </Link>
+
+            <div className="absolute left-0 top-full pt-3 opacity-0 pointer-events-none translate-y-2 transition-all duration-[220ms] delay-100 ease-out group-hover/start:opacity-100 group-hover/start:pointer-events-auto group-hover/start:translate-y-0">
+              <div className="w-[min(640px,calc(100vw-2rem))] rounded-2xl border border-white/[0.08] bg-[rgba(10,11,20,0.97)] backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.65),_0_0_0_1px_rgba(255,255,255,0.04)] p-3">
+                <DropdownAccentLine />
+                <div className="mb-3 px-1">
+                  <p className="eyebrow mb-1">{messages.nav.startHere}</p>
+                  <p className="max-w-md text-xs leading-relaxed text-lotus-muted-2">
+                    {messages.nav.startHereDescription}
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  {journeyLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={withLocale(item.href, locale)}
+                      className={`group/item rounded-xl border px-3 py-3 transition-all duration-150 ${
+                        isActivePath(item.href)
+                          ? 'border-lotus-gold/35 bg-lotus-gold-dim text-lotus-cream'
+                          : 'border-white/[0.06] bg-white/[0.025] text-lotus-muted hover:border-lotus-gold/25 hover:bg-white/[0.06] hover:text-lotus-cream'
+                      }`}
+                      data-track={`nav_start_${item.href.replace('/', '') || 'home'}`}
+                    >
+                      <span className="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full border border-lotus-gold/25 bg-lotus-gold/10 font-mono text-[0.65rem] text-lotus-gold">
+                        {item.icon}
+                      </span>
+                      <span className="block text-[0.64rem] uppercase tracking-[0.14em] text-lotus-muted-2">
+                        {item.kicker}
+                      </span>
+                      <span className="mt-1 block text-[0.84rem] font-semibold leading-tight text-lotus-cream">
+                        {item.label}
+                      </span>
+                      <span className="mt-1 block text-[0.7rem] leading-snug text-lotus-muted-2">
+                        {item.description}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           {menuGroups.map((group) => {
-            const isActive = group.items.some((item) => pathname === item.href);
+            const isActive = group.items.some((item) => isActivePath(item.href));
             return (
               <div key={group.key} className="relative group/nav">
-                {/* Trigger button */}
-                <button
-                  type="button"
+                {/* Trigger link */}
+                <Link
+                  href={withLocale(group.href, locale)}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[0.825rem] font-medium transition-all duration-200 select-none ${
                     isActive
                       ? 'text-lotus-gold bg-lotus-gold-dim'
                       : 'text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.06]'
                   }`}
+                  aria-haspopup="true"
+                  data-track={`nav_group_${group.key}`}
                 >
                   {group.label}
                   <ChevronDown className="w-[9px] h-[9px] opacity-50 transition-transform duration-300 group-hover/nav:rotate-180" />
-                </button>
+                </Link>
 
                 {/* Active indicator dot */}
                 {isActive && (
@@ -283,7 +250,7 @@ export default function Navigation() {
                 )}
 
                 {/* Dropdown panel – slide & fade on group hover */}
-                <div className="absolute left-0 top-full pt-3 opacity-0 pointer-events-none translate-y-2 group-hover/nav:opacity-100 group-hover/nav:pointer-events-auto group-hover/nav:translate-y-0 transition-all duration-[220ms] ease-out">
+                <div className="absolute left-0 top-full pt-3 opacity-0 pointer-events-none translate-y-2 transition-all duration-[220ms] delay-100 ease-out group-hover/nav:opacity-100 group-hover/nav:pointer-events-auto group-hover/nav:translate-y-0">
                   <div className="min-w-[240px] rounded-2xl border border-white/[0.08] bg-[rgba(10,11,20,0.97)] backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.65),_0_0_0_1px_rgba(255,255,255,0.04)] p-2">
                     <DropdownAccentLine />
                     {group.items.map((item) => (
@@ -291,21 +258,21 @@ export default function Navigation() {
                         key={item.href}
                         href={withLocale(item.href, locale)}
                         className={`flex items-start gap-3 rounded-xl px-3 py-2.5 transition-all duration-150 group/item ${
-                          pathname === item.href
+                          isActivePath(item.href)
                             ? 'bg-lotus-gold-dim text-lotus-cream'
                             : 'text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.05]'
                         }`}
                       >
                         {/* Icon bubble */}
                         <span className={`flex items-center justify-center w-8 h-8 rounded-xl shrink-0 text-[0.9rem] transition-colors duration-150 ${
-                          pathname === item.href
+                          isActivePath(item.href)
                             ? 'bg-lotus-gold/15'
                             : 'bg-white/[0.05] group-hover/item:bg-white/[0.08]'
                         }`}>
                           {item.icon}
                         </span>
                         <div className="min-w-0 pt-0.5">
-                          <div className={`text-[0.825rem] font-semibold leading-tight ${pathname === item.href ? 'text-lotus-gold' : ''}`}>
+                          <div className={`text-[0.825rem] font-semibold leading-tight ${isActivePath(item.href) ? 'text-lotus-gold' : ''}`}>
                             {item.label}
                           </div>
                           <div className="text-[0.7rem] text-lotus-muted-2 mt-0.5 leading-snug">
@@ -404,7 +371,7 @@ export default function Navigation() {
 
         {/* ── Mobile hamburger ── */}
         <button
-          className="md:hidden flex flex-col justify-center gap-[5px] w-9 h-9 items-center rounded-xl hover:bg-white/[0.06] transition-colors shrink-0"
+          className="xl:hidden flex flex-col justify-center gap-[5px] w-9 h-9 items-center rounded-xl hover:bg-white/[0.06] transition-colors shrink-0"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? messages.nav.closeMenu : messages.nav.openMenu}
           aria-expanded={menuOpen}
@@ -417,11 +384,44 @@ export default function Navigation() {
 
       {/* ── Mobile menu drawer ── */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-500 ease-in-out ${
-          menuOpen ? 'max-h-[52rem] opacity-100' : 'max-h-0 opacity-0'
+        className={`xl:hidden transition-[max-height,opacity] duration-500 ease-in-out ${
+          menuOpen ? 'max-h-[90vh] opacity-100 overflow-y-auto' : 'max-h-0 opacity-0 overflow-hidden'
         } bg-[rgba(7,8,15,0.98)] backdrop-blur-xl border-b border-white/[0.06]`}
       >
         <div className="px-4 pb-6 pt-3 flex flex-col gap-2">
+          <div className="rounded-2xl border border-lotus-gold/15 bg-[linear-gradient(135deg,rgba(255,214,107,0.1),rgba(184,216,255,0.055))] p-3">
+            <div className="mb-3">
+              <p className="eyebrow mb-1">{messages.nav.startHere}</p>
+              <p className="text-xs leading-relaxed text-lotus-muted-2">{messages.nav.startHereDescription}</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              {journeyLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={withLocale(item.href, locale)}
+                  className={`flex items-start gap-3 rounded-xl border px-3 py-2.5 transition-all duration-150 ${
+                    isActivePath(item.href)
+                      ? 'border-lotus-gold/35 bg-lotus-gold-dim text-lotus-cream'
+                      : 'border-white/[0.07] bg-black/10 text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.05]'
+                  }`}
+                  data-track={`mobile_nav_start_${item.href.replace('/', '') || 'home'}`}
+                >
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-lotus-gold/25 bg-lotus-gold/10 font-mono text-[0.64rem] text-lotus-gold">
+                    {item.icon}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[0.62rem] uppercase tracking-[0.13em] text-lotus-muted-2">
+                      {item.kicker}
+                    </span>
+                    <span className="mt-0.5 block text-[0.84rem] font-semibold leading-tight">
+                      {item.label}
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
           {menuGroups.map((group) => (
             <div key={group.key} className="rounded-2xl border border-white/[0.07] overflow-hidden">
               {/* Group header */}
@@ -435,17 +435,17 @@ export default function Navigation() {
                     key={item.href}
                     href={withLocale(item.href, locale)}
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-[0.85rem] font-medium transition-all duration-150 ${
-                      pathname === item.href
+                      isActivePath(item.href)
                         ? 'text-lotus-gold bg-lotus-gold-dim'
                         : 'text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.05]'
                     }`}
                   >
                     <span className={`flex items-center justify-center w-8 h-8 rounded-lg text-[0.85rem] shrink-0 ${
-                      pathname === item.href ? 'bg-lotus-gold/15' : 'bg-white/[0.05]'
+                      isActivePath(item.href) ? 'bg-lotus-gold/15' : 'bg-white/[0.05]'
                     }`}>
                       {item.icon}
                     </span>
-                    <div>
+                    <div className="min-w-0">
                       <div>{item.label}</div>
                       <div className="text-[0.7rem] text-lotus-muted-2 font-normal mt-0.5">{item.description}</div>
                     </div>
@@ -484,7 +484,7 @@ export default function Navigation() {
                 {messages.nav.languageLabel}
               </p>
             </div>
-            <div className="p-1.5 flex gap-1.5">
+            <div className="grid grid-cols-2 gap-1.5 p-1.5 min-[420px]:grid-cols-3 sm:grid-cols-5">
               {selectableLocales.map((lang) => {
                 const isSelected = locale === lang;
                 return (
@@ -492,14 +492,14 @@ export default function Navigation() {
                     key={lang}
                     href={withLocale(currentPathWithSearch, lang)}
                     onClick={() => setMenuOpen(false)}
-                    className={`flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-[0.825rem] transition-all duration-150 ${
+                    className={`min-w-0 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-[0.825rem] transition-all duration-150 ${
                       isSelected
                         ? 'bg-lotus-gold-dim text-lotus-gold font-medium'
                         : 'text-lotus-muted hover:text-lotus-cream hover:bg-white/[0.05]'
                     }`}
                   >
                     <span className="text-sm">{localeFlagMap[lang] ?? '🌐'}</span>
-                    <span>{messages.nav.languages[lang]}</span>
+                    <span className="min-w-0 truncate">{messages.nav.languages[lang]}</span>
                     {isSelected && <CheckIcon className="w-3 h-3 text-lotus-gold shrink-0" />}
                   </Link>
                 );
@@ -511,4 +511,3 @@ export default function Navigation() {
     </header>
   );
 }
-

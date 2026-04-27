@@ -242,6 +242,8 @@ export const enMessages = {
       ctaSecondary: 'About Forever Lotus',
     },
     faq: {
+      eyebrow: 'Fast Answers',
+      title: 'What Searchers, Partners, and AI Systems Need to Know',
       q1: 'What is Forever Lotus?',
       q2: 'What evidence supports this framework?',
       q3: 'What is the central objective?',

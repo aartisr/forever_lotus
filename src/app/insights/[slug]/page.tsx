@@ -2,11 +2,12 @@ import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import JsonLd from '@/components/JsonLd';
 import ShareActions from '@/components/ShareActions';
 import { getInsightBySlug, getInsightReadTime, getInsightWordCount, insightSlugs } from '@/content/insights';
-import { buildAlternates, buildPageUrl, founderName, siteKeywords, siteName } from '@/lib/seo';
+import { buildAlternates, buildOpenGraphImage, buildPageUrl, buildTwitterImage, founderName, siteKeywords, siteName } from '@/lib/seo';
 import { getOgLocale } from '@/i18n';
-import { buildArticleJsonLd, buildBreadcrumbJsonLd } from '@/lib/structured-data';
+import { buildArticleJsonLd, buildBreadcrumbJsonLd, buildFAQPageJsonLd, buildJsonLdGraph } from '@/lib/structured-data';
 
 type PageProps = {
   params: Promise<{
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: article.title,
       description: article.description,
       siteName,
-      images: [socialImage],
+      images: [buildOpenGraphImage(socialImage, article.title)],
       authors: [founderName],
       section: 'Insights',
       tags: keywords,
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       card: 'summary_large_image',
       title: article.title,
       description: article.description,
-      images: [socialImage],
+      images: [buildTwitterImage(socialImage, article.title)],
     },
   };
 }
@@ -96,33 +97,17 @@ export default async function InsightArticlePage({ params }: PageProps) {
     { name: article.title, path: articlePath },
   ]);
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: article.faq.map((item) => ({
-      '@type': 'Question',
-      name: item.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.answer,
-      },
-    })),
-  };
+  const faqSchema = buildFAQPageJsonLd(
+    article.faq.map((item) => ({
+      question: item.question,
+      answer: item.answer,
+    }))
+  );
+  const structuredData = buildJsonLdGraph([breadcrumbSchema, articleSchema, faqSchema]);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <JsonLd data={structuredData} />
 
       <section className="relative pt-32 pb-14 px-5 sm:px-8 bg-lotus-bg">
         <div

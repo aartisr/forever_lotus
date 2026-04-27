@@ -1,39 +1,23 @@
-'use client';
-
-import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import GuidedScrollNav from '@/components/GuidedScrollNav';
+import JsonLd from '@/components/JsonLd';
 import LotusIcon from '@/components/LotusIcon';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
-import { useResolvedLocale } from '@/hooks/useResolvedLocale';
+import { buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import {
+  buildFAQPageJsonLd,
+  buildItemListJsonLd,
+  buildJsonLdGraph,
+  buildWebPageJsonLd,
+} from '@/lib/structured-data';
 
 // ─── Hero Section ─────────────────────────────────────────────────────────────
 
 function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-    // Parallax on mouse move
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const xFrac = (clientX / window.innerWidth - 0.5) * 2;
-      const yFrac = (clientY / window.innerHeight - 0.5) * 2;
-      const mandala = el.querySelector<HTMLElement>('.hero-mandala');
-      if (mandala) {
-        mandala.style.transform = `translate(${xFrac * 18}px, ${yFrac * 18}px)`;
-      }
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
     <section
       id="home-hero"
-      ref={heroRef}
       className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden"
       aria-labelledby="hero-heading"
     >
@@ -52,7 +36,7 @@ function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['h
 
       {/* Animated lotus mandala */}
       <div
-        className="hero-mandala absolute inset-0 flex items-center justify-center pointer-events-none transition-transform duration-300 ease-out"
+        className="hero-mandala absolute inset-0 flex items-center justify-center pointer-events-none"
         aria-hidden="true"
       >
         <LotusIcon
@@ -106,14 +90,8 @@ function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['h
       </div>
 
       {/* Scroll cue */}
-      <button
-        type="button"
-        onClick={() => {
-          const next = document.getElementById('home-principle');
-          if (!next) return;
-          const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          next.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-        }}
+      <a
+        href="#home-principle"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-up"
         style={{ animationDelay: '1200ms', animationFillMode: 'both' }}
         aria-label="Scroll to next section"
@@ -122,7 +100,7 @@ function HeroSection({ home, locale }: { home: ReturnType<typeof getMessages>['h
           {home.hero.scroll}
         </span>
         <div className="w-px h-10 bg-gradient-to-b from-lotus-gold/40 to-transparent animate-float" />
-      </button>
+      </a>
     </section>
   );
 }
@@ -446,6 +424,57 @@ function VowSection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
   );
 }
 
+// ─── FAQ Section ─────────────────────────────────────────────────────────────
+
+function HomeFAQSection({ home }: { home: ReturnType<typeof getMessages>['home'] }) {
+  const items = [
+    {
+      question: home.faq.q1,
+      answer: home.principle.description,
+    },
+    {
+      question: home.faq.q2,
+      answer: home.research.description,
+    },
+    {
+      question: home.faq.q3,
+      answer: home.vow.description,
+    },
+  ];
+
+  return (
+    <section id="home-faq" className="py-24 px-5 sm:px-8 bg-lotus-bg-2" aria-labelledby="home-faq-heading">
+      <div className="max-w-4xl mx-auto">
+        <ScrollReveal className="text-center mb-10">
+          <p className="eyebrow mb-4">{home.faq.eyebrow}</p>
+          <h2
+            id="home-faq-heading"
+            className="font-serif font-bold text-lotus-cream"
+            style={{ fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)' }}
+          >
+            {home.faq.title}
+          </h2>
+        </ScrollReveal>
+        <div className="space-y-4">
+          {items.map((item, index) => (
+            <ScrollReveal key={item.question} delay={index * 80}>
+              <details className="group rounded-2xl border border-lotus-border-soft bg-white/[0.035] p-5 open:border-lotus-gold/30">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-serif text-lg font-semibold text-lotus-cream">
+                  {item.question}
+                  <span className="text-lotus-gold transition-transform group-open:rotate-45" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 text-sm leading-relaxed text-lotus-muted">{item.answer}</p>
+              </details>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── CTA Section ─────────────────────────────────────────────────────────────
 
 function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['home']; locale: ReturnType<typeof resolveLocale> }) {
@@ -482,11 +511,8 @@ function CTASection({ home, locale }: { home: ReturnType<typeof getMessages>['ho
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com';
-  const locale = useResolvedLocale();
-
+  const locale = resolveLocale();
   const home = getMessages(locale).home;
-  const pageUrl = withLocale(`${siteUrl}/`, locale);
   const guidedSections = [
     { id: 'home-hero', label: 'Hero' },
     { id: 'home-principle', label: 'Lotus Principle' },
@@ -496,64 +522,38 @@ export default function HomePage() {
     { id: 'home-traditions', label: 'Traditions' },
     { id: 'home-research', label: 'Research' },
     { id: 'home-vow', label: 'The Vow' },
+    { id: 'home-faq', label: 'Fast Answers' },
     { id: 'home-cta', label: 'Next Step' },
   ] as const;
 
-  const webPageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Forever Lotus',
-    url: pageUrl,
-    inLanguage: locale,
-    description: home.hero.description,
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Forever Lotus',
-      url: siteUrl,
-    },
-  };
+  const faqItems = [
+    { question: home.faq.q1, answer: home.principle.description },
+    { question: home.faq.q2, answer: home.research.description },
+    { question: home.faq.q3, answer: home.vow.description },
+  ];
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: home.faq.q1,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: home.principle.description,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: home.faq.q2,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: home.research.description,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: home.faq.q3,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: home.vow.description,
-        },
-      },
-    ],
-  };
+  const structuredData = buildJsonLdGraph([
+    buildWebPageJsonLd({
+      path: '/',
+      title: siteName,
+      description: home.hero.description,
+      locale,
+      primaryImage: buildPageUrl(defaultOgImage),
+      breadcrumbs: [{ name: 'Home', path: '/' }],
+    }),
+    buildFAQPageJsonLd(faqItems),
+    buildItemListJsonLd({
+      name: 'Six pillars of conscious creation',
+      items: home.pillars.items.map((item) => ({
+        name: item.title,
+        url: `${buildPageUrl('/', locale)}#home-pillars`,
+      })),
+    }),
+  ]);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <JsonLd data={structuredData} />
       <GuidedScrollNav sections={[...guidedSections]} contactHref={withLocale('/contact', locale)} />
       <HeroSection home={home} locale={locale} />
       <LotusPrinciple home={home} />
@@ -563,6 +563,7 @@ export default function HomePage() {
       <TraditionsSection home={home} locale={locale} />
       <ResearchSection home={home} locale={locale} />
       <VowSection home={home} locale={locale} />
+      <HomeFAQSection home={home} />
       <CTASection home={home} locale={locale} />
     </>
   );

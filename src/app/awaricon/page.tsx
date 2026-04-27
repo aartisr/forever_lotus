@@ -52,9 +52,9 @@ export default function AwariconPage() {
             Awaricon is designed as an aspirational <strong className="text-lotus-cream">Proof-of-Presence</strong> emblem for the Sentient Era: a way to celebrate conscious agency, ethical authorship, and accountable participation in digital civilization.
           </p>
 
-          <div className="mx-auto mt-8 inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3">
+          <div className="mx-auto mt-8 inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-3 sm:gap-3 sm:rounded-full sm:px-6">
             <span className="text-xs uppercase tracking-[0.18em] text-lotus-gold/70">Awaricon Calculus</span>
-            <code className="font-serif text-sm text-lotus-cream">{awariconFormula}</code>
+            <code className="break-all font-serif text-sm text-lotus-cream">{awariconFormula}</code>
             <AwariconFormulaPopover />
           </div>
         </div>
@@ -129,13 +129,13 @@ export default function AwariconPage() {
             Awaricon becomes meaningful when beauty, rigor, and ethics move together.
             In Forever Lotus terms: a badge should not only look legendary, it should protect dignity and inspire conscious creation.
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/awaricon/apply" className="btn-primary">Apply for Certification →</Link>
-            <Link href="/awaricon/badge-generator" className="btn-ghost">Badge Embed Generator</Link>
-            <Link href="/awaricon/compliance" className="btn-ghost">Public Compliance Guide</Link>
-            <Link href="/api/awaricon/certification/levels" className="btn-ghost">Public Levels API</Link>
-            <Link href="/manifesto" className="btn-ghost">Read Manifesto</Link>
-            <Link href="/research" className="btn-ghost">Research Foundation</Link>
+          <div className="flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:flex-wrap sm:items-center">
+            <Link href="/awaricon/apply" className="btn-primary justify-center">Apply for Certification →</Link>
+            <Link href="/awaricon/badge-generator" className="btn-ghost justify-center">Badge Embed Generator</Link>
+            <Link href="/awaricon/compliance" className="btn-ghost justify-center">Public Compliance Guide</Link>
+            <Link href="/api/awaricon/certification/levels" className="btn-ghost justify-center">Public Levels API</Link>
+            <Link href="/manifesto" className="btn-ghost justify-center">Read Manifesto</Link>
+            <Link href="/research" className="btn-ghost justify-center">Research Foundation</Link>
           </div>
         </div>
       </section>

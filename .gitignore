@@ -43,6 +43,7 @@ coverage/
 # editors
 .vscode/
 .idea/
+*.code-workspace
 
 # misc
 tmp/

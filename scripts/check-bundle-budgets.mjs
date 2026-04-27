@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const root = process.cwd();
-const budgetPath = process.argv[3] || path.join(root, 'config', 'perf-budgets.json');
+const budgetPath = process.argv[2] || path.join(root, 'config', 'perf-budgets.json');
 const appManifestPath = path.join(root, '.next', 'app-build-manifest.json');
 const buildManifestPath = path.join(root, '.next', 'build-manifest.json');
 

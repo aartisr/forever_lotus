@@ -3,14 +3,16 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { insightArticles, searchInsights } from '@/content/insights';
 import { insightsIndexContent } from '@/content/insights-index';
-import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
+import { buildAlternates, buildOpenGraphImage, buildPageUrl, buildTwitterImage, siteName } from '@/lib/seo';
 import {
   buildBreadcrumbJsonLd,
   buildCollectionPageJsonLd,
   buildItemListJsonLd,
+  buildJsonLdGraph,
   buildWebPageJsonLd,
 } from '@/lib/structured-data';
 import PageHero from '@/components/PageHero';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
   title: insightsIndexContent.metadata.title,
@@ -22,13 +24,13 @@ export const metadata: Metadata = {
     title: insightsIndexContent.metadata.ogTitle,
     description: insightsIndexContent.metadata.ogDescription,
     siteName,
-    images: [defaultOgImage],
+    images: [buildOpenGraphImage(undefined, insightsIndexContent.metadata.ogTitle)],
   },
   twitter: {
     card: 'summary_large_image',
     title: insightsIndexContent.metadata.ogTitle,
     description: insightsIndexContent.metadata.ogDescription,
-    images: [defaultOgImage],
+    images: [buildTwitterImage(undefined, insightsIndexContent.metadata.ogTitle)],
   },
 };
 
@@ -74,26 +76,21 @@ export default async function InsightsIndexPage({ searchParams }: PageProps) {
     path: '/insights',
     title: insightsIndexContent.metadata.ogTitle,
     description: insightsIndexContent.metadata.ogDescription,
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Insights', path: '/insights' },
+    ],
   });
+  const structuredData = buildJsonLdGraph([
+    breadcrumbSchema,
+    webPageSchema,
+    collectionSchema,
+    itemListSchema,
+  ]);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
-      />
+      <JsonLd data={structuredData} />
 
       <PageHero
         eyebrow={insightsIndexContent.hero.eyebrow}

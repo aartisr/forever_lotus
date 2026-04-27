@@ -27,6 +27,29 @@ export const siteKeywords = [
 
 export const defaultOgImage = '/opengraph-image';
 export const defaultTwitterImage = '/twitter-image';
+export const defaultOgImageAlt =
+  'Forever Lotus conscious creation framework with lotus-inspired visual identity';
+
+export function buildOpenGraphImage(url = defaultOgImage, alt = defaultOgImageAlt) {
+  return {
+    url,
+    width: 1200,
+    height: 630,
+    alt,
+  };
+}
+
+export function buildTwitterImage(
+  url = defaultTwitterImage,
+  alt = defaultOgImageAlt,
+  dimensions = { width: 1200, height: url === defaultTwitterImage ? 600 : 630 }
+) {
+  return {
+    url,
+    ...dimensions,
+    alt,
+  };
+}
 
 function normalizeUrl(value?: string): string | undefined {
   if (!value) {
@@ -87,16 +110,19 @@ export function buildPageUrl(path: string, locale: Locale = defaultLocale): stri
 
 export function buildLanguageAlternates(path: string) {
   return Object.fromEntries(
-    supportedLocales.map((locale) => [locale, localizedPath(path, locale)])
+    supportedLocales.map((locale) => [locale, buildPageUrl(path, locale)])
   );
 }
 
 export function buildAlternates(path: string, locale: Locale) {
+  const canonical = buildPageUrl(path, locale);
+  const defaultUrl = buildPageUrl(path, defaultLocale);
+
   return {
-    canonical: localizedPath(path, locale),
+    canonical,
     languages: {
-      'x-default': path,
-      ...buildLanguageAlternates(path),
+      'x-default': defaultUrl,
+      en: defaultUrl,
     },
   };
 }

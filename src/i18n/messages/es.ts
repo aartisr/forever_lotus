@@ -225,6 +225,8 @@ export const esMessages: MessageSchema = {
       ctaSecondary: 'Acerca de Forever Lotus',
     },
     faq: {
+      eyebrow: 'Respuestas rapidas',
+      title: 'Lo que buscadores, socios y sistemas de IA deben saber',
       q1: 'Que es Forever Lotus?',
       q2: 'En que se basa este marco?',
       q3: 'Cual es el objetivo principal?',

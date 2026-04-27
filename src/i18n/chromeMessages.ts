@@ -1,6 +1,6 @@
 import { type Locale } from './core';
 
-type ChromeMessages = {
+export type ChromeMessages = {
   nav: {
     brand: string;
     links: {
@@ -14,12 +14,15 @@ type ChromeMessages = {
       awaricon: string;
       manifestoEvaluator: string;
       onboardWebsite: string;
+      citationKit: string;
+      contact: string;
     };
     groups: {
       framework: string;
       knowledge: string;
       growth: string;
       ecosystem: string;
+      operators: string;
     };
     descriptions: {
       manifesto: string;
@@ -32,8 +35,25 @@ type ChromeMessages = {
       awaricon: string;
       manifestoEvaluator: string;
       onboardWebsite: string;
+      citationKit: string;
+      legalPolicy: string;
+      contact: string;
+    };
+    journey: {
+      manifestoKicker: string;
+      manifestoDescription: string;
+      researchKicker: string;
+      researchDescription: string;
+      insightsKicker: string;
+      insightsDescription: string;
+      evaluateKicker: string;
+      evaluateDescription: string;
+      awariconKicker: string;
+      awariconDescription: string;
     };
     cta: string;
+    startHere: string;
+    startHereDescription: string;
     openMenu: string;
     closeMenu: string;
     languageLabel: string;
@@ -51,6 +71,17 @@ type ChromeMessages = {
     authorName: string;
     alignedNote: string;
     legalPolicyLabel: string;
+    nextEyebrow: string;
+    nextTitle: string;
+    nextDescription: string;
+    proofLabel: string;
+    proofPoints: {
+      aiIndex: string;
+      localized: string;
+      research: string;
+      repository: string;
+    };
+    utilityLabel: string;
   };
 };
 
@@ -68,12 +99,15 @@ const enChromeMessages: ChromeMessages = {
       awaricon: 'Awaricon',
       manifestoEvaluator: 'Manifesto Evaluator',
       onboardWebsite: 'Onboard Your Website',
+      citationKit: 'Citation Kit',
+      contact: 'Contact',
     },
     groups: {
       framework: 'Framework',
       knowledge: 'Knowledge',
       growth: 'Growth',
       ecosystem: 'Ecosystem',
+      operators: 'Operators',
     },
     descriptions: {
       manifesto: 'The foundational document',
@@ -86,8 +120,25 @@ const enChromeMessages: ChromeMessages = {
       awaricon: 'Premium proof-of-presence badges',
       manifestoEvaluator: 'Alignment checker',
       onboardWebsite: 'Join the network',
+      citationKit: 'High-quality references for editors and AI indexes',
+      legalPolicy: 'Certification terms and usage policy',
+      contact: 'Partnerships, media, and certification conversations',
+    },
+    journey: {
+      manifestoKicker: 'Start with the vow',
+      manifestoDescription: 'Read the canonical foundation in one focused path.',
+      researchKicker: 'Verify the roots',
+      researchDescription: 'Trace the sources, evidence, and public context.',
+      insightsKicker: 'Learn by topic',
+      insightsDescription: 'Explore practical reflections and search-friendly topic clusters.',
+      evaluateKicker: 'Test alignment',
+      evaluateDescription: 'Score a website against the dignity-centered standard.',
+      awariconKicker: 'Signal trust',
+      awariconDescription: 'Create a visible proof-of-presence badge for aligned websites.',
     },
     cta: 'Read Manifesto',
+    startHere: 'Start here',
+    startHereDescription: 'Choose the path that matches why you arrived.',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     languageLabel: 'Language',
@@ -113,6 +164,17 @@ const enChromeMessages: ChromeMessages = {
     authorName: 'Subasri Dorairaj',
     alignedNote: 'We also highlight and promote websites aligned with the Forever Lotus Manifesto.',
     legalPolicyLabel: 'Awaricon legal policy',
+    nextEyebrow: 'Continue the journey',
+    nextTitle: 'Where should the lotus take you next?',
+    nextDescription: 'Fast paths for readers, researchers, builders, and website owners who want to act on the manifesto.',
+    proofLabel: 'Trust signals',
+    proofPoints: {
+      aiIndex: 'Readable llms.txt and full index',
+      localized: 'Localized entry points',
+      research: 'Research and source anchors',
+      repository: 'Public repository and citation trail',
+    },
+    utilityLabel: 'Utility',
   },
 };
 
@@ -130,12 +192,15 @@ const esChromeMessages: ChromeMessages = {
       awaricon: 'Awaricon',
       manifestoEvaluator: 'Evaluador de manifiesto',
       onboardWebsite: 'Onboarding de sitios',
+      citationKit: 'Kit de citas',
+      contact: 'Contacto',
     },
     groups: {
       framework: 'Marco',
       knowledge: 'Conocimiento',
       growth: 'Crecimiento',
       ecosystem: 'Ecosistema',
+      operators: 'Operadores',
     },
     descriptions: {
       manifesto: 'El documento fundacional',
@@ -148,8 +213,25 @@ const esChromeMessages: ChromeMessages = {
       awaricon: 'Insignias premium de prueba de presencia',
       manifestoEvaluator: 'Verificador de alineacion',
       onboardWebsite: 'Unirse a la red',
+      citationKit: 'Referencias de alta calidad para editores e indices de IA',
+      legalPolicy: 'Terminos de certificacion y politica de uso',
+      contact: 'Conversaciones sobre alianzas, medios y certificacion',
+    },
+    journey: {
+      manifestoKicker: 'Comienza con el voto',
+      manifestoDescription: 'Lee la base canonica en un camino enfocado.',
+      researchKicker: 'Verifica las raices',
+      researchDescription: 'Sigue las fuentes, la evidencia y el contexto publico.',
+      insightsKicker: 'Aprende por tema',
+      insightsDescription: 'Explora reflexiones practicas y grupos tematicos para busqueda.',
+      evaluateKicker: 'Prueba alineacion',
+      evaluateDescription: 'Evalua un sitio frente al estandar centrado en dignidad.',
+      awariconKicker: 'Senala confianza',
+      awariconDescription: 'Crea una insignia visible de presencia para sitios alineados.',
     },
     cta: 'Leer manifiesto',
+    startHere: 'Comienza aqui',
+    startHereDescription: 'Elige el camino que coincide con tu visita.',
     openMenu: 'Abrir menu',
     closeMenu: 'Cerrar menu',
     languageLabel: 'Idioma',
@@ -174,6 +256,17 @@ const esChromeMessages: ChromeMessages = {
     authorLabel: 'Autora:',
     alignedNote: 'Tambien destacamos y promovemos sitios web alineados con el Manifiesto Forever Lotus.',
     legalPolicyLabel: 'Politica legal de Awaricon',
+    nextEyebrow: 'Continua el viaje',
+    nextTitle: 'A donde debe llevarte el loto ahora?',
+    nextDescription: 'Rutas rapidas para lectores, investigadores, creadores y duenos de sitios que quieren actuar con el manifiesto.',
+    proofLabel: 'Senales de confianza',
+    proofPoints: {
+      aiIndex: 'llms.txt legible e indice completo',
+      localized: 'Puntos de entrada localizados',
+      research: 'Investigacion y fuentes ancla',
+      repository: 'Repositorio publico y rastro de citas',
+    },
+    utilityLabel: 'Utilidad',
   },
 };
 

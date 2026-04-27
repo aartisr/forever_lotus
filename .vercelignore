@@ -1,0 +1,18 @@
+# Build output and dependencies
+.next/
+node_modules/
+coverage/
+
+# Local editor and cache state
+.vercel/
+.vscode/
+.idea/
+*.code-workspace
+*.tsbuildinfo
+
+# Non-runtime source artifacts
+*.docx
+*.pdf
+docs/
+paperclip-company/
+web/

@@ -4,10 +4,10 @@ import path from 'node:path';
 import { buildPageUrl } from '@/lib/seo';
 import { insightSlugs } from '@/content/insights';
 import { supportedLocales } from '@/i18n';
+import { getSitemapHints, isDiscoverabilityExcluded } from '@/config/discoverability';
 
 const APP_DIR = path.join(process.cwd(), 'src', 'app');
 const INSIGHTS_CONTENT_PATH = path.join(process.cwd(), 'src', 'content', 'insights.ts');
-const EXCLUDED_ROUTE_PREFIXES = ['/awaricon/admin'];
 
 function isRouteGroup(segment: string) {
   return segment.startsWith('(') && segment.endsWith(')');
@@ -15,10 +15,6 @@ function isRouteGroup(segment: string) {
 
 function isDynamicSegment(segment: string) {
   return segment.startsWith('[') && segment.endsWith(']');
-}
-
-function isExcludedRoute(route: string) {
-  return EXCLUDED_ROUTE_PREFIXES.some((prefix) => route === prefix || route.startsWith(`${prefix}/`));
 }
 
 function fileLastModified(filePath: string) {
@@ -54,7 +50,7 @@ function discoverStaticPageRoutes() {
       }
 
       const route = segments.length === 0 ? '/' : `/${segments.join('/')}`;
-      if (isExcludedRoute(route)) {
+      if (isDiscoverabilityExcluded(route)) {
         continue;
       }
 
@@ -82,25 +78,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ).values()
   ).sort((a, b) => a.route.localeCompare(b.route));
 
-  return allRoutes.map(({ route, lastModified }) => ({
-    url: buildPageUrl(route, 'en'),
-    lastModified,
-    changeFrequency:
-      route === '/' || route === '/insights' || route.startsWith('/insights/')
-        ? 'weekly'
-        : 'monthly',
-    priority:
-      route === '/'
-        ? 1
-        : route === '/manifesto' || route === '/philosophy' || route === '/research'
-          ? 0.9
-          : route.startsWith('/insights/')
-            ? 0.8
-            : 0.76,
-    alternates: {
-      languages: Object.fromEntries(
-        supportedLocales.map((locale) => [locale, buildPageUrl(route, locale)])
-      ),
-    },
-  }));
+  return allRoutes.map(({ route, lastModified }) => {
+    const hints = getSitemapHints(route);
+
+    return {
+      url: buildPageUrl(route, 'en'),
+      lastModified,
+      changeFrequency: hints.changeFrequency,
+      priority: hints.priority,
+      alternates: {
+        languages: Object.fromEntries(
+          supportedLocales.map((locale) => [locale, buildPageUrl(route, locale)])
+        ),
+      },
+    };
+  });
 }

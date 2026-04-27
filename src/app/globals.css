@@ -59,16 +59,10 @@
     animation: textShimmer 4s linear infinite;
   }
 
-  /* Section reveal */
+  /* Section reveal: CSS-first, visible by default for older browsers and crawlers. */
   .reveal {
-    opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
   /* Stagger children */
@@ -133,7 +127,9 @@
   .btn-primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    max-width: 100%;
     padding: 0.875rem 1.5rem;
     background: linear-gradient(135deg, #c9a84c, #a8841e);
     color: #07080f;
@@ -145,6 +141,9 @@
     text-decoration: none;
     border: none;
     cursor: pointer;
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
   }
   .btn-primary:hover {
     transform: translateY(-2px);
@@ -156,7 +155,9 @@
   .btn-ghost {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    max-width: 100%;
     padding: 0.875rem 1.5rem;
     background: transparent;
     color: #f0ece4;
@@ -168,6 +169,9 @@
     transition: all 0.3s ease;
     text-decoration: none;
     cursor: pointer;
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
   }
   .btn-ghost:hover {
     border-color: rgba(201, 168, 76, 0.5);
@@ -187,6 +191,17 @@
 @keyframes textShimmer {
   0% { background-position: 0% center; }
   100% { background-position: 200% center; }
+}
+
+@keyframes revealOnView {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes awariconTitlePulse {
@@ -357,6 +372,18 @@
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: revealOnView 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 24%;
+    }
   }
 }
 

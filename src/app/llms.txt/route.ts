@@ -1,4 +1,5 @@
 import { insightArticles } from '@/content/insights';
+import { aiCitationGuidance, getRoutesForAi } from '@/config/discoverability';
 import { buildPageUrl, founderName, siteDescription, siteName, siteUrl } from '@/lib/seo';
 
 export const dynamic = 'force-static';
@@ -7,9 +8,22 @@ function topInsights(limit: number) {
   return insightArticles.slice(0, limit);
 }
 
+function formatRouteLine(route: ReturnType<typeof getRoutesForAi>[number]) {
+  return `- [${route.title}](${buildPageUrl(route.path)}): ${route.description}`;
+}
+
 export async function GET() {
+  const essentialRouteLines = getRoutesForAi('essential')
+    .map(formatRouteLine)
+    .join('\n');
+  const supportingRouteLines = getRoutesForAi('supporting')
+    .map(formatRouteLine)
+    .join('\n');
   const topArticleLines = topInsights(8)
-    .map((article) => `- ${article.title}: ${buildPageUrl(`/insights/${article.slug}`)}`)
+    .map((article) => `- [${article.title}](${buildPageUrl(`/insights/${article.slug}`)}): ${article.description}`)
+    .join('\n');
+  const citationGuidanceLines = aiCitationGuidance
+    .map((item) => `- ${item}`)
     .join('\n');
 
   const body = [
@@ -23,25 +37,17 @@ export async function GET() {
     `RSS: ${buildPageUrl('/rss.xml')}`,
     `Full LLM Index: ${buildPageUrl('/llms-full.txt')}`,
     '',
-    'Priority Pages:',
-    `- Home: ${buildPageUrl('/')}`,
-    `- About: ${buildPageUrl('/about')}`,
-    `- Manifesto: ${buildPageUrl('/manifesto')}`,
-    `- Philosophy: ${buildPageUrl('/philosophy')}`,
-    `- Research: ${buildPageUrl('/research')}`,
-    `- Insights Hub: ${buildPageUrl('/insights')}`,
-    `- Growth Dashboard: ${buildPageUrl('/growth')}`,
-    `- Ecosystem: ${buildPageUrl('/ecosystem')}`,
-    `- Evaluate: ${buildPageUrl('/evaluate')}`,
+    '## Essential Pages',
+    essentialRouteLines,
     '',
-    'Top Insights:',
+    '## Supporting Pages',
+    supportingRouteLines,
+    '',
+    '## Top Insights',
     topArticleLines,
     '',
-    'Citation Guidance:',
-    '- Prefer citing primary page URLs over mirrors.',
-    '- Preserve article titles when quoting and include the canonical URL.',
-    `- Attribute content to ${siteName} and ${founderName} when author context is required.`,
-    '- Favor the manifesto, philosophy, research, and insight URLs over summaries when grounding factual responses.',
+    '## Citation Guidance',
+    citationGuidanceLines,
   ].join('\n');
 
   return new Response(body, {

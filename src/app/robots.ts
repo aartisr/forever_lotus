@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { siteUrl } from '@/lib/seo';
+import { aiCrawlerUserAgents, searchCrawlerUserAgents } from '@/config/discoverability';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,12 +11,12 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/awaricon/admin'],
       },
       {
-        userAgent: ['Googlebot', 'Bingbot', 'DuckDuckBot', 'Applebot', 'YandexBot', 'Baiduspider'],
+        userAgent: [...searchCrawlerUserAgents],
         allow: '/',
         disallow: ['/api/', '/awaricon/admin'],
       },
       {
-        userAgent: ['GPTBot', 'ChatGPT-User', 'Google-Extended', 'PerplexityBot', 'ClaudeBot', 'CCBot'],
+        userAgent: [...aiCrawlerUserAgents, 'Google-Extended'],
         allow: '/',
         disallow: ['/api/', '/awaricon/admin'],
       },

@@ -73,9 +73,28 @@ export default function PerformanceTelemetry() {
 
     const path = window.location.pathname;
     const now = () => new Date().toISOString();
+    const pending = new Map<PerfMetricName, number>();
+    let flushTimer: number | null = null;
+
+    const flush = () => {
+      if (flushTimer) {
+        window.clearTimeout(flushTimer);
+        flushTimer = null;
+      }
+
+      for (const [name, value] of pending.entries()) {
+        sendMetric({ name, value, rating: getRating(name, value), path, at: now() });
+      }
+      pending.clear();
+    };
 
     const emit = (name: PerfMetricName, value: number) => {
-      sendMetric({ name, value, rating: getRating(name, value), path, at: now() });
+      pending.set(name, value);
+      if (flushTimer) {
+        return;
+      }
+
+      flushTimer = window.setTimeout(flush, 1500);
     };
 
     const perf = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
@@ -85,54 +104,67 @@ export default function PerformanceTelemetry() {
     }
 
     const observers: PerformanceObserver[] = [];
+    const observe = (callback: PerformanceObserverCallback, options: PerformanceObserverInit) => {
+      try {
+        const observer = new PerformanceObserver(callback);
+        observer.observe(options);
+        observers.push(observer);
+      } catch {
+        // Some metric entry types are browser-specific. Missing support should never harm UX.
+      }
+    };
 
     if ('PerformanceObserver' in window) {
-      const lcpObserver = new PerformanceObserver((entryList) => {
+      observe((entryList) => {
         const entries = entryList.getEntries();
         const last = entries[entries.length - 1];
         if (last) emit('LCP', last.startTime);
-      });
-      lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
-      observers.push(lcpObserver);
+      }, { type: 'largest-contentful-paint', buffered: true });
 
-      const fcpObserver = new PerformanceObserver((entryList) => {
+      observe((entryList) => {
         for (const entry of entryList.getEntries()) {
           if (entry.name === 'first-contentful-paint') emit('FCP', entry.startTime);
         }
-      });
-      fcpObserver.observe({ type: 'paint', buffered: true });
-      observers.push(fcpObserver);
+      }, { type: 'paint', buffered: true });
 
       let clsValue = 0;
-      const clsObserver = new PerformanceObserver((entryList) => {
+      observe((entryList) => {
         for (const entry of entryList.getEntries() as Array<PerformanceEntry & { hadRecentInput?: boolean; value?: number }>) {
           if (!entry.hadRecentInput && typeof entry.value === 'number') {
             clsValue += entry.value;
           }
         }
         emit('CLS', clsValue);
-      });
-      clsObserver.observe({ type: 'layout-shift', buffered: true });
-      observers.push(clsObserver);
+      }, { type: 'layout-shift', buffered: true });
 
-      const inpObserver = new PerformanceObserver((entryList) => {
+      observe((entryList) => {
         const entries = entryList.getEntries() as Array<PerformanceEntry & { duration?: number }>;
         const maxDuration = entries.reduce(
           (max, entry) => Math.max(max, entry.duration ?? 0),
           0
         );
         if (maxDuration > 0) emit('INP', maxDuration);
-      });
-      inpObserver.observe({
+      }, {
         type: 'event',
         buffered: true,
         durationThreshold: 40,
       } as PerformanceObserverInit);
-      observers.push(inpObserver);
     }
+
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'hidden') {
+        flush();
+      }
+    };
+
+    window.addEventListener('pagehide', flush);
+    document.addEventListener('visibilitychange', onVisibilityChange);
 
     return () => {
       for (const observer of observers) observer.disconnect();
+      window.removeEventListener('pagehide', flush);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      flush();
     };
   }, []);
 
