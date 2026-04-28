@@ -8,6 +8,7 @@ export { default as Navigation } from '@/components/Navigation';
 export { default as PageHero } from '@/components/PageHero';
 export { default as ScrollReveal } from '@/components/ScrollReveal';
 export { default as SearchEngineIndexingDashboard } from '@/components/SearchEngineIndexingDashboard';
+export { default as SocialMediaLinks } from '@/components/SocialMediaLinks';
 export { default as ToastBanner } from '@/components/ToastBanner';
 export { WebsiteEvaluator } from '@/components/website-evaluator';
 export { WebsiteShowcase } from '@/components/WebsiteShowcase';

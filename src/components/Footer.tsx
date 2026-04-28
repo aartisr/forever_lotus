@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import LotusIcon from './LotusIcon';
 import LogoMeaningPopover from './LogoMeaningPopover';
+import SocialMediaLinks from './SocialMediaLinks';
 import { withLocale } from '@/i18n/core';
 import { getChromeMessages } from '@/i18n/chromeMessages';
 import { useResolvedLocale } from '@/hooks/useResolvedLocale';
@@ -120,6 +121,7 @@ export default function Footer() {
             <blockquote className="font-serif text-lotus-cream/70 text-sm leading-relaxed italic border-l-2 border-lotus-gold/40 pl-4">
               &ldquo;{messages.footer.quote}&rdquo;
             </blockquote>
+            <SocialMediaLinks className="mt-7" />
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useMemo, useState } from 'react';
+import { buildSocialShareUrls } from '@/config/social-media';
 
 type ShareActionsProps = {
   title: string;
@@ -8,22 +9,10 @@ type ShareActionsProps = {
   description?: string;
 };
 
-function buildShareLinks(title: string, url: string, description?: string) {
-  const encodedTitle = encodeURIComponent(title);
-  const encodedUrl = encodeURIComponent(url);
-  const encodedSummary = encodeURIComponent(description ? `${description}\n\n${url}` : url);
-
-  return {
-    x: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
-    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-    email: `mailto:?subject=${encodedTitle}&body=${encodedSummary}`,
-  };
-}
-
 export default function ShareActions({ title, url, description }: ShareActionsProps) {
   const [copied, setCopied] = useState(false);
   const [nativeShared, setNativeShared] = useState(false);
-  const links = useMemo(() => buildShareLinks(title, url, description), [description, title, url]);
+  const links = useMemo(() => buildSocialShareUrls({ title, url, description }), [description, title, url]);
   const supportsNativeShare = typeof navigator !== 'undefined' && typeof navigator.share === 'function';
 
   async function handleCopy() {
@@ -72,6 +61,24 @@ export default function ShareActions({ title, url, description }: ShareActionsPr
               {nativeShared ? 'Shared' : 'Share'}
             </button>
           ) : null}
+          <a
+            href={links.facebook}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-[rgba(26,22,18,0.12)] px-4 py-2 text-sm font-medium text-[#1a1612] hover:border-[#c9a84c]/40 hover:text-[#8c6b28] transition-colors"
+            data-track="insight_share_facebook"
+          >
+            Facebook
+          </a>
+          <a
+            href={links.whatsapp}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-[rgba(26,22,18,0.12)] px-4 py-2 text-sm font-medium text-[#1a1612] hover:border-[#c9a84c]/40 hover:text-[#8c6b28] transition-colors"
+            data-track="insight_share_whatsapp"
+          >
+            WhatsApp
+          </a>
           <a
             href={links.x}
             target="_blank"

@@ -21,7 +21,11 @@ Use this checklist after deploying `forever_lotus` so the technical SEO and soci
 - `NEXT_PUBLIC_INSTAGRAM_PROFILE_URL`
 - `NEXT_PUBLIC_YOUTUBE_CHANNEL_URL`
 - `NEXT_PUBLIC_FACEBOOK_PAGE_URL`
-  Populate any real public profile URLs so the Organization schema can disambiguate the brand across search engines and AI systems.
+- `NEXT_PUBLIC_TIKTOK_PROFILE_URL`
+- `NEXT_PUBLIC_WHATSAPP_CHANNEL_URL`
+- `NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER`
+  Populate any real public profile URLs so the Organization schema can disambiguate the brand across search engines and AI systems. For WhatsApp, use either a public Channel URL or the public business phone number.
+  `NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER` is only used as a fallback when there is no public WhatsApp Channel URL.
 - `INDEXNOW_KEY`
   Required for live IndexNow URL submission.
 - `INDEXNOW_KEY_LOCATION`
@@ -42,6 +46,6 @@ Use this checklist after deploying `forever_lotus` so the technical SEO and soci
 
 1. Publish new insight articles in tightly related topic clusters instead of one-off posts.
 2. Immediately submit fresh URLs through IndexNow and request indexing in Search Console for priority pages.
-3. Share each insight with a distinct angle on X, LinkedIn, email, and partner communities using the in-page share tools.
+3. Share each insight with a distinct angle on Facebook, WhatsApp, X, LinkedIn, email, and partner communities using the in-page share tools.
 4. Link every new insight from at least one older related insight to strengthen internal topical authority.
 5. Review top-performing search terms and publish follow-up articles that deepen the cluster rather than drifting into unrelated topics.

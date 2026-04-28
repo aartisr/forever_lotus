@@ -220,6 +220,12 @@ This project is configured to deploy directly from the repository root as a Next
 4. Build command: `next build`
 5. Optional environment variable:
    - `NEXT_PUBLIC_SITE_URL=https://your-domain`
+   - `NEXT_PUBLIC_YOUTUBE_CHANNEL_URL=https://www.youtube.com/@your-channel`
+   - `NEXT_PUBLIC_FACEBOOK_PAGE_URL=https://www.facebook.com/your-page`
+   - `NEXT_PUBLIC_INSTAGRAM_PROFILE_URL=https://www.instagram.com/your-profile`
+   - `NEXT_PUBLIC_TIKTOK_PROFILE_URL=https://www.tiktok.com/@your-profile`
+   - `NEXT_PUBLIC_WHATSAPP_CHANNEL_URL=https://whatsapp.com/channel/your-channel`
+   - `NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER=15551234567` (fallback if no WhatsApp Channel URL)
    - `INDEXNOW_KEY=your-indexnow-key`
    - `INDEXNOW_KEY_LOCATION=https://your-domain/your-indexnow-key.txt`
    - `RESEND_API_KEY=...` (required for contact form delivery)
@@ -316,6 +322,8 @@ Data layer health endpoint:
 - Global and per-page metadata with canonical + hreflang alternates
 - Structured data (`WebSite`, `Organization`, `WebPage`, `FAQPage`)
 - Generated social preview assets (`/opengraph-image`, `/twitter-image`)
+- Footer links and structured-data `sameAs` hooks for YouTube, Facebook, Instagram, TikTok, and WhatsApp
+- Insight share actions for Facebook, WhatsApp, X, LinkedIn, email, native sharing, and copy link
 - GA4-ready tracking via `NEXT_PUBLIC_GA_ID`
 - CTA tracking using `data-track` instrumentation
 

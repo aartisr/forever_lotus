@@ -1,4 +1,5 @@
 import { defaultLocale, supportedLocales, type Locale } from '@/i18n';
+import { getConfiguredSocialProfileUrls } from '@/config/social-media';
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://foreverlotus.com';
 export const siteName = 'Forever Lotus';
@@ -82,9 +83,7 @@ export function getSameAsLinks(): string[] {
         githubRepoUrl,
         normalizeUrl(process.env.NEXT_PUBLIC_X_PROFILE_URL),
         normalizeUrl(process.env.NEXT_PUBLIC_LINKEDIN_PROFILE_URL),
-        normalizeUrl(process.env.NEXT_PUBLIC_INSTAGRAM_PROFILE_URL),
-        normalizeUrl(process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_URL),
-        normalizeUrl(process.env.NEXT_PUBLIC_FACEBOOK_PAGE_URL),
+        ...getConfiguredSocialProfileUrls(),
       ].filter((value): value is string => Boolean(value))
     )
   );
