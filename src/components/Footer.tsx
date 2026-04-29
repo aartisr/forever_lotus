@@ -23,6 +23,7 @@ export default function Footer() {
     { label: 'llms.txt', href: '/llms.txt' },
     { label: 'Full AI index', href: '/llms-full.txt' },
     { label: 'Sitemap', href: '/sitemap.xml' },
+    { label: 'Citation kit', href: '/backlinks' },
   ];
 
   return (

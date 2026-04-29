@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import ContactLeadCaptureExperience from '@/components/ContactLeadCaptureExperience';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
-const title = 'Invest In Creation With Responsibility | Forever Lotus';
+const title = 'Invest In Creation With Responsibility';
 const description =
-  'A private invitation for aligned venture capitalists and long-horizon investors to support Forever Lotus and Awaricon: trust infrastructure for conscious creation.';
+  'A private invitation for aligned venture capitalists, partners, and long-horizon investors to support Forever Lotus and Awaricon as trust infrastructure for conscious creation.';
 
 const investorEmail = 'investors@foreverlotus.com';
 

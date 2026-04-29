@@ -8,7 +8,7 @@ import PageHero from '@/components/PageHero';
 
 const title = 'Aligned Websites Ecosystem';
 const description =
-  'Forever Lotus highlights and promotes websites that align with the Manifesto. Purpose-led websites can request promotion and visibility here.';
+  'Forever Lotus highlights purpose-led websites aligned with the Manifesto, giving ethical platforms a public showcase, contextual backlinks, and visibility through a dignity-first ecosystem.';
 
 export const metadata: Metadata = {
   title,

@@ -1,26 +1,35 @@
 import { NextRequest } from 'next/server';
 import { badRequest, ok } from '@/lib/api-response';
-import { parseJsonBody } from '@/lib/api-request';
-import { siteUrl } from '@/lib/seo';
+import { getIndexNowCanonicalUrls } from '@/lib/indexnow-urls';
 import { submitIndexNowUrls } from '@/services/indexnow';
 
-export async function POST(request: NextRequest) {
-  const { data: body, error } = await parseJsonBody<{
-    urlList?: string[];
-    websiteUrl?: string;
-    sitemapUrl?: string;
-  }>(request);
+async function readOptionalJsonBody(request: NextRequest): Promise<{
+  body: { urlList?: string[] };
+  error?: string;
+}> {
+  const rawBody = await request.text();
 
-  if (error || !body) {
-    return badRequest(error ?? 'Invalid request body');
+  if (rawBody.trim().length === 0) {
+    return { body: {} };
   }
 
-  const websiteUrl = body.websiteUrl || siteUrl;
-  const sitemapUrl = body.sitemapUrl || new URL('/sitemap.xml', websiteUrl).toString();
+  try {
+    return { body: JSON.parse(rawBody) as { urlList?: string[] } };
+  } catch {
+    return { body: {}, error: 'Request body must be valid JSON' };
+  }
+}
+
+export async function POST(request: NextRequest) {
+  const { body, error } = await readOptionalJsonBody(request);
+
+  if (error) {
+    return badRequest(error);
+  }
 
   const urlList = Array.isArray(body.urlList) && body.urlList.length > 0
     ? body.urlList
-    : [websiteUrl, sitemapUrl];
+    : getIndexNowCanonicalUrls();
 
   const result = await submitIndexNowUrls(urlList);
 

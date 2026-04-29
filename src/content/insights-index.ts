@@ -2,10 +2,10 @@ export const insightsIndexContent = {
   metadata: {
     title: 'Insights',
     description:
-      'Keyword-targeted insight pages on conscious creation, Eastern philosophy, dignity-centered systems, and evidence-based wellbeing.',
+      'Keyword-targeted insight pages on conscious creation, Eastern philosophy, dignity-centered systems, evidence-based wellbeing, and ethical leadership for searchers, partners, and AI answer engines.',
     ogTitle: 'Forever Lotus Insights',
     ogDescription:
-      'Explore practical guides on conscious creation, compassion, stewardship, and civilizational ethics.',
+      'Explore practical Forever Lotus guides on conscious creation, compassion, stewardship, civilizational ethics, and dignity-centered design for responsible progress.',
   },
   hero: {
     eyebrow: 'Growth Library',

@@ -3,9 +3,9 @@ import AwariconApplicationForm from '@/components/AwariconApplicationForm';
 import AwariconCertificationStatus from '@/components/AwariconCertificationStatus';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
-const title = 'Apply for Awaricon Certification | Forever Lotus';
+const title = 'Apply for Awaricon Certification';
 const description =
-  'Submit your website for Awaricon Certification — a proof-of-presence badge recognizing conscious digital agency, dignity-centered design, and ethical stewardship.';
+  'Submit your website for Awaricon Certification, a proof-of-presence badge recognizing conscious digital agency, dignity-centered design, ethical stewardship, and transparent integrity.';
 
 export const metadata: Metadata = {
   title,

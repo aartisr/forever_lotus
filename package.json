@@ -29,6 +29,7 @@
     "dev": "next dev",
     "build": "node scripts/ensure-no-next-dev.mjs && NEXT_IGNORE_INCORRECT_LOCKFILE=1 next build",
     "build:ci": "node scripts/ensure-no-next-dev.mjs && NEXT_IGNORE_INCORRECT_LOCKFILE=1 next build",
+    "postbuild": "node scripts/submit-indexnow.mjs",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -37,7 +38,8 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "perf:budgets": "node scripts/check-bundle-budgets.mjs",
-    "security:audit": "npm audit --audit-level=high"
+    "security:audit": "npm audit --audit-level=high",
+    "seo:indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.3.0",

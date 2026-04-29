@@ -25,7 +25,7 @@ const SearchEngineIndexingDashboard = dynamic(
 
 const title = 'Search Engine Indexing Dashboard';
 const description =
-  'Submit aligned websites to top search engines, track indexing status, and monitor visibility metrics in one command center.';
+  'Submit aligned websites to search engines, trigger IndexNow workflows, track crawl and indexing status, and monitor visibility metrics from one SEO operations command center.';
 
 export const metadata: Metadata = {
   title,

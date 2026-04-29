@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { awariconCopyright } from '@/content/awaricon';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
-const title = 'Awaricon Legal | Copyright and Usage Policy';
+const title = 'Awaricon Copyright and Usage Policy';
 const description =
-  'Official legal policy for Awaricon marks, icons, badges, and visual assets. Includes ownership, usage restrictions, attribution, and permission guidance.';
+  'Official legal policy for Awaricon marks, icons, badges, visual assets, usage permissions, attribution rules, ownership scope, and licensing guidance for partners.';
 
 export const metadata: Metadata = {
   title,

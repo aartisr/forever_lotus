@@ -121,7 +121,7 @@ export function buildAlternates(path: string, locale: Locale) {
     canonical,
     languages: {
       'x-default': defaultUrl,
-      en: defaultUrl,
+      ...buildLanguageAlternates(path),
     },
   };
 }

@@ -4,9 +4,9 @@ import { awariconFormula, awariconTiers } from '@/content/awaricon';
 import { INTEGRITY_INDICATORS } from '@/lib/awariconCertification';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
-const title = 'Awaricon Compliance Guide | Public Certification Standards';
+const title = 'Awaricon Compliance Guide';
 const description =
-  'Public Awaricon certification levels, score thresholds, and compliance checklist for websites implementing proof-of-presence trust standards.';
+  'Public Awaricon certification levels, score thresholds, compliance checklists, and API references for websites implementing proof-of-presence trust standards.';
 
 export const metadata: Metadata = {
   title,

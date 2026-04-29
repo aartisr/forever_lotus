@@ -635,7 +635,7 @@ export const enMessages = {
     meta: {
       title: 'About',
       description:
-        'About Forever Lotus - its founding vision, operating commitments, and the civilizational framework authored by Subasri Dorairaj.',
+        'About Forever Lotus - its founding vision, operating commitments, moral lineage, public repository, and civilizational framework authored by Subasri Dorairaj.',
     },
     hero: {
       eyebrow: 'The Organization',

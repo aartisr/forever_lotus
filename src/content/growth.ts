@@ -1,7 +1,7 @@
 export const growthPageContent = {
   title: 'Growth Operations Dashboard',
   description:
-    'Operational KPI targets, weekly scorecards, and measurement rituals for search growth, engagement quality, and conversion outcomes.',
+    'Operational KPI targets, weekly scorecards, and measurement rituals for SEO, GEO, social distribution, engagement quality, high-trust backlinks, and conversion outcomes.',
   hero: {
     eyebrow: 'Execution Layer',
     title: 'Growth Operations Dashboard',

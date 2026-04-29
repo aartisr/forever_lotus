@@ -1,4 +1,4 @@
-import { buildPageUrl, founderName, getSameAsLinks, siteDescription, siteName, siteUrl } from '@/lib/seo';
+import { buildPageUrl, founderName, getSameAsLinks, siteDescription, siteKeywords, siteName, siteUrl } from '@/lib/seo';
 import type { Locale } from '@/i18n';
 
 type StructuredData = Record<string, unknown>;
@@ -49,6 +49,8 @@ export function buildJsonLdGraph(entries: StructuredData[]): StructuredData {
 }
 
 export function buildWebsiteJsonLd(): StructuredData {
+  const sameAs = getSameAsLinks();
+
   return compactJsonLd({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -56,6 +58,16 @@ export function buildWebsiteJsonLd(): StructuredData {
     name: siteName,
     url: siteUrl,
     description: siteDescription,
+    sameAs: sameAs.length > 0 ? sameAs : undefined,
+    keywords: [...siteKeywords],
+    about: [
+      'conscious creation',
+      'compassion',
+      'humanitarian dignity',
+      'Eastern philosophy',
+      'planetary stewardship',
+      'ethical leadership',
+    ],
     publisher: {
       '@type': 'Organization',
       name: siteName,
@@ -81,6 +93,7 @@ export function buildOrganizationJsonLd(): StructuredData {
     url: siteUrl,
     description: siteDescription,
     logo: buildPageUrl('/icon.svg'),
+    knowsAbout: [...siteKeywords],
     founder: {
       '@type': 'Person',
       name: founderName,
@@ -97,6 +110,7 @@ export function buildPersonJsonLd(): StructuredData {
     '@id': buildPageUrl('/about#founder'),
     name: founderName,
     url: buildPageUrl('/about'),
+    knowsAbout: [...siteKeywords],
     affiliation: {
       '@id': `${siteUrl}/#organization`,
     },

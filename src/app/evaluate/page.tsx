@@ -17,7 +17,7 @@ const EvaluationDashboardClient = dynamic(() => import('./evaluate-client'), {
 
 const title = 'Manifesto Evaluator';
 const description =
-  'Submit your website for a dignified, encouraging evaluation against the Forever Lotus Manifesto. Receive actionable feedback on alignment with our core principles.';
+  'Submit your website for a dignified evaluation against the Forever Lotus Manifesto and receive actionable feedback on ethics, accessibility, stewardship, and conscious design.';
 
 export const metadata: Metadata = {
   title,

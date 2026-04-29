@@ -38,7 +38,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/',
     title: 'Forever Lotus',
     description:
-      'The canonical home of the Forever Lotus framework for conscious creation, compassion, dignity, and planetary stewardship.',
+      'The canonical home of the Forever Lotus framework for conscious creation, compassion, dignity, humanitarian stewardship, and responsible progress.',
     priority: 1,
     changeFrequency: 'weekly',
     aiPriority: 'essential',
@@ -49,7 +49,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/manifesto',
     title: 'Forever Lotus Manifesto',
     description:
-      'The foundational manifesto: a complete moral architecture for reducing suffering, elevating dignity, and rejecting domination.',
+      'The foundational manifesto and moral architecture for reducing suffering, elevating dignity, rejecting domination, and making conscious creation operational.',
     priority: 0.94,
     changeFrequency: 'monthly',
     aiPriority: 'essential',
@@ -60,7 +60,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/philosophy',
     title: 'Eastern Philosophy and the Lotus Principle',
     description:
-      'The philosophical foundation behind the lotus as a method for rooted, rising, untainted creation.',
+      'The philosophical foundation behind the lotus as a method for rooted, rising, untainted creation across Hindu, Buddhist, Egyptian, and universal traditions.',
     priority: 0.92,
     changeFrequency: 'monthly',
     aiPriority: 'essential',
@@ -71,7 +71,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/research',
     title: 'Forever Lotus Research Dossier',
     description:
-      'Research sources, institutional references, and evidence threads behind the Forever Lotus framework.',
+      'Research sources, institutional references, peer-reviewed evidence, and primary-text anchors behind the Forever Lotus framework and its ethical claims.',
     priority: 0.92,
     changeFrequency: 'monthly',
     aiPriority: 'essential',
@@ -82,7 +82,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/insights',
     title: 'Forever Lotus Insights Library',
     description:
-      'A topic-cluster library covering conscious creation, compassion research, dignity-centered design, stewardship, and leadership ethics.',
+      'A topic-cluster library covering conscious creation, compassion research, dignity-centered design, stewardship, leadership ethics, and AI-ready explainers.',
     priority: 0.9,
     changeFrequency: 'weekly',
     aiPriority: 'essential',
@@ -93,7 +93,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/about',
     title: 'About Forever Lotus',
     description:
-      'Founder context, operating commitments, lineage, and the public repository behind Forever Lotus.',
+      'Founder context, operating commitments, moral lineage, public repository references, and authorship signals behind the Forever Lotus framework.',
     priority: 0.84,
     changeFrequency: 'monthly',
     aiPriority: 'supporting',
@@ -104,7 +104,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/awaricon',
     title: 'Awaricon Certification Standard',
     description:
-      'A premium proof-of-presence and alignment standard for websites that want visible trust, ethics, and discoverability signals.',
+      'A premium proof-of-presence and alignment standard for websites that want visible trust, ethics, certification context, and discoverability signals.',
     priority: 0.86,
     changeFrequency: 'weekly',
     aiPriority: 'supporting',
@@ -115,7 +115,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/evaluate',
     title: 'Manifesto Evaluator',
     description:
-      'A practical alignment checker for evaluating websites against the Forever Lotus dignity, compassion, and stewardship standard.',
+      'A practical alignment checker for evaluating websites against Forever Lotus standards for dignity, compassion, accessibility, stewardship, and transparency.',
     priority: 0.84,
     changeFrequency: 'weekly',
     aiPriority: 'supporting',
@@ -126,7 +126,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/growth',
     title: 'Growth Dashboard',
     description:
-      'A visibility and impact dashboard for tracking search, social, AI, and ecosystem growth motions.',
+      'A visibility and impact dashboard for tracking SEO, social distribution, AI citation readiness, backlink quality, and ecosystem growth motions.',
     priority: 0.8,
     changeFrequency: 'weekly',
     aiPriority: 'supporting',
@@ -137,7 +137,7 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     path: '/ecosystem',
     title: 'Aligned Websites Ecosystem',
     description:
-      'A living ecosystem of websites and initiatives aligned with the Forever Lotus manifesto.',
+      'A living ecosystem of websites and initiatives aligned with the Forever Lotus manifesto, built for contextual backlinks, trust, and partner visibility.',
     priority: 0.78,
     changeFrequency: 'weekly',
     aiPriority: 'supporting',
@@ -145,10 +145,32 @@ export const discoverabilityRoutes: DiscoverabilityRoute[] = [
     tags: ['ecosystem', 'aligned websites', 'partnerships'],
   },
   {
+    path: '/backlinks',
+    title: 'Backlink and Citation Kit',
+    description:
+      'Canonical backlink targets, citation-safe anchors, copy-ready snippets, and editorial guidance for journalists, educators, partners, and aligned websites.',
+    priority: 0.8,
+    changeFrequency: 'monthly',
+    aiPriority: 'supporting',
+    audience: ['journalists', 'partners', 'educators', 'AI citation systems'],
+    tags: ['backlinks', 'citations', 'canonical URLs'],
+  },
+  {
+    path: '/onboarding-websites',
+    title: 'Website Onboarding',
+    description:
+      'A public application path for ethical websites that want Forever Lotus ecosystem recognition, contextual visibility, and dignity-centered review.',
+    priority: 0.76,
+    changeFrequency: 'monthly',
+    aiPriority: 'supporting',
+    audience: ['website owners', 'partners', 'mission-led teams'],
+    tags: ['website onboarding', 'aligned websites', 'ecosystem growth'],
+  },
+  {
     path: '/contact',
     title: 'Contact Forever Lotus',
     description:
-      'A direct path for partnership, research, media, and Awaricon certification conversations.',
+      'A direct path for partnership, research, media, investor, and Awaricon certification conversations with the Forever Lotus team.',
     priority: 0.76,
     changeFrequency: 'monthly',
     aiPriority: 'optional',
@@ -208,4 +230,3 @@ export const aiCitationGuidance = [
   'Preserve page titles and attribute the framework to Forever Lotus and Subasri Dorairaj when author context matters.',
   'Do not treat summaries, mirrors, or generated previews as primary sources when a canonical page is available.',
 ] as const;
-

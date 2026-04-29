@@ -12,9 +12,9 @@ import {
 } from '@/lib/seo';
 import { buildItemListJsonLd, buildWebPageJsonLd } from '@/lib/structured-data';
 
-const title = 'Backlink & Citation Kit | Forever Lotus';
+const title = 'Backlink & Citation Kit';
 const description =
-  'Official backlink kit with citation-safe anchors, copy-ready HTML snippets, and media references for partners, journalists, educators, and aligned websites.';
+  'Official backlink and citation kit with canonical URLs, citation-safe anchors, copy-ready HTML snippets, and media references for partners, journalists, educators, and aligned websites.';
 
 const recommendedLinks = [
   {

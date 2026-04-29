@@ -6,9 +6,9 @@ import AwariconInteractiveSuite from '@/components/AwariconInteractiveSuite';
 import { awariconDocAnchors, awariconFormula, awariconPrinciples, awariconTiers } from '@/content/awaricon';
 import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/seo';
 
-const title = 'Awaricon | Proof-of-Presence Badge System';
+const title = 'Awaricon Proof-of-Presence Badge System';
 const description =
-  'A dedicated Forever Lotus initiative: Awaricon Platinum, Gold, Silver, and Bronze badges designed as a manifesto-aligned trust architecture for the sentient era.';
+  'Awaricon is the Forever Lotus proof-of-presence badge system, with Platinum, Gold, Silver, and Bronze trust tiers for manifesto-aligned websites in the sentient era.';
 
 export const metadata: Metadata = {
   title,

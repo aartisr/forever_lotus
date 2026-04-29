@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero';
 
 const title = 'Website Onboarding';
 const description =
-  'Forever Lotus recognizes and elevates websites that exemplify ethical, dignified, purpose-driven design. Apply to join our ecosystem of aligned platforms.';
+  'Forever Lotus recognizes and elevates websites that exemplify ethical, dignified, purpose-driven design with a public showcase, contextual backlinks, and ecosystem visibility.';
 
 export const metadata: Metadata = {
   title,

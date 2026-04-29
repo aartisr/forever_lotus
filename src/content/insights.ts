@@ -25,7 +25,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'conscious creation framework',
     title: 'Conscious Creation Framework: A Practical Guide to Responsible Progress',
     description:
-      'A practical framework for conscious creation that aligns innovation, leadership, and policy with dignity, compassion, and long-term stewardship.',
+      'A practical framework for conscious creation that aligns innovation, leadership, policy, and institutional design with dignity, compassion, measurable impact, and long-term stewardship.',
     intro:
       'Conscious creation means designing systems with moral intent. It rejects extraction-driven progress and replaces it with measurable human and ecological benefit.',
     sections: [
@@ -64,7 +64,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'lotus symbolism in buddhism and hinduism',
     title: 'Lotus Symbolism in Buddhism and Hinduism: Meaning, History, and Modern Relevance',
     description:
-      'Understand lotus symbolism in Buddhism and Hinduism through primary texts, cultural history, and contemporary ethical interpretation.',
+      'Understand lotus symbolism in Buddhism and Hinduism through primary texts, cultural history, ethical interpretation, and modern lessons for resilience without moral compromise.',
     intro:
       'The lotus appears across major Eastern traditions as a symbol of purity through conditions. Its relevance today is practical: resilience without moral compromise.',
     sections: [
@@ -103,7 +103,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'dignity centered humanitarian design',
     title: 'Dignity-Centered Humanitarian Design: Moving from Relief to Agency',
     description:
-      'A dignity-centered approach to humanitarian design that prioritizes autonomy, local capability, and long-term resilience.',
+      'A dignity-centered approach to humanitarian design that prioritizes autonomy, local capability, transparent outcomes, and long-term resilience instead of dependency.',
     intro:
       'Humanitarian systems should reduce harm without creating dependency. Dignity-centered design shifts from temporary rescue models to capability-building models.',
     sections: [
@@ -142,7 +142,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'compassion research and wellbeing evidence',
     title: 'Compassion Research and Wellbeing Evidence: What the Data Actually Shows',
     description:
-      'A synthesis of compassion research and wellbeing evidence from leading institutions and peer-reviewed studies.',
+      'A synthesis of compassion research and wellbeing evidence from leading institutions, peer-reviewed studies, and practical leadership applications for durable trust.',
     intro:
       'Compassion is not only a moral preference. It has measurable effects on wellbeing, social trust, and durable flourishing.',
     sections: [
@@ -181,7 +181,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'eastern philosophy for leadership and ethics',
     title: 'Eastern Philosophy for Leadership and Ethics in the 21st Century',
     description:
-      'How Eastern philosophy informs modern leadership ethics, governance, and values-based decision-making.',
+      'How Eastern philosophy informs modern leadership ethics, governance, values-based decision-making, restraint, responsibility, and non-extractive organizational design.',
     intro:
       'Leadership failures often come from value drift. Eastern philosophical traditions provide durable anchors for responsibility, restraint, and wise action.',
     sections: [
@@ -220,7 +220,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'education as liberation model',
     title: 'Education as Liberation: A Model for Agency, Not Credential Theater',
     description:
-      'A practical model for education as liberation that focuses on agency, discernment, and social responsibility.',
+      'A practical model for education as liberation that focuses on agency, discernment, ethical literacy, cultural grounding, and social responsibility beyond credential accumulation.',
     intro:
       'Education should transfer power to learners. Liberation-oriented models prioritize capability, ethical literacy, and real-world agency.',
     sections: [
@@ -259,7 +259,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'peace and inner harmony practice',
     title: 'Peace and Inner Harmony Practice: Building Social Stability from Within',
     description:
-      'A practical guide to inner harmony practices that support peacebuilding, emotional regulation, and collective resilience.',
+      'A practical guide to inner harmony practices that support peacebuilding, emotional regulation, disciplined dialogue, institutional trust, and collective resilience.',
     intro:
       'Durable peace is not only diplomatic. It begins with human nervous systems, emotional regulation, and shared responsibility.',
     sections: [
@@ -298,7 +298,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'earth consciousness and stewardship',
     title: 'Earth Consciousness and Stewardship: Practical Ethics for Planetary Care',
     description:
-      'Translate earth consciousness into measurable stewardship practices for institutions, communities, and long-term resilience.',
+      'Translate earth consciousness into measurable stewardship practices for institutions, communities, procurement systems, ecological responsibility, and long-term resilience.',
     intro:
       'Stewardship is not branding. It is a governance discipline that aligns behavior with ecological limits and intergenerational responsibility.',
     sections: [
@@ -337,7 +337,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'lotus sutra modern meaning',
     title: 'Lotus Sutra Modern Meaning: Why It Still Matters Today',
     description:
-      'An accessible interpretation of the Lotus Sutra for modern life, ethics, and social responsibility.',
+      'An accessible interpretation of the Lotus Sutra for modern life, ethics, social responsibility, inclusive compassion, and responsible action under difficult conditions.',
     intro:
       'The Lotus Sutra remains relevant because it addresses a timeless challenge: how to remain clear and compassionate under difficult conditions.',
     sections: [
@@ -376,7 +376,7 @@ export const insightArticles: InsightArticle[] = [
     keyword: 'brahma creation philosophy explained',
     title: 'Brahma Creation Philosophy Explained: Responsibility at the Root of Innovation',
     description:
-      'Explore Brahma-centered creation philosophy and its relevance to modern innovation, ethics, and institutional design.',
+      'Explore Brahma-centered creation philosophy and its relevance to modern innovation, institutional design, ethical accountability, dignity metrics, and long-term stewardship.',
     intro:
       'In Indic thought, creation implies responsibility. This contrasts with modern narratives that equate creation with conquest and speed alone.',
     sections: [

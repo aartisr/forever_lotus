@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Forever Lotus',
     short_name: 'Forever Lotus',
     description:
-      'A civilizational framework for conscious creation rooted in compassion, dignity, and Eastern wisdom.',
+      'A civilizational framework for conscious creation rooted in compassion, dignity, Eastern wisdom, humanitarian stewardship, and responsible progress.',
     start_url: '/',
     display: 'standalone',
     background_color: '#0f0c1f',

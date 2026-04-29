@@ -20,7 +20,7 @@ const IndexingPortfolioDashboard = dynamic(
 
 const title = 'Indexing Portfolio Tracker';
 const description =
-  'Track indexing health for many aligned websites across top search engines with filters and KPI monitoring.';
+  'Track indexing health for many aligned websites across Bing, Google, IndexNow, and indirect discovery channels with filters, status refreshes, and portfolio-level KPI monitoring.';
 
 export const metadata: Metadata = {
   title,
