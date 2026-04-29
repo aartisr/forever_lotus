@@ -9,6 +9,7 @@ import { enMessages } from '@/i18n/messages/en';
 import { siteDescription } from '@/lib/seo';
 
 const MIN_META_DESCRIPTION_LENGTH = 120;
+const MAX_HOMEPAGE_META_DESCRIPTION_LENGTH = 155;
 
 function walkFiles(dir: string): string[] {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -39,6 +40,11 @@ function getStaticPageDescriptions() {
 }
 
 describe('SEO metadata descriptions', () => {
+  it('keeps the homepage meta description inside Bing URL Inspection bounds', () => {
+    expect(siteDescription.length).toBeGreaterThanOrEqual(MIN_META_DESCRIPTION_LENGTH);
+    expect(siteDescription.length).toBeLessThanOrEqual(MAX_HOMEPAGE_META_DESCRIPTION_LENGTH);
+  });
+
   it('keeps public metadata descriptions substantial for Bing and social previews', () => {
     const descriptions = [
       { source: 'siteDescription', description: siteDescription },

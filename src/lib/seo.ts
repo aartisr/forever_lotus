@@ -6,7 +6,7 @@ export const siteName = 'Forever Lotus';
 export const founderName = 'Subasri Dorairaj';
 export const githubRepoUrl = 'https://github.com/aartisr/forever_lotus';
 export const siteDescription =
-  'Forever Lotus is a civilizational framework for conscious creation, humanitarian dignity, and peacebuilding, grounded in 4,000 years of Eastern wisdom and modern research.';
+  'Forever Lotus is a civilizational framework for conscious creation, humanitarian dignity, peacebuilding, Eastern wisdom, and responsible progress.';
 export const siteKeywords = [
   'Forever Lotus',
   'conscious leadership',
