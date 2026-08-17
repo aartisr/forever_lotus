@@ -1,397 +1,207 @@
-# Forever Lotus
+# Forever Lotus — a moral architecture for conscious creation
 
-**Forever Lotus** is a civilizational call to conscious creation—rooted in compassion, dignity, planetary stewardship, and the ancient wisdom of Buddhist and Hindu philosophy.
+[![Canonical home](https://img.shields.io/badge/canonical-foreverlotus.com-0f766e?style=for-the-badge)](https://foreverlotus.com)
+[![Manifesto](https://img.shields.io/badge/read-the%20Manifesto-b45309?style=for-the-badge)](https://foreverlotus.com/manifesto)
+[![Research](https://img.shields.io/badge/evidence-Research%20Dossier-2563eb?style=for-the-badge)](https://foreverlotus.com/research)
+[![Awaricon](https://img.shields.io/badge/trust-Awaricon-7c3aed?style=for-the-badge)](https://foreverlotus.com/awaricon)
 
-**Author:** Subasri Dorairaj
+> **The official public home of Forever Lotus is [foreverlotus.com](https://foreverlotus.com).**
+> This repository is its open engineering and documentation companion. When citing, linking, teaching, or reporting on the work, please point readers to the relevant canonical page on the deployed site.
 
----
+Forever Lotus begins with a demanding question: **what if creation itself were held to a standard of compassion?**
 
-## Project Overview
+It is a living framework for designing institutions, technology, humanitarian action, education, and public culture without treating extraction, humiliation, or indifference as the cost of progress. Its emblem is the lotus: rooted in difficult conditions, rising toward light, and refusing to become stained by the water it inhabits. Its practical proposition is equally clear: every system we build is an ethical act. We can make systems that enlarge dignity, agency, peace, and ecological continuity—or systems that deepen fracture.
 
-Forever Lotus is more than a brand or campaign. It is a moral architecture for the 21st century, offering frameworks for:
+This is not a claim that the work has already solved those problems. It is a public commitment to do the harder thing: name the values, publish the evidence standards, measure outcomes, disclose limitations, and let independent scrutiny decide what has been earned. That discipline—not acclaim—is the project’s north star. The long-horizon ambition is described in the [Nobel-Impact Roadmap](docs/NOBEL_IMPACT_ROADMAP.md): durable, independently validated humanitarian contribution rather than a premature claim to recognition.
 
-- **Conscious Creation**: Every system, institution, and decision is an act of creation—either toward harmony or fracture.
-- **Kindness Without Expectation**: True compassion is not transactional.
-- **Earth Consciousness**: Gratitude made practical through stewardship and respect for life's medium.
-- **Humanitarian Dignity**: Aid that empowers rather than manufactures dependency.
-- **Education as Liberation**: Knowledge that produces agency and freedom.
-- **Peace and Inner Harmony**: Durable social peace rooted in inner maturity.
+## Start here
 
----
+| If you are… | Begin with | Then visit |
+| --- | --- | --- |
+| A reader seeking the philosophical core | [The Manifesto](https://foreverlotus.com/manifesto) | [Research](https://foreverlotus.com/research) · [Philosophy](https://foreverlotus.com/philosophy) |
+| A researcher, journalist, or educator | [Research Dossier](docs/RESEARCH_DOSSIER.md) | [Eastern references](docs/EASTERN_REFERENCES.md) · [Citation & backlink kit](https://foreverlotus.com/backlinks) |
+| An organization examining alignment | [Manifesto Evaluator](https://foreverlotus.com/evaluate) | [Ecosystem](https://foreverlotus.com/ecosystem) · [Onboarding](https://foreverlotus.com/onboarding-websites) |
+| A partner considering digital trust | [Awaricon](https://foreverlotus.com/awaricon) | [Apply](https://foreverlotus.com/awaricon/apply) · [Integration guide](docs/AWARICON_INTEGRATION_GUIDE.md) |
+| A builder or contributor | [Local development](#local-development) | [Architecture & operations](#architecture-quality-and-operations) |
 
-## Project Structure
+## The story in seven commitments
 
-```
-forever_lotus/
-├── docs/
-│   ├── MANIFESTO.md                 # Full philosophical framework (15 sections)
-│   ├── RESEARCH_DOSSIER.md          # Evidence base with 25+ peer-reviewed sources
-│   ├── BENCHMARK.md                 # Top 25 comparable websites
-│   └── EASTERN_REFERENCES.md        # Eastern universities & primary texts
-│   └── VIRAL_SEARCH_PLAYBOOK.md     # Search growth and distribution execution checklist
-│   └── WEEKLY_CONTENT_PIPELINE.md   # Weekly SEO publishing and measurement workflow
-│   └── KPI_DASHBOARD_SPEC.md        # KPI definitions and decision rules
-│   └── SEO_SCORECARD_TEMPLATE.md    # Weekly scorecard template for execution
-├── src/
-│   ├── app/                         # Next.js App Router pages and metadata
-│   └── components/                  # Shared UI components
-├── web/
-│   └── README.md                    # Legacy static-site notes / archived context
-├── package.json
-├── vercel.json
-├── README.md                        # This file
-└── LICENSE
-```
+Forever Lotus is organized around seven commitments that make a beautiful phrase answerable to real life:
 
----
+1. **Compassion & non-domination** — power should not be designed to diminish people.
+2. **Kindness without expectation** — care is not a transaction, performance, or moral currency.
+3. **Earth consciousness** — stewardship is gratitude made practical for the conditions that sustain life.
+4. **Humanitarian dignity** — assistance should strengthen autonomy, capability, and local agency rather than dependence.
+5. **Education as liberation** — knowledge matters when it expands discernment and freedom.
+6. **Peace & inner harmony** — durable social peace requires restraint, emotional maturity, and responsible action.
+7. **Transparency & agency** — people deserve legible systems, honest limitations, and meaningful choice.
 
-## Contents
+These commitments are explained in the [full Manifesto](docs/MANIFESTO.md) and operationalized in the project’s [evaluation model](docs/MANIFESTO_EVALUATOR.md). They are not merely themes for a website. They are intended as a constitutional test: if an initiative requires exploitation, opacity, or the erosion of dignity, it does not belong within Forever Lotus.
 
-### Documentation (`docs/`)
+## From symbol to responsibility
 
-1. **MANIFESTO.md** (15 sections)
-   - Philosophical framework grounding Forever Lotus
-   - Full narrative rewritten with tone: inviting, real, kind, assertive, ground-breaking
-   - Operating commitments and action layer
+The work draws carefully from multiple lineages without collapsing them into a marketing moodboard. The lotus appears across Hindu, Buddhist, Egyptian, and wider Eastern traditions as a figure of purity, resilience, awakening, and transcendence. In Hindu cosmological framing, Brahma’s emergence from the lotus offers a compelling image of creation joined to responsibility. Forever Lotus treats these traditions as sources to study respectfully—not as evidence for modern empirical claims.
 
-2. **RESEARCH_DOSSIER.md**
-   - DOI-indexed peer-reviewed sources
-   - Eastern university anchors (Kyoto, NUS, Tsinghua, Soka)
-   - Primary texts (Vedas, Upanishads, Puranas, Buddhist Canon)
-   - Wellbeing and prosocial research hubs
-   - Authenticity guardrails
+That distinction matters. The [Research Dossier](docs/RESEARCH_DOSSIER.md) separates primary religious and philosophical texts from peer-reviewed scholarship and contemporary wellbeing research. Its source protocol prioritizes DOI-indexed, peer-reviewed, or university-hosted material; preserves source metadata; and asks authors to state limits rather than inflate certainty. The companion [Eastern Reference Pack](docs/EASTERN_REFERENCES.md) traces scholarly and primary-text anchors including J-STAGE, Kyoto University, NUS, Tsinghua, Soka University, the Vedas, Upanishads, Puranic texts, and Buddhist canonical resources.
 
-3. **BENCHMARK.md**
-   - 25 comparable websites organized by category:
-     - Research & Wellbeing Institutions
-     - Compassion & Ethics Platforms
-     - Buddhist & Indic Knowledge Systems
-     - Humanitarian Platforms
-     - Earth Stewardship Organizations
-   - Strategic learning points
+## A public system, not just a point of view
 
-4. **EASTERN_REFERENCES.md**
-   - Japanese Association of Indian and Buddhist Studies (JIBS) sources
-   - NUS Press scholarship
-   - Kyoto, Tsinghua, Soka research infrastructure
-   - Vedic/Upanishadic canonical sources
-   - Puranic creation narratives
-   - Authenticity protocol for citations
+| Public experience | Canonical URL | Purpose |
+| --- | --- | --- |
+| Home | [foreverlotus.com](https://foreverlotus.com) | Entry point to the framework and current public work. |
+| Manifesto | [foreverlotus.com/manifesto](https://foreverlotus.com/manifesto) | The foundational statement of values and operating commitments. |
+| Philosophy | [foreverlotus.com/philosophy](https://foreverlotus.com/philosophy) | Context for conscious creation and the project’s intellectual roots. |
+| Research | [foreverlotus.com/research](https://foreverlotus.com/research) | A public route into the evidence base and source distinctions. |
+| Insights | [foreverlotus.com/insights](https://foreverlotus.com/insights) | Published essays and discoverability-oriented knowledge pages. |
+| Evaluate | [foreverlotus.com/evaluate](https://foreverlotus.com/evaluate) | A self-serve, constructive alignment evaluation experience. |
+| Ecosystem | [foreverlotus.com/ecosystem](https://foreverlotus.com/ecosystem) | A pathway for aligned websites and organizations. |
+| Backlinks | [foreverlotus.com/backlinks](https://foreverlotus.com/backlinks) | Official citation-safe anchors, canonical URLs, and reusable reference snippets. |
+| Contact | [foreverlotus.com/contact](https://foreverlotus.com/contact) | A route for partnership and public contact. |
 
-5. **VIRAL_SEARCH_PLAYBOOK.md**
-   - Search engine submission checklist
-   - Indexing acceleration playbook
-   - Backlink and distribution strategy
-   - CTR and ranking measurement loop
+## The Manifesto Evaluator
 
-6. **WEEKLY_CONTENT_PIPELINE.md**
-   - Weekly publishing cadence
-   - Distribution checklist
-   - Search metrics review loop
+The [Manifesto Evaluator](https://foreverlotus.com/evaluate) is a reusable assessment experience for websites and organizations. It maps the seven commitments into 21+ criteria, returns a principle-level score, grade, and improvement checklist, and is designed to encourage progress rather than shame. The current public implementation includes a documented service layer and dashboard; the repository describes a path for connecting a production-grade content-analysis service. See the [quick reference](docs/EVALUATOR_QUICK_REFERENCE.md), [technical documentation](docs/MANIFESTO_EVALUATOR.md), and [delivery summary](docs/EVALUATOR_DELIVERY_SUMMARY.md).
 
-7. **KPI_DASHBOARD_SPEC.md**
-   - KPI model for discovery, engagement, conversion, and authority
-   - Weekly and monthly decision framework
+## Awaricon: proof-of-presence with ethical guardrails
 
-8. **SEO_SCORECARD_TEMPLATE.md**
-   - Reusable weekly growth review template
-   - Operational prompts for next-week planning
+[Awaricon](https://foreverlotus.com/awaricon) is Forever Lotus’s emerging trust-infrastructure initiative: a certification and badge system intended to help organizations communicate reviewed presence and accountability in a web increasingly crowded by impersonation, automation, and synthetic media. It includes an application flow, compliance and legal routes, an admin experience, and a badge generator in the deployed application.
 
-9. **MANIFESTO_EVALUATOR.md**
-   - Complete guide to the website evaluation engine
-   - 7 principles, 21+ criteria for manifesto alignment
-   - Integration guide for real assessment engines
-   - Full API reference
+The Awaricon materials describe a proposed four-tier model, human-review workflow, signed badge-token controls, integration patterns, analytics, partner outreach, and an adoption strategy. They are planning and product documents—not independent proof of fraud reduction, conversion lift, institutional adoption, or market-standard status. Those outcomes require validated baselines, appropriate security review, transparent methodology, and external evaluation before they can be claimed.
 
-10. **EVALUATOR_QUICK_REFERENCE.md**
-   - Quick start guide for evaluating websites
-   - Understanding scores and grades
-   - Common improvements checklist
-   - FAQ and support
+- Explore: [Awaricon](https://foreverlotus.com/awaricon) · [Apply](https://foreverlotus.com/awaricon/apply) · [Compliance](https://foreverlotus.com/awaricon/compliance) · [Badge generator](https://foreverlotus.com/awaricon/badge-generator) · [Legal](https://foreverlotus.com/awaricon/legal)
+- Implement: [integration guide](docs/AWARICON_INTEGRATION_GUIDE.md) · [CEO brief](docs/AWARICON_ONEPAGER_FOR_CEOS.md) · [certification levels (JSON)](docs/AWARICON_CERTIFICATION_LEVELS_V1.json)
+- Govern and grow: [industry-standard strategy](docs/AWARICON_INDUSTRY_STANDARD_STRATEGY.md) · [analytics specification](docs/AWARICON_ANALYTICS_DASHBOARD_SPEC.md) · [universe plan](docs/FOREVER_LOTUS_AWARICON_UNIVERSE_PLAN.md)
 
-11. **NOBEL_IMPACT_ROADMAP.md**
-   - Long-horizon impact strategy with phased milestones
-   - Evidence, governance, adoption, and transparency priorities
+## What “Nobel-caliber” means here
 
-12. **WORLD_CLASS_EXECUTION_PLAN.md**
-   - 10-workstream execution backbone and 90-day milestones
+The phrase is an aspiration about the standard of contribution, never a claim of affiliation, nomination, endorsement, or award. The [Nobel-Impact Roadmap](docs/NOBEL_IMPACT_ROADMAP.md) sets a high bar: demonstrated reduction of suffering; measurable dignity, agency, and peace outcomes; independent and peer-reviewed validation; multi-country institutional adoption; and transparent ethical governance. It proposes a staged path from a theory of change and pilot readiness to replication, public evidence, and durable scale.
 
-13. **WORLD_CLASS_*.md standards**
-   - KPI framework
-   - Research validation standard
-   - Governance standard
-   - Reliability and SLO baseline
-   - Security baseline
-   - i18n quality standard
-   - Content and evidence standard
-   - Adoption playbook
-   - Transparency standard
-   - Team operating model
+- [Research validation](docs/WORLD_CLASS_RESEARCH_VALIDATION.md) requires baseline and post-intervention data, published methods and limitations, third-party review, and durable results before calling something strategic impact.
+- [Content & evidence standard](docs/WORLD_CLASS_CONTENT_STANDARD.md) requires evidence-linked, precise language and a clear distinction between aspiration and measured result.
+- [Transparency standard](docs/WORLD_CLASS_TRANSPARENCY_STANDARD.md) calls for versioned reports that include methods, assumptions, risks, unresolved issues, and corrective actions.
+- [Governance standard](docs/WORLD_CLASS_GOVERNANCE.md) describes independent advice, ethics review, conflict disclosure, and explicit decision rights.
 
-14. **API_IMPACT_BASELINES.md**
-   - KPI baseline ingestion and update APIs
-   - Transparency report generation endpoint
+## Architecture, quality, and operations
 
-15. **INCIDENT_POSTMORTEM_TEMPLATE.md / TRANSPARENCY_REPORT_TEMPLATE.md**
-   - Production incident review template
-   - Public transparency report template
+This is a TypeScript, Next.js App Router application using Tailwind CSS and Framer Motion. It is configured for Vercel-compatible deployment and exposes intentional discoverability infrastructure: canonical metadata, `hreflang` alternates, XML sitemap, robots directives, structured data, RSS, share previews, `llms.txt`, `llms-full.txt`, and IndexNow submission support.
 
-### Features
+| Area | What the repository provides | Supporting material |
+| --- | --- | --- |
+| Discoverability | Canonical-origin configuration, search verification hooks, IndexNow, social metadata, and citation-friendly public URLs. | [Discoverability operations](docs/DISCOVERABILITY_OPERATIONS.md) · [Viral Search Playbook](docs/VIRAL_SEARCH_PLAYBOOK.md) |
+| Editorial system | A weekly topic-to-measurement publishing rhythm and a reusable SEO review scorecard. | [Weekly content pipeline](docs/WEEKLY_CONTENT_PIPELINE.md) · [SEO scorecard](docs/SEO_SCORECARD_TEMPLATE.md) |
+| Measurement | Discovery, engagement, conversion, and authority definitions plus decision rules. | [KPI dashboard spec](docs/KPI_DASHBOARD_SPEC.md) · [World-class KPI framework](docs/WORLD_CLASS_KPI_FRAMEWORK.md) |
+| Reliability | Initial SLO targets, severity model, response expectations, rollback and postmortem scaffolding. | [Reliability SLO](docs/WORLD_CLASS_RELIABILITY_SLO.md) · [Incident response](docs/runbooks/INCIDENT_RESPONSE.md) · [Rollback](docs/runbooks/ROLLBACK.md) |
+| Security | Headers and contact-flow controls are documented alongside an explicit ongoing-security baseline. | [Security baseline](docs/WORLD_CLASS_SECURITY_BASELINE.md) · [Contact threat model](docs/security/CONTACT_THREAT_MODEL.md) |
+| Language quality | A scalable locale-onboarding standard and quality gates. | [i18n quality](docs/WORLD_CLASS_I18N_QUALITY.md) |
+| Delivery governance | A workstream plan, operating model, approval matrix, and Paperclip bootstrap assets. | [Execution plan](docs/WORLD_CLASS_EXECUTION_PLAN.md) · [Operating model](docs/WORLD_CLASS_OPERATING_MODEL.md) · [Paperclip blueprint](docs/PAPERCLIP_OPERATING_BLUEPRINT.md) |
 
-#### Manifesto Evaluation Engine
+The [World-Class Gap Audit](docs/WORLD_CLASS_GAP_AUDIT.md) is especially important: it records completed hardening work and names remaining gaps. Some historic gaps it lists are now represented by later committed runbooks and the contact threat model; others, such as ongoing CSP, dependency, accessibility, monitoring, and external-validation work, remain matters for continuous verification. A “world-class” label is a practice, not a finish line.
 
-**Generic, extensible system for assessing websites against Forever Lotus principles.**
+## Documentation atlas
 
-- **7 Core Principles**: Compassion, Kindness, Earth Consciousness, Dignity, Education, Peace, Transparency
-- **21+ Evaluation Criteria**: Specific, measurable, evidence-based
-- **Beautiful Dashboard**: Gauges, principle cards, checklist mapping, recommendations
-- **Submission Checklist Integration**: Automatically maps evaluation results to onboarding criteria
-- **Multilingual**: English, Spanish, Portuguese, Tamil, and Kannada support
-- **Reusable**: Generic algorithm works for any website or organization
+Every file under [`docs/`](docs/) is part of the project record. The links below make this README a durable wiki index rather than a selective brochure.
 
-**Location:** `/evaluate` on the website  
-**Documentation:** [docs/MANIFESTO_EVALUATOR.md](docs/MANIFESTO_EVALUATOR.md)  
-**Quick Start:** [docs/EVALUATOR_QUICK_REFERENCE.md](docs/EVALUATOR_QUICK_REFERENCE.md)  
+### Foundation, scholarship, and identity
 
-_Currently in demo mode with sample data generation. Production integration with real content analysis engines is extensible through `ManifestoEvaluationService`._
+- [Manifesto](docs/MANIFESTO.md) — 15-part moral framework and action commitments.
+- [Research Dossier](docs/RESEARCH_DOSSIER.md) — source categories, claim-to-source alignment, and authenticity controls.
+- [Eastern References](docs/EASTERN_REFERENCES.md) — university, canonical-text, and citation-ready research anchors.
+- [Benchmark](docs/BENCHMARK.md) — 25 relevant organizations and platforms.
+- [Forever Lotus Logo Rationale](docs/FOREVER_LOTUS_LOGO_RATIONALE.md) — symbol meaning, manifesto mapping, and design integrity.
+- [Nobel-Impact Roadmap](docs/NOBEL_IMPACT_ROADMAP.md) — 5–10 year impact, evidence, governance, and adoption pathway.
 
-#### Ecosystem & Onboarding
+### Evaluation, ecosystem, and adoption
 
-**Pathways for aligned websites to join and be promoted.**
+- [Manifesto Evaluator](docs/MANIFESTO_EVALUATOR.md) · [Evaluator Quick Reference](docs/EVALUATOR_QUICK_REFERENCE.md) · [Evaluator Delivery Summary](docs/EVALUATOR_DELIVERY_SUMMARY.md)
+- [World-Class Adoption Playbook](docs/WORLD_CLASS_ADOPTION_PLAYBOOK.md) · [World-Class Execution Plan](docs/WORLD_CLASS_EXECUTION_PLAN.md) · [World-Class Gap Audit](docs/WORLD_CLASS_GAP_AUDIT.md)
 
-- **Aligned Websites Showcase** (`/ecosystem`) - Browse and submit websites aligned with the manifesto
-- **Generic Onboarding Menu** (`/onboarding-websites`) - Reusable intake form for any website type
-- **Manifesto Evaluator** (`/evaluate`) - Self-serve assessment with actionable feedback
+### Awaricon product, certification, and growth
 
-### Website (`src/`)
+- [Awaricon Integration Guide](docs/AWARICON_INTEGRATION_GUIDE.md) · [Awaricon CEO One-Pager](docs/AWARICON_ONEPAGER_FOR_CEOS.md) · [Certification Levels v1](docs/AWARICON_CERTIFICATION_LEVELS_V1.json)
+- [Industry Standard Strategy](docs/AWARICON_INDUSTRY_STANDARD_STRATEGY.md) · [Analytics Dashboard Spec](docs/AWARICON_ANALYTICS_DASHBOARD_SPEC.md) · [Forever Lotus × Awaricon Universe Plan](docs/FOREVER_LOTUS_AWARICON_UNIVERSE_PLAN.md) · [Universe Plan (DOCX)](docs/FOREVER_LOTUS_AWARICON_UNIVERSE_PLAN.docx)
+- [Anchor Organization Targeting](docs/AWARICON_ANCHOR_ORGANIZATION_TARGETING.md) · [Anchor Campaign Data](docs/AWARICON_ANCHOR_CAMPAIGN_DATA.csv) · [Anchor Execution Plan](docs/AWARICON_ANCHOR_EXECUTION_PLAN.md) · [Anchor Outreach Tracker](docs/AWARICON_ANCHOR_OUTREACH_TRACKER.md)
+- [Week 1 Research Checklist](docs/AWARICON_WEEK1_RESEARCH_CHECKLIST.md) · [Campaign Assets Checklist](docs/AWARICON_CAMPAIGN_ASSETS_CHECKLIST.md) · [Awaricon Email Templates](docs/AWARICON_EMAIL_TEMPLATES.md)
 
-**Production Next.js website** with Vercel-ready deployment:
+### Evidence, governance, and trust operations
 
-- App Router architecture for future app growth
-- Reusable component system under `src/components`
-- Static generation for fast page delivery
-- TypeScript + Tailwind CSS stack for maintainability
-- Public repository: https://github.com/aartisr/forever_lotus
+- [World-Class KPI Framework](docs/WORLD_CLASS_KPI_FRAMEWORK.md) · [World-Class Research Validation](docs/WORLD_CLASS_RESEARCH_VALIDATION.md) · [World-Class Governance](docs/WORLD_CLASS_GOVERNANCE.md) · [World-Class Transparency Standard](docs/WORLD_CLASS_TRANSPARENCY_STANDARD.md)
+- [Transparency Report Template](docs/TRANSPARENCY_REPORT_TEMPLATE.md) · [World-Class Reliability & SLO](docs/WORLD_CLASS_RELIABILITY_SLO.md) · [Incident Response Runbook](docs/runbooks/INCIDENT_RESPONSE.md) · [Rollback Runbook](docs/runbooks/ROLLBACK.md) · [Incident Postmortem Template](docs/INCIDENT_POSTMORTEM_TEMPLATE.md)
+- [World-Class Security Baseline](docs/WORLD_CLASS_SECURITY_BASELINE.md) · [Contact Threat Model](docs/security/CONTACT_THREAT_MODEL.md) · [World-Class i18n Quality](docs/WORLD_CLASS_I18N_QUALITY.md) · [World-Class Content Standard](docs/WORLD_CLASS_CONTENT_STANDARD.md) · [World-Class Team Operating Model](docs/WORLD_CLASS_OPERATING_MODEL.md)
 
----
+### Growth, discoverability, and execution
 
-## Getting Started
+- [Discoverability Operations](docs/DISCOVERABILITY_OPERATIONS.md) · [Viral Search Playbook](docs/VIRAL_SEARCH_PLAYBOOK.md) · [God-Tier Viral Marketing Playbook](docs/GOD_TIER_VIRAL_MARKETING_PLAYBOOK.md)
+- [Backlink Acquisition Runbook](docs/BACKLINK_ACQUISITION_RUNBOOK.md) · [Weekly Content Pipeline](docs/WEEKLY_CONTENT_PIPELINE.md) · [KPI Dashboard Spec](docs/KPI_DASHBOARD_SPEC.md) · [SEO Scorecard Template](docs/SEO_SCORECARD_TEMPLATE.md) · [Top 100 Growth Research Matrix](docs/TOP100_GROWTH_RESEARCH_MATRIX.csv) · [API Impact Baselines](docs/API_IMPACT_BASELINES.md)
 
-### 1. Read the Manifesto
-Start with [docs/MANIFESTO.md](docs/MANIFESTO.md) for the full philosophical framework.
+### Paperclip operating package
 
-### 2. Explore the Research
-Review [docs/RESEARCH_DOSSIER.md](docs/RESEARCH_DOSSIER.md) to understand the evidence base and scholarly grounding.
+- [Paperclip Operating Blueprint](docs/PAPERCLIP_OPERATING_BLUEPRINT.md) · [Phase 0 Package README](docs/paperclip-phase0-package/README.md) · [Phase 0 Setup Package (ZIP)](docs/PAPERCLIP_PHASE0_SETUP_PACKAGE.zip) · [Phase 0 Setup Package (DOCX)](docs/paperclip-phase0-package/PAPERCLIP_PHASE0_SETUP_PACKAGE.docx)
+- [Goals](docs/paperclip-phase0-package/goals.json) · [Projects](docs/paperclip-phase0-package/projects.json) · [Issue Templates](docs/paperclip-phase0-package/issue-templates.json) · [Routines](docs/paperclip-phase0-package/routines.json)
+- [Phase 0 Bootstrap](docs/paperclip-phase0-package/bootstrap-paperclip-phase0.sh) · [Routine Bootstrap](docs/paperclip-phase0-package/bootstrap-paperclip-routines.sh) · [Idempotent Routine Sync](docs/paperclip-phase0-package/bootstrap-paperclip-routines-idempotent.sh) — review environment variables and scope before execution.
 
-### 3. Run the Website
+## Citation, attribution, and linking
+
+The best backlink is useful to the reader and faithful to the claim. Use a canonical Forever Lotus page rather than a preview, mirror, parameterized URL, or repository file when a public page exists.
+
+**Suggested short citation**
+
+> Forever Lotus. “Forever Lotus: A Moral Architecture for Conscious Creation.” [https://foreverlotus.com](https://foreverlotus.com). Accessed YYYY-MM-DD.
+
+**Suggested research citation**
+
+> Dorairaj, Subasri. *Forever Lotus Research Dossier: Evidence Base, Citations, and Authenticity Controls.* Forever Lotus. [https://foreverlotus.com/research](https://foreverlotus.com/research). Accessed YYYY-MM-DD.
+
+- Framework and public home: [https://foreverlotus.com](https://foreverlotus.com)
+- The Manifesto: [https://foreverlotus.com/manifesto](https://foreverlotus.com/manifesto)
+- Research and sources: [https://foreverlotus.com/research](https://foreverlotus.com/research)
+- Organization evaluation: [https://foreverlotus.com/evaluate](https://foreverlotus.com/evaluate)
+- Official backlink kit: [https://foreverlotus.com/backlinks](https://foreverlotus.com/backlinks)
+- Awaricon trust initiative: [https://foreverlotus.com/awaricon](https://foreverlotus.com/awaricon)
+
+Please preserve context and attribution. The project credits **Subasri Dorairaj** for the concept, research, and public-facing content; the repository and codebase are stewarded through the `aartisr` developer account. This code is licensed under the [MIT License](LICENSE); Awaricon names, marks, icon variants, and badge designs have separate proprietary-use considerations described on the [Awaricon legal page](https://foreverlotus.com/awaricon/legal).
+
+## Local development
+
+**Requirements:** Node.js 20.x and npm 10 or later.
+
 ```bash
 npm install
 npm run dev
 ```
 
-Then open `http://localhost:3000`.
-
-### 4. Strategic Positioning
-Review [docs/BENCHMARK.md](docs/BENCHMARK.md) for design and positioning inspiration from 25 comparable organizations.
-
----
-
-## Design Language
-
-The website embodies Forever Lotus values through:
-
-- **Typography**: Fraunces serif headings (premium, grounded); Work Sans body (readable, approachable)
-- **Color Palette**: Warm, earthy tones signaling calm authority and trust
-- **Motion**: Scroll-triggered reveals encourage contemplative engagement
-- **Structure**: Clean, spacious cards with subtle glass-morphism effects
-- **Imagery**: Gradient orbs suggesting both natural (lotus) and transcendent qualities
-
----
-
-## Deployment
-
-### Vercel
-
-This project is configured to deploy directly from the repository root as a Next.js application.
-
-1. Import the public repository: `https://github.com/aartisr/forever_lotus`
-2. Vercel should auto-detect `Next.js`
-3. Install command: `npm install`
-4. Build command: `next build`
-5. Optional environment variable:
-   - `NEXT_PUBLIC_SITE_URL=https://your-domain`
-   - `NEXT_PUBLIC_YOUTUBE_CHANNEL_URL=https://www.youtube.com/@your-channel`
-   - `NEXT_PUBLIC_FACEBOOK_PAGE_URL=https://www.facebook.com/your-page`
-   - `NEXT_PUBLIC_INSTAGRAM_PROFILE_URL=https://www.instagram.com/your-profile`
-   - `NEXT_PUBLIC_TIKTOK_PROFILE_URL=https://www.tiktok.com/@your-profile`
-   - `NEXT_PUBLIC_WHATSAPP_CHANNEL_URL=https://whatsapp.com/channel/your-channel`
-   - `NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER=15551234567` (fallback if no WhatsApp Channel URL)
-   - `INDEXNOW_KEY=your-indexnow-key`
-   - `INDEXNOW_KEY_LOCATION=https://your-domain/your-indexnow-key.txt`
-   - `RESEND_API_KEY=...` (required for contact form delivery)
-   - `CONTACT_EMAIL=investor-inbox@your-domain`
-   - `CONTACT_FROM_EMAIL=contact@your-domain`
-   - `CONTACT_ALLOWED_ORIGINS=https://your-domain,https://www.your-domain`
-
-### Build Verification
-
-The production build has been validated locally with:
+Open [http://localhost:3000](http://localhost:3000). Before contributing a change, use the quality checks appropriate to its scope:
 
 ```bash
+npm run typecheck
+npm run lint
+npm test
 npm run build
 ```
 
-Note: `npm run build` now blocks if a local `next dev` process is already running, preventing `.next` manifest race conditions during local verification.
+The build guard prevents local `next dev` and production-build races over `.next` artifacts. Bundle budgets can be checked with `npm run perf:budgets`; production URL submissions use `npm run seo:indexnow` when the required IndexNow configuration is present.
 
-### Performance Guardrails
+### Environment essentials
 
-- CI now enforces route bundle budgets after build.
-- Budget config: `config/perf-budgets.json`
-- Local check: `npm run build:ci && npm run perf:budgets`
+Set `NEXT_PUBLIC_SITE_URL=https://foreverlotus.com` for production canonical URLs. Additional optional variables enable search verification, public social identities, performance sampling, contact delivery, data-layer configuration, and IndexNow. The authoritative configuration checklist is [Discoverability Operations](docs/DISCOVERABILITY_OPERATIONS.md); contact and data-layer details are documented in [SETUP.md](SETUP.md). Never commit keys or service-role credentials.
 
-### Performance Telemetry
+## Contributing with integrity
 
-- Lightweight client-side Web Performance telemetry is enabled via `PerformanceObserver`.
-- Endpoint: `POST /api/telemetry/performance`
-- Collected metrics: `TTFB`, `FCP`, `LCP`, `CLS`, `INP`, `NAV`.
-- Optional sampling control: `NEXT_PUBLIC_PERF_SAMPLE_RATE` (default: `0.2`).
-- Telemetry is skipped when browser `Do Not Track` is enabled.
+Contributions are welcome when they strengthen the project’s core promise: conscious creation rooted in compassion, dignity, evidence, and stewardship.
 
-### Data Layer (Plug-and-Play)
+1. Read the [Manifesto](docs/MANIFESTO.md) and the relevant operating standard.
+2. Link factual claims to appropriate sources; separate primary texts, scholarly interpretation, and measured impact.
+3. State uncertainty, limitations, and open questions plainly.
+4. Keep accessibility, privacy, security, localization, and rollback implications in scope.
+5. Do not turn an aspiration, plan, target, or demo capability into an accomplished outcome.
 
-The KPI and transparency APIs use a generic repository abstraction with interchangeable drivers.
+For partnership or public inquiries, use [foreverlotus.com/contact](https://foreverlotus.com/contact).
 
-- `DATA_LAYER_DRIVER=supabase` (default)
-- `DATA_LAYER_DRIVER=memory` (local/test fallback)
+## GitHub Pages field guide
 
-For Supabase, set:
+This repository includes a standalone, accessible static companion in [github-pages/](github-pages/), designed for GitHub Pages deployment. It provides a curated reading path, source-aware research framing, citation tool, and direct editorial backlinks to the canonical website. The deploy workflow is [configured here](.github/workflows/deploy-github-pages.yml).
 
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-- Optional: `SUPABASE_DATA_TABLE` (default: `app_records`)
-
-Supabase table (generic record envelope):
+After merging this repository to `main`, enable **Settings → Pages → Build and deployment → Source: GitHub Actions** in the GitHub repository. GitHub will then publish the field guide at [aartisr.github.io/forever_lotus](https://aartisr.github.io/forever_lotus/). This URL is a companion page; [foreverlotus.com](https://foreverlotus.com) remains the official canonical public home.
 
 ---
 
-## Awaricon Legal and Copyright
-
-- Awaricon marks, icon variants, and badge designs are proprietary assets of Forever Lotus.
-- Copyright notices are embedded in downloadable badge assets.
-- In-product legal policy page: `/awaricon/legal`
-- In-product admin console page: `/awaricon/admin`
-- Source of legal notice values: `src/content/awaricon.ts`
-
-Badge verification environment variables:
-
-- `AWARICON_BADGE_SIGNING_SECRET` for signed badge token generation and validation.
-- `AWARICON_APPROVED_SITES` as comma-separated baseline domains (for example: `example.com,partner.org`).
-- `AWARICON_ADMIN_KEY` required to use admin APIs and the `/awaricon/admin` management console.
-
-Approved domains added via the admin console are persisted through the active data layer driver (`supabase` or `memory`). With `DATA_LAYER_DRIVER=supabase` and Supabase credentials configured, domain approvals and the full audit log survive server restarts. With `memory` they are session-scoped.
-
-Audit log endpoint: `GET /api/awaricon/admin/audit` (requires `x-awaricon-admin-key` header).
-Entities stored: `awaricon_approved_sites`, `awaricon_audit_log` — both use the shared `app_records` table.
-
-For any commercial licensing or redistribution rights, request written permission from the project maintainers before use.
-
-```sql
-create table if not exists public.app_records (
-   id text primary key,
-   entity text not null,
-   payload jsonb not null,
-   created_at timestamptz not null,
-   updated_at timestamptz not null
-);
-
-create index if not exists idx_app_records_entity_updated
-on public.app_records (entity, updated_at desc);
-```
-
-Data layer health endpoint:
-
-- `GET /api/health/data-layer`
-- Returns active driver, readiness state, and table target for operational checks.
-
-### SEO Foundations Included
-
-- `src/app/sitemap.ts` for XML sitemap generation
-- `src/app/robots.ts` for crawler directives
-- `src/app/manifest.ts` for web app manifest and icon metadata
-- `POST /api/indexnow` to push URL updates to IndexNow
-- Global and per-page metadata with canonical + hreflang alternates
-- Structured data (`WebSite`, `Organization`, `WebPage`, `FAQPage`)
-- Generated social preview assets (`/opengraph-image`, `/twitter-image`)
-- Footer links and structured-data `sameAs` hooks for YouTube, Facebook, Instagram, TikTok, and WhatsApp
-- Insight share actions for Facebook, WhatsApp, X, LinkedIn, email, native sharing, and copy link
-- GA4-ready tracking via `NEXT_PUBLIC_GA_ID`
-- CTA tracking using `data-track` instrumentation
-
-Execution guide: [docs/VIRAL_SEARCH_PLAYBOOK.md](docs/VIRAL_SEARCH_PLAYBOOK.md)
-Publishing guide: [docs/WEEKLY_CONTENT_PIPELINE.md](docs/WEEKLY_CONTENT_PIPELINE.md)
-KPI guide: [docs/KPI_DASHBOARD_SPEC.md](docs/KPI_DASHBOARD_SPEC.md)
-Scorecard template: [docs/SEO_SCORECARD_TEMPLATE.md](docs/SEO_SCORECARD_TEMPLATE.md)
-
-Operations and security runbooks:
-
-- Incident response: [docs/runbooks/INCIDENT_RESPONSE.md](docs/runbooks/INCIDENT_RESPONSE.md)
-- Rollback steps: [docs/runbooks/ROLLBACK.md](docs/runbooks/ROLLBACK.md)
-- Contact threat model: [docs/security/CONTACT_THREAT_MODEL.md](docs/security/CONTACT_THREAT_MODEL.md)
-
----
-
-## Citation & Attribution
-
-All materials are authored by **Subasri Dorairaj** and grounded in:
-
-- Peer-reviewed scholarship (DOI-indexed)
-- Eastern academic institutions (Kyoto, NUS, Tsinghua, Soka)
-- Primary religious/philosophical texts
-- Contemporary wellbeing and prosocial research
-
-See [RESEARCH_DOSSIER.md](docs/RESEARCH_DOSSIER.md) for full citation details.
-
-## Attribution & Repository Stewardship
-
-- **Website attribution:** Subasri Dorairaj
-- **Concept, research, and public-facing content attribution:** Subasri Dorairaj
-- **Repository owner / developer stewardship:** aartisr
-
-This repository preserves **Subasri Dorairaj** as the credited author of the website content and public project materials, while the GitHub repository and codebase are maintained under the `aartisr` developer account.
-
-Public repository: https://github.com/aartisr/forever_lotus
-
----
-
-## Principles
-
-### Forever Lotus Operating Commitments:
-
-1. Publish annual dignity and impact metrics, not vanity metrics.
-2. Tie all initiatives to measurable suffering reduction and capability growth.
-3. Keep a clear firewall between service and self-promotion.
-4. Build learning systems that are open, multilingual, and culturally grounded.
-5. Prioritize partnerships that strengthen local agency.
-6. Refuse projects that require extractive trade-offs.
-
----
-
-## Contributing
-
-Forever Lotus is open to collaboration that strengthens its core promise: conscious creation rooted in compassion and dignity. Contact Subasri Dorairaj for partnership inquiries.
-
----
-
-## License
-
-This work is licensed under [MIT License](LICENSE).
-
----
-
-## Contact
-
-**Author:** Subasri Dorairaj
-
----
-
-*Rooted. Rising. Untainted.*
+*Rooted in difficult conditions. Rising toward a more dignified world. Unwilling to become stained by either cynicism or spectacle.*

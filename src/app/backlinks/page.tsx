@@ -61,6 +61,30 @@ const markdownExamples = [
   `[Forever Lotus Insights](${buildPageUrl('/insights')})`,
 ];
 
+const editorialResources = [
+  {
+    audience: 'Research, universities & libraries',
+    title: 'A source-conscious framework for responsible progress',
+    destination: '/research',
+    destinationLabel: 'Research Dossier',
+    use: 'Suitable for reading lists, research roundups, and evidence-contextual references.',
+  },
+  {
+    audience: 'Humanitarian, education & civic organizations',
+    title: 'Dignity-centered humanitarian design',
+    destination: '/insights/dignity-centered-humanitarian-design',
+    destinationLabel: 'Dignity-centered design guide',
+    use: 'Suitable for practitioner resource lists and discussions of agency-centered service design.',
+  },
+  {
+    audience: 'Ethics, leadership & technology publications',
+    title: 'Conscious creation as a practical leadership frame',
+    destination: '/insights/conscious-creation-framework',
+    destinationLabel: 'Conscious creation framework',
+    use: 'Suitable for editorial context on responsible systems, governance, and leadership.',
+  },
+];
+
 export const metadata: Metadata = {
   title,
   description,
@@ -216,6 +240,38 @@ export default function BacklinksPage() {
               <li>When quoting, attribute to Forever Lotus and include a direct link to the source page.</li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 px-5 sm:px-8 bg-[#f5f0e8] text-[#1a1612]" aria-labelledby="editorial-resources-heading">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-xs uppercase tracking-[0.16em] text-[#8c7a53] mb-3">Earned editorial references</p>
+          <h2 id="editorial-resources-heading" className="font-serif font-black text-3xl mb-4">
+            Useful resources deserve useful links
+          </h2>
+          <p className="max-w-3xl text-[#4a4640] leading-relaxed mb-8">
+            Forever Lotus does not seek paid, automated, reciprocal, or context-free links. If you publish a
+            resource list, course, report, article, or community guide, link only where one of these materials
+            genuinely helps your readers investigate the subject further.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {editorialResources.map((resource) => (
+              <article key={resource.destination} className="rounded-2xl border border-[rgba(26,22,18,0.12)] bg-white/70 p-6">
+                <p className="text-xs uppercase tracking-[0.12em] text-[#8c7a53] mb-3">{resource.audience}</p>
+                <h3 className="font-serif text-xl font-bold mb-3">{resource.title}</h3>
+                <p className="text-sm text-[#4a4640] leading-relaxed mb-4">{resource.use}</p>
+                <Link href={resource.destination} className="text-[#8c6b28] hover:text-[#6f541f] font-semibold text-sm">
+                  Read the {resource.destinationLabel} →
+                </Link>
+              </article>
+            ))}
+          </div>
+          <p className="mt-8 text-sm text-[#5a544b]">
+            For the team’s measurement, prospecting, review, and reporting routine, see the{' '}
+            <a href="https://github.com/aartisr/forever_lotus/blob/main/docs/BACKLINK_ACQUISITION_RUNBOOK.md" className="text-[#8c6b28] hover:text-[#6f541f] font-semibold">
+              backlink acquisition runbook
+            </a>.
+          </p>
         </div>
       </section>
     </>
