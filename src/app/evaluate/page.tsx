@@ -6,6 +6,7 @@ import { buildAlternates, buildPageUrl, defaultOgImage, siteName } from '@/lib/s
 const EvaluationDashboardClient = dynamic(() => import('./evaluate-client'), {
   loading: () => (
     <main className="min-h-screen bg-lotus-bg pt-32 pb-16 px-5 sm:px-8">
+      <h1 className="sr-only">Forever Lotus Manifesto Evaluator</h1>
       <div className="max-w-2xl mx-auto animate-pulse space-y-4">
         <div className="h-8 rounded bg-lotus-bg-2" />
         <div className="h-8 rounded bg-lotus-bg-2" />
