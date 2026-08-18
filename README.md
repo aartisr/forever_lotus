@@ -178,7 +178,7 @@ npm test
 npm run build
 ```
 
-The build guard prevents local `next dev` and production-build races over `.next` artifacts. Bundle budgets can be checked with `npm run perf:budgets`; production URL submissions use `npm run seo:indexnow` when the required IndexNow configuration is present.
+The build guard prevents local `next dev` and production-build races over `.next` artifacts. Bundle budgets can be checked with `npm run perf:budgets`; production URL submissions use `npm run seo:indexnow` when the required IndexNow configuration is present. See [IndexNow submission](docs/DISCOVERABILITY_OPERATIONS.md#indexnow-submission) for setup and usage.
 
 ### Environment essentials
 

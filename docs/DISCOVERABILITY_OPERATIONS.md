@@ -33,12 +33,37 @@ Use this checklist after deploying `forever_lotus` so the technical SEO and soci
 - `NEXT_PUBLIC_GA_ID`
   Enables Google Analytics pageview and CTA/share click tracking.
 
+## IndexNow Submission
+
+The repository includes `npm run seo:indexnow`, which submits every indexable application page and every insight article to `https://api.indexnow.org/indexnow`. It discovers static routes from `src/app`, excludes the private `/awaricon/admin` route, and reads insight slugs from `src/content/insights.ts`. Requests are automatically split into batches of at most 10,000 URLs.
+
+1. Generate an IndexNow key and set it in the production environment as `INDEXNOW_KEY`.
+2. Deploy the application, then confirm `https://<your-domain>/indexnow-key.txt` returns that exact key. The app exposes this route automatically. If the key is hosted elsewhere, set `INDEXNOW_KEY_LOCATION` to its public HTTPS URL.
+3. Set `NEXT_PUBLIC_SITE_URL` to the deployed canonical origin, without a path.
+4. Submit all current canonical URLs:
+
+   ```bash
+   NEXT_PUBLIC_SITE_URL=https://foreverlotus.com INDEXNOW_KEY=your-key npm run seo:indexnow
+   ```
+
+`postbuild` also runs this script. It is a no-op when `INDEXNOW_KEY` is absent, so local builds and preview builds do not accidentally submit URLs. To make a failed submission fail the build or CI job, set `INDEXNOW_REQUIRED=1`.
+
+For an urgent, targeted resubmission, provide a comma-separated list of absolute URLs or site-relative paths:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://foreverlotus.com INDEXNOW_KEY=your-key \\
+INDEXNOW_URLS=/insights/new-article,https://foreverlotus.com/research \\
+npm run seo:indexnow
+```
+
+Do not commit the key. A successful response means the IndexNow endpoint accepted the notification; it does not guarantee that a search engine will crawl or index a page immediately.
+
 ## Launch Checklist
 
 1. Verify the production domain in Google Search Console and Bing Webmaster Tools.
 2. Submit `https://<your-domain>/sitemap.xml` in both consoles.
 3. Confirm `https://<your-domain>/robots.txt`, `https://<your-domain>/rss.xml`, `https://<your-domain>/llms.txt`, and `https://<your-domain>/llms-full.txt` are publicly reachable.
-4. Host the IndexNow key file and submit the homepage, insights hub, and any newly published insight URLs through the existing IndexNow endpoint.
+4. Host the IndexNow key file and run `npm run seo:indexnow` to submit all indexable URLs.
 5. Test the homepage and one insight article in Google Rich Results Test and social preview debuggers.
 6. Validate that public social profile URLs, if configured, resolve to the correct brand accounts.
 
