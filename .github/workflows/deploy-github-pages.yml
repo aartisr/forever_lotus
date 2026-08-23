@@ -37,3 +37,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify IndexNow
+        env:
+          GITHUB_PAGES_SITE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: node scripts/submit-github-pages-indexnow.mjs

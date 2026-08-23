@@ -17,8 +17,15 @@ function pageUrl(file) {
 
 const sitemap = readFileSync(join(pagesDirectory, 'sitemap.xml'), 'utf8');
 const robots = readFileSync(join(pagesDirectory, 'robots.txt'), 'utf8');
+const indexNowKeyFiles = readdirSync(pagesDirectory).filter((file) => /^[a-z0-9-]{8,128}\.txt$/i.test(file));
 
 expect(robots.includes(defaultPagesOrigin + '/sitemap.xml'), 'robots.txt must point crawlers to the deployed GitHub Pages sitemap.');
+expect(indexNowKeyFiles.length === 1, 'github-pages/ must contain exactly one IndexNow key file named <key>.txt.');
+
+for (const keyFile of indexNowKeyFiles) {
+  const key = readFileSync(join(pagesDirectory, keyFile), 'utf8').trim();
+  expect(keyFile === key + '.txt', keyFile + ' must contain its filename stem exactly for IndexNow verification.');
+}
 
 for (const file of htmlFiles) {
   const page = readFileSync(join(pagesDirectory, file), 'utf8');

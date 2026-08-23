@@ -39,6 +39,7 @@
     "test:coverage": "vitest run --coverage",
     "perf:budgets": "node scripts/check-bundle-budgets.mjs",
     "verify:github-pages": "node scripts/verify-github-pages.mjs",
+    "seo:indexnow:github-pages": "node scripts/submit-github-pages-indexnow.mjs",
     "security:audit": "npm audit --audit-level=high",
     "seo:indexnow": "node scripts/submit-indexnow.mjs"
   },

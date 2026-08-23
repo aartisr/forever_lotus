@@ -202,6 +202,8 @@ This repository includes a standalone, accessible static companion in [github-pa
 
 After merging this repository to `main`, enable **Settings → Pages → Build and deployment → Source: GitHub Actions** in the GitHub repository. GitHub will then publish the field guide at [aartisr.github.io/forever_lotus](https://aartisr.github.io/forever_lotus/). This URL is a companion page; [foreverlotus.com](https://foreverlotus.com) remains the official canonical public home.
 
+The Pages workflow verifies `github-pages/<key>.txt`, deploys it with the static artifact, then submits every URL in its sitemap to IndexNow. The key file is intentionally public—IndexNow uses it for ownership verification, not as a secret. To notify the Pages URLs manually after changing the sitemap, run `npm run seo:indexnow:github-pages` after the file is live.
+
 ---
 
 *Rooted in difficult conditions. Rising toward a more dignified world. Unwilling to become stained by either cynicism or spectacle.*
