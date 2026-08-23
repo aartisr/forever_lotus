@@ -4,6 +4,7 @@ import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import PageCta from '@/components/sections/PageCta';
+import PageStructuredData from '@/components/PageStructuredData';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
 import { buildLocalizedPageMetadata } from '@/lib/page-metadata';
 
@@ -33,6 +34,13 @@ export default async function PhilosophyPage({ searchParams }: PageProps) {
 
   return (
     <>
+      <PageStructuredData
+        path="/philosophy"
+        title={messages.philosophy.meta.title}
+        description={messages.philosophy.meta.description}
+        locale={locale}
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Philosophy', path: '/philosophy' }]}
+      />
       <PageHero
         eyebrow={messages.philosophy.hero.eyebrow}
         title={messages.philosophy.hero.title}

@@ -114,7 +114,46 @@ export function buildPersonJsonLd(): StructuredData {
     affiliation: {
       '@id': `${siteUrl}/#organization`,
     },
+    mainEntityOfPage: {
+      '@id': `${buildPageUrl('/about')}#webpage`,
+    },
     sameAs: getSameAsLinks(),
+  });
+}
+
+/**
+ * A stable, machine-readable description of the founder page. Keeping this
+ * separate from Person lets search and answer engines connect the entity,
+ * author, and canonical profile URL without inferring that relationship.
+ */
+export function buildProfilePageJsonLd({
+  name,
+  description,
+  locale = 'en',
+}: {
+  name: string;
+  description: string;
+  locale?: Locale | 'en';
+}): StructuredData {
+  const url = buildPageUrl('/about', locale === 'en' ? 'en' : locale);
+
+  return compactJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${url}#profilepage`,
+    url,
+    name,
+    description,
+    inLanguage: locale,
+    mainEntity: {
+      '@type': 'Person',
+      '@id': buildPageUrl('/about#founder'),
+      name: founderName,
+      url: buildPageUrl('/about'),
+    },
+    isPartOf: {
+      '@id': `${siteUrl}/#website`,
+    },
   });
 }
 
@@ -303,5 +342,9 @@ export function buildArticleJsonLd({
     datePublished,
     dateModified,
     isAccessibleForFree: true,
+    about: keywords.map((name) => ({
+      '@type': 'Thing',
+      name,
+    })),
   });
 }

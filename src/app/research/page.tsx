@@ -4,6 +4,7 @@ import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import PageCta from '@/components/sections/PageCta';
+import PageStructuredData from '@/components/PageStructuredData';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
 import { buildLocalizedPageMetadata } from '@/lib/page-metadata';
 
@@ -33,6 +34,13 @@ export default async function ResearchPage({ searchParams }: PageProps) {
 
   return (
     <>
+      <PageStructuredData
+        path="/research"
+        title={messages.researchPage.meta.title}
+        description={messages.researchPage.meta.description}
+        locale={locale}
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Research', path: '/research' }]}
+      />
       <PageHero
         eyebrow={messages.researchPage.hero.eyebrow}
         title={messages.researchPage.hero.title}

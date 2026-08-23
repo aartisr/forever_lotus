@@ -13,7 +13,7 @@ import {
   indexNowKeyFileName,
 } from '@/lib/indexnow-urls';
 import { buildAlternates } from '@/lib/seo';
-import { compactJsonLd } from '@/lib/structured-data';
+import { buildProfilePageJsonLd, compactJsonLd } from '@/lib/structured-data';
 
 describe('discoverability registry', () => {
   afterEach(() => {
@@ -90,6 +90,22 @@ describe('structured data compaction', () => {
       name: 'Forever Lotus',
       nested: {
         good: 'yes',
+      },
+    });
+  });
+
+  it('publishes a canonical founder profile entity for answer engines', () => {
+    expect(
+      buildProfilePageJsonLd({
+        name: 'About Forever Lotus',
+        description: 'Founder context and authorship for the Forever Lotus framework.',
+      })
+    ).toMatchObject({
+      '@type': 'ProfilePage',
+      '@id': 'https://foreverlotus.com/about#profilepage',
+      mainEntity: {
+        '@type': 'Person',
+        '@id': 'https://foreverlotus.com/about#founder',
       },
     });
   });

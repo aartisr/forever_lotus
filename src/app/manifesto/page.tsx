@@ -4,6 +4,7 @@ import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import PageCta from '@/components/sections/PageCta';
+import PageStructuredData from '@/components/PageStructuredData';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
 import { buildLocalizedPageMetadata } from '@/lib/page-metadata';
 
@@ -33,6 +34,13 @@ export default async function ManifestoPage({ searchParams }: PageProps) {
 
   return (
     <>
+      <PageStructuredData
+        path="/manifesto"
+        title={messages.manifesto.meta.title}
+        description={messages.manifesto.meta.description}
+        locale={locale}
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Manifesto', path: '/manifesto' }]}
+      />
       <PageHero
         eyebrow={messages.manifesto.hero.eyebrow}
         title={messages.manifesto.hero.title}

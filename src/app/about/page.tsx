@@ -4,8 +4,11 @@ import LotusIcon from '@/components/LotusIcon';
 import PageHero from '@/components/PageHero';
 import ScrollReveal from '@/components/ScrollReveal';
 import PageCta from '@/components/sections/PageCta';
+import JsonLd from '@/components/JsonLd';
+import PageStructuredData from '@/components/PageStructuredData';
 import { getMessages, resolveLocale, withLocale } from '@/i18n';
 import { buildLocalizedPageMetadata } from '@/lib/page-metadata';
+import { buildJsonLdGraph, buildProfilePageJsonLd } from '@/lib/structured-data';
 
 type PageProps = {
   searchParams?: Promise<{
@@ -35,6 +38,22 @@ export default async function AboutPage({ searchParams }: PageProps) {
 
   return (
     <>
+      <PageStructuredData
+        path="/about"
+        title={messages.about.meta.title}
+        description={messages.about.meta.description}
+        locale={locale}
+        breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }]}
+      />
+      <JsonLd
+        data={buildJsonLdGraph([
+          buildProfilePageJsonLd({
+            name: messages.about.meta.title,
+            description: messages.about.meta.description,
+            locale,
+          }),
+        ])}
+      />
       <PageHero
         eyebrow={messages.about.hero.eyebrow}
         title={messages.about.hero.title}
