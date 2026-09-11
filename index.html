@@ -77,14 +77,33 @@
     <meta name="DC.language" content="en" />
     <meta name="DC.rights" content="https://creativecommons.org/publicdomain/zero/1.0/" />
 
-    <!-- Preconnect & High-Performance Typography Loading -->
+    <!-- Instant Sub-Second Safari Rendering: Inlined Critical Tokens & System Cascade -->
+    <style>
+      :root {
+        --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+        --font-serif: 'Newsreader', -apple-system-ui-serif, ui-serif, 'New York', Charter, Georgia, serif;
+        --font-display: 'Cinzel', 'Newsreader', -apple-system-ui-serif, ui-serif, 'New York', Charter, Georgia, serif;
+        --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+      }
+      html, body {
+        background-color: #07080f;
+        color: #f4efe6;
+        font-family: var(--font-sans);
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+
+    <!-- Asynchronous Non-Blocking Typography Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
-    </noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" media="all">
 
     <!-- Schema.org Comprehensive Structured Data (SEO / GEO / AIO / AEO Graph) -->
     <script type="application/ld+json">

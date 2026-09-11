@@ -24,13 +24,13 @@ export const HomeHero: React.FC<HomeHeroProps> = ({
 }) => {
   return (
     <section className="relative pt-32 sm:pt-36 pb-20 sm:pb-24 px-4 sm:px-8 text-center overflow-hidden">
-      {/* Ambient atmospheric glows */}
+      {/* Ambient atmospheric glows - Hardware-accelerated radial gradients */}
       <div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] lg:w-[800px] h-[300px] sm:h-[500px] bg-lotus-gold/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none"
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[600px] lg:w-[800px] h-[300px] sm:h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(212,180,93,0.12)_0%,transparent_70%)] pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute top-1/3 left-1/4 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-lotus-rose/5 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none"
+        className="absolute top-1/3 left-1/4 w-[250px] sm:w-[400px] h-[250px] sm:h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(232,135,166,0.08)_0%,transparent_70%)] pointer-events-none"
         aria-hidden="true"
       />
 
