@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import path from "path";
+import compression from "compression";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import dotenv from "dotenv";
@@ -26,6 +27,12 @@ function getGenAI(): GoogleGenAI {
 async function startServer() {
   const app = express();
   const PORT = 3000;
+
+  // High-performance response compression (gzip / deflate)
+  app.use(compression({
+    level: 6,
+    threshold: 512,
+  }));
 
   app.use(express.json());
 
@@ -56,7 +63,7 @@ ${prompt || `Provide a comprehensive 1 to 10 rating breakdown for foreverlotus.c
 Overall Score and top 3 critical takeaways.`}`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-3.8-flash",
+        model: "gemini-2.5-flash",
         contents: userContent,
         config: {
           systemInstruction,
@@ -88,8 +95,20 @@ Overall Score and top 3 critical takeaways.`}`;
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
+    // Cache static immutable assets for 1 year
+    app.use(express.static(distPath, {
+      maxAge: "30d",
+      immutable: true,
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.html')) {
+          res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+        } else {
+          res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+      }
+    }));
     app.get("*", (_req: Request, res: Response) => {
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
