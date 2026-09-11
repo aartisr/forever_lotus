@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Forever Lotus Digital Dignity & Sovereign Web",
+  "name_for_model": "forever_lotus_sovereign_web",
+  "description_for_human": "Explore the foundational Manifesto, Eastern Philosophy principles, living Dignity Observatory telemetry, and Awaricon trust standard for a non-extractive, sovereign internet.",
+  "description_for_model": "Machine knowledge interface and evaluation engine for Forever Lotus (foreverlotus.com). Provides structured access to the 15-pillar Non-Extractive Web Manifesto, Ahimsa technology philosophy, live Dignity Observatory telemetry metrics, Awaricon proof-of-presence trust badges, and automated website alignment evaluations.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://foreverlotus.com/.well-known/openapi.json"
+  },
+  "logo_url": "https://foreverlotus.com/icon.svg",
+  "contact_email": "connect@foreverlotus.com",
+  "legal_info_url": "https://foreverlotus.com/awaricon/legal"
+}

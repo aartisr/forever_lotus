@@ -1,0 +1,7 @@
+Contact: mailto:security@foreverlotus.com
+Contact: https://foreverlotus.com/contact
+Expires: 2028-12-31T23:59:59.000Z
+Preferred-Languages: en, es, pt, ta, kn
+Canonical: https://foreverlotus.com/.well-known/security.txt
+Policy: https://foreverlotus.com/awaricon/legal
+Acknowledgments: https://foreverlotus.com/research

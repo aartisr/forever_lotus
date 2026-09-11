@@ -2,131 +2,213 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-  <!-- Core Institutional Hubs -->
+  <!-- Core Institutional Portals with Multilingual Alternates -->
   <url>
     <loc>https://foreverlotus.com/</loc>
-    <lastmod>2026-09-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://foreverlotus.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://foreverlotus.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://foreverlotus.com/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://foreverlotus.com/?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="ta" href="https://foreverlotus.com/?lang=ta" />
+    <xhtml:link rel="alternate" hreflang="kn" href="https://foreverlotus.com/?lang=kn" />
+    <lastmod>2026-09-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/manifesto</loc>
-    <lastmod>2026-09-08</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://foreverlotus.com/manifesto?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://foreverlotus.com/manifesto?lang=es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://foreverlotus.com/manifesto?lang=pt" />
+    <xhtml:link rel="alternate" hreflang="ta" href="https://foreverlotus.com/manifesto?lang=ta" />
+    <xhtml:link rel="alternate" hreflang="kn" href="https://foreverlotus.com/manifesto?lang=kn" />
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/philosophy</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/observatory</loc>
-    <lastmod>2026-09-08</lastmod>
-    <changefreq>hourly</changefreq>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>always</changefreq>
     <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/accord</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/research</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/nobel-cadre</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/awaricon</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.90</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/evaluate</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.90</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/ecosystem</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/onboarding-websites</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/insights</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- 10 Operational Insight Articles (Direct Answer & Knowledge Graph) -->
+  <url>
+    <loc>https://foreverlotus.com/insights/conscious-creation-framework</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/dignity-centered-humanitarian-design</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/eastern-philosophy-for-leadership-and-ethics</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/nobel-peace-prize-advocacy-principles</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/untainted-leadership-in-complex-times</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/building-compassionate-global-movements</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/ethical-innovation-scorecard-guide</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/humanitarian-policy-and-institutional-integrity</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/subasri-dorairaj-purpose-and-vision</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://foreverlotus.com/insights/how-aligned-websites-create-collective-impact</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/growth</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/backlinks</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <priority>0.80</priority>
   </url>
   
   <url>
     <loc>https://foreverlotus.com/audit</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://foreverlotus.com/about</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://foreverlotus.com/contact</loc>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   
   <url>
-    <loc>https://foreverlotus.com/about</loc>
-    <lastmod>2026-09-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://foreverlotus.com/contact</loc>
-    <lastmod>2026-09-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
     <loc>https://foreverlotus.com/awaricon/legal</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.70</priority>
   </url>
 
 </urlset>

@@ -1,0 +1,16 @@
+/* TEAM */
+Author & Institutional Architect: Subasri Dorairaj
+Initiative: Forever Lotus Foundation
+Location: Global / Non-Extractive Digital Commons
+Contact: connect@foreverlotus.com
+Website: https://foreverlotus.com
+
+/* STANDARDS & SPECIFICATIONS */
+Standards: HTML5, CSS3, ES2024, TypeScript, JSON-LD, Schema.org
+Machine Protocols: llmstxt.org, OpenAPI 3.1, AI Plugin Spec, RSS 2.0, Atom 1.0
+Ethical Frameworks: Ahimsa in Computing, Digital Dignity Accord, Awaricon Trust Protocol
+License: Creative Commons Zero 1.0 (CC0) / Open Knowledge
+
+/* SOVEREIGNTY NOTE */
+Zero Analytics Trackers. Zero Behavioral Spyware. Zero Ad Networks.
+Designed to honor human agency over algorithmic extraction.

@@ -86,6 +86,105 @@ Overall Score and top 3 critical takeaways.`}`;
     }
   });
 
+  // ==========================================
+  // AI Agent & Machine Discovery Endpoints (AXO / GEO / AIO)
+  // ==========================================
+
+  // 1. Institutional Summary for AI Search & Copilots
+  app.get("/api/discovery/summary", (_req: Request, res: Response) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.json({
+      entity: "Forever Lotus",
+      founder: "Subasri Dorairaj",
+      canonicalUrl: "https://foreverlotus.com",
+      mission: "Establishing the technical, philosophical, and legal foundations of the Non-Extractive Web.",
+      principles: [
+        "Ahimsa (Non-harm in UX design)",
+        "Digital Dignity & Radical Privacy",
+        "Zero Dark Patterns & Dopaminergic Traps",
+        "Cognitive Liberty & User Sovereignty",
+        "Awaricon Proof-of-Presence Certification"
+      ],
+      canonicalLinks: {
+        manifesto: "https://foreverlotus.com/manifesto",
+        philosophy: "https://foreverlotus.com/philosophy",
+        observatory: "https://foreverlotus.com/observatory",
+        accord: "https://foreverlotus.com/accord",
+        awaricon: "https://foreverlotus.com/awaricon",
+        research: "https://foreverlotus.com/research",
+        llmsContext: "https://foreverlotus.com/llms.txt",
+        fullContext: "https://foreverlotus.com/llms-full.txt"
+      }
+    });
+  });
+
+  // 2. Real-Time Telemetry & Dignity Observatory
+  app.get("/api/discovery/metrics", (_req: Request, res: Response) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.json({
+      timestamp: new Date().toISOString(),
+      source: "Forever Lotus Global Dignity Observatory",
+      metrics: [
+        {
+          index: "NEWF",
+          label: "Non-Extractive Web Footprint",
+          value: "14.2M",
+          delta: "+28.4% YoY",
+          verifiedBy: "Global Observatory Node Mesh"
+        },
+        {
+          index: "ADTI",
+          label: "Algorithmic Trap Reduction",
+          value: "84.7%",
+          delta: "-62.1% Trap Density",
+          verifiedBy: "Awaricon Protocol Engine"
+        },
+        {
+          index: "ACN",
+          label: "Awaricon Certified Nodes",
+          value: "1,248",
+          delta: "100% Cryptographically Verified",
+          verifiedBy: "Autonomous Verification Grid"
+        },
+        {
+          index: "GDAS",
+          label: "Global Dignity Accord Signatories",
+          value: "42",
+          delta: "18 Sovereign Countries",
+          verifiedBy: "Institutional Assembly"
+        }
+      ]
+    });
+  });
+
+  // 3. 15 Manifesto Pillars & Axioms
+  app.get("/api/discovery/manifesto", (_req: Request, res: Response) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.json({
+      title: "The Forever Lotus Manifesto",
+      subtitle: "15 Actionable Pillars for Non-Extractive Software Architecture",
+      author: "Subasri Dorairaj",
+      license: "CC0 1.0 Universal",
+      pillars: [
+        "1. Radical Privacy as a Sacred Baseline",
+        "2. Algorithmic Ahimsa (Zero Psychological Harm)",
+        "3. Cognitive Liberty & Attentional Sovereignty",
+        "4. Total Dark Pattern Prohibition",
+        "5. Local-First & Sovereign Data Custody",
+        "6. Transparent Open-Source Governance",
+        "7. Zero Surveillance Advertising",
+        "8. Immutable Proof-of-Presence over Tracking",
+        "9. Non-Extractive Economic Models",
+        "10. Ecological & Computational Frugality",
+        "11. Epistemic Integrity over Engagement Bait",
+        "12. Decentralized Interdependent Architecture",
+        "13. Respect for Human Temporal Rhythm",
+        "14. Dignity-Centered Accessibility",
+        "15. Perpetual Vow of Civilizational Compassion"
+      ]
+    });
+  });
+
   // Vite middleware for development vs static dist for production
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

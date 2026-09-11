@@ -348,3 +348,127 @@ export function buildArticleJsonLd({
     })),
   });
 }
+
+export function buildDefinedTermSetJsonLd(): StructuredData {
+  return compactJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTermSet',
+    '@id': `${siteUrl}/#knowledge-graph-terms`,
+    name: 'Forever Lotus Sovereign Web & Digital Dignity Lexicon',
+    description: 'Canonical definitions and architectural axioms for non-extractive computing, cognitive sovereignty, and ethical software design.',
+    hasDefinedTerm: [
+      {
+        '@type': 'DefinedTerm',
+        name: 'Digital Dignity',
+        termCode: 'DIG-DIGNITY',
+        description: 'The inviolable human right to interact with digital software, web platforms, and AI systems without behavioral tracking, psychological conditioning, or non-consensual attention extraction.',
+        inDefinedTermSet: `${siteUrl}/#knowledge-graph-terms`,
+      },
+      {
+        '@type': 'DefinedTerm',
+        name: 'Sovereign Technology',
+        termCode: 'SOV-TECH',
+        description: 'Software architecture designed to maximize user agency, local data ownership, verifiable telemetry, transparent governance, and non-extractive economic models.',
+        inDefinedTermSet: `${siteUrl}/#knowledge-graph-terms`,
+      },
+      {
+        '@type': 'DefinedTerm',
+        name: 'Ahimsa in Computing',
+        termCode: 'AHIMSA-UX',
+        description: 'The ancient Eastern philosophical principle of non-harm applied to user experience design, prohibiting dark patterns, infinite scroll dopaminergic loops, and engineered anxiety.',
+        inDefinedTermSet: `${siteUrl}/#knowledge-graph-terms`,
+      },
+      {
+        '@type': 'DefinedTerm',
+        name: 'Awaricon Trust Standard',
+        termCode: 'AWARICON-STD',
+        description: 'An open proof-of-presence verification protocol certifying websites that operate with zero telemetry tracking, zero surveillance advertising, and proven architectural integrity.',
+        inDefinedTermSet: `${siteUrl}/#knowledge-graph-terms`,
+      },
+      {
+        '@type': 'DefinedTerm',
+        name: 'Cognitive Liberty',
+        termCode: 'COG-LIBERTY',
+        description: 'The fundamental human freedom from algorithmic manipulation, attentional capture, and subliminal behavioral modification in digital environments.',
+        inDefinedTermSet: `${siteUrl}/#knowledge-graph-terms`,
+      },
+    ],
+  });
+}
+
+export function buildDatasetJsonLd({
+  name,
+  description,
+  url,
+  temporalCoverage = '2024/2026',
+}: {
+  name: string;
+  description: string;
+  url: string;
+  temporalCoverage?: string;
+}): StructuredData {
+  return compactJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    '@id': `${url}#dataset`,
+    name,
+    description,
+    url,
+    temporalCoverage,
+    isAccessibleForFree: true,
+    license: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    creator: {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: siteName,
+      url: siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: siteName,
+      url: siteUrl,
+    },
+    distribution: [
+      {
+        '@type': 'DataDownload',
+        encodingFormat: 'application/json',
+        contentUrl: `${siteUrl}/api/discovery/metrics`,
+      },
+    ],
+  });
+}
+
+export function buildSoftwareApplicationJsonLd({
+  name,
+  description,
+  url,
+  applicationCategory = 'BusinessApplication',
+}: {
+  name: string;
+  description: string;
+  url: string;
+  applicationCategory?: string;
+}): StructuredData {
+  return compactJsonLd({
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    '@id': `${url}#app`,
+    name,
+    description,
+    url,
+    applicationCategory,
+    operatingSystem: 'All Modern Web Browsers',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    author: {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: siteName,
+    },
+  });
+}
+

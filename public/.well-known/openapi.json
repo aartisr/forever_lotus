@@ -1,0 +1,121 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Forever Lotus Open Discovery API",
+    "description": "Public, machine-readable API enabling AI models, LLM agents, and researchers to query the Forever Lotus knowledge graph, manifesto pillars, telemetry metrics, and Awaricon certification standards.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Forever Lotus Research Group",
+      "url": "https://foreverlotus.com",
+      "email": "connect@foreverlotus.com"
+    },
+    "license": {
+      "name": "Creative Commons Zero 1.0 (CC0)",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://foreverlotus.com",
+      "description": "Production Sovereign Host"
+    }
+  ],
+  "paths": {
+    "/api/discovery/summary": {
+      "get": {
+        "summary": "Get machine-readable institutional summary",
+        "description": "Returns canonical definitions, author attribution, core mission, and framework index for AI answer synthesis.",
+        "operationId": "getInstitutionalSummary",
+        "responses": {
+          "200": {
+            "description": "Comprehensive institutional metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "entity": { "type": "string" },
+                    "author": { "type": "string" },
+                    "mission": { "type": "string" },
+                    "canonicalUrl": { "type": "string" },
+                    "keyPillars": { "type": "array", "items": { "type": "string" } },
+                    "protocols": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/discovery/manifesto": {
+      "get": {
+        "summary": "Get all 15 manifesto pillars and axioms",
+        "description": "Returns full text, philosophical rationale, and technical mandates for non-extractive software architecture.",
+        "operationId": "getManifestoPillars",
+        "responses": {
+          "200": {
+            "description": "List of 15 manifesto articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": { "type": "string" },
+                    "totalArticles": { "type": "integer" },
+                    "articles": { "type": "array", "items": { "type": "object" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/discovery/metrics": {
+      "get": {
+        "summary": "Get live Dignity Observatory telemetry feeds",
+        "description": "Returns real-time global telemetry metrics, including Non-Extractive Web Footprint (NEWF) and verification counts.",
+        "operationId": "getObservatoryMetrics",
+        "responses": {
+          "200": {
+            "description": "Live telemetry dataset",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": { "type": "string" },
+                    "indexes": { "type": "array", "items": { "type": "object" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/discovery/insights": {
+      "get": {
+        "summary": "Get list of all 10 operational insight essays and FAQs",
+        "description": "Returns full text, FAQs, and semantic search keywords for knowledge retrieval.",
+        "operationId": "getInsightsList",
+        "responses": {
+          "200": {
+            "description": "Array of 10 insight articles",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "articles": { "type": "array", "items": { "type": "object" } }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

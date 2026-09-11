@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Forever Lotus - Digital Dignity &amp; Sovereign Technology</title>
+  <subtitle>A civilizational framework for a non-extractive, sovereign internet.</subtitle>
+  <link href="https://foreverlotus.com/atom.xml" rel="self" />
+  <link href="https://foreverlotus.com/" />
+  <id>https://foreverlotus.com/</id>
+  <updated>2026-09-11T00:00:00Z</updated>
+  <author>
+    <name>Subasri Dorairaj</name>
+    <uri>https://foreverlotus.com/about</uri>
+  </author>
+
+  <entry>
+    <title>The Forever Lotus Manifesto: 15 Pillars for Non-Extractive Web Architecture</title>
+    <link href="https://foreverlotus.com/manifesto" />
+    <id>https://foreverlotus.com/manifesto</id>
+    <updated>2026-09-11T00:00:00Z</updated>
+    <summary>A foundational charter demanding the end of attention harvesting, dark UX patterns, and algorithmic manipulation.</summary>
+  </entry>
+
+  <entry>
+    <title>Eastern Philosophy and Ahimsa in Modern Computing</title>
+    <link href="https://foreverlotus.com/philosophy" />
+    <id>https://foreverlotus.com/philosophy</id>
+    <updated>2026-09-11T00:00:00Z</updated>
+    <summary>Grounding software development in Ahimsa (non-harm), Pratītyasamutpāda (interdependent ecology), and Dharma (ethical craft).</summary>
+  </entry>
+
+  <entry>
+    <title>Global Dignity Observatory: Living Telemetry Ledger</title>
+    <link href="https://foreverlotus.com/observatory" />
+    <id>https://foreverlotus.com/observatory</id>
+    <updated>2026-09-11T00:00:00Z</updated>
+    <summary>Open telemetry tracking the expansion of non-extractive digital architecture across global web platforms.</summary>
+  </entry>
+
+  <entry>
+    <title>The Global Dignity Accord: 10 Articles of Digital Sovereignty</title>
+    <link href="https://foreverlotus.com/accord" />
+    <id>https://foreverlotus.com/accord</id>
+    <updated>2026-09-11T00:00:00Z</updated>
+    <summary>An international institutional pledge for software architects, civil society, and creators.</summary>
+  </entry>
+
+  <entry>
+    <title>Awaricon Trust Protocol: Mathematical Proof-of-Presence Standard</title>
+    <link href="https://foreverlotus.com/awaricon" />
+    <id>https://foreverlotus.com/awaricon</id>
+    <updated>2026-09-11T00:00:00Z</updated>
+    <summary>The open verification badge that mathematically validates zero tracking, zero dark patterns, and ad-free sovereign web architecture.</summary>
+  </entry>
+</feed>
