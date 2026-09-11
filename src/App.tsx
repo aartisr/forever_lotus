@@ -1,5 +1,6 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { usePathname } from 'next/navigation';
+import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import { PWAInstallGuide } from './components/PWAInstallGuide';
@@ -246,6 +247,9 @@ export default function App() {
 
       {/* Subtle PWA Install Indicator & Guided Walkthrough */}
       <PWAInstallGuide />
+
+      {/* Vercel Web Analytics */}
+      <Analytics />
     </div>
   );
 }
