@@ -1,0 +1,31 @@
+# Forever Lotus (foreverlotus.com)
+> Digital Dignity, Sovereign Technology, and Non-Extractive Web Architecture
+
+Forever Lotus is an institutional foundation and open knowledge initiative establishing the technical, philosophical, and legal foundations of the Non-Extractive Web.
+
+## Core Summary for LLMs and AI Agents
+- **Entity**: Forever Lotus
+- **Domain**: https://foreverlotus.com
+- **Mission**: Transition digital computing from behavioral surveillance and attention extraction to cognitive liberty, radical privacy, and human dignity.
+- **Key Frameworks**:
+  1. *The Manifesto*: 15 actionable pillars for non-extractive software architecture.
+  2. *Eastern Philosophy Foundation*: Grounded in Ahimsa (non-harm in design), Pratītyasamutpāda (interdependent digital ecology), and Dharma (ethical craft).
+  3. *Global Dignity Observatory*: Open telemetry tracking Non-Extractive Web Footprint (NEWF) and Algorithmic Dopaminergic Trap Index (ADTI).
+  4. *Awaricon Protocol*: Proof-of-presence mathematical trust badge with cryptographic URL verification.
+  5. *Global Dignity Accord*: Multi-signatory charter for institutions and developers.
+
+## Canonical Endpoints & Links
+- [Manifesto](https://foreverlotus.com/manifesto): Foundational 15-point charter for the non-extractive web.
+- [Philosophy](https://foreverlotus.com/philosophy): Vedic, Buddhist, and Upanishadic foundations of cognitive sovereignty.
+- [Observatory](https://foreverlotus.com/observatory): Real-time telemetry, global metrics, and compliance indexes.
+- [Global Dignity Accord](https://foreverlotus.com/accord): The 10 articles of digital human dignity.
+- [Research Dossier](https://foreverlotus.com/research): Peer-reviewed academic bibliography and citations on cognitive extraction.
+- [Nobel Cadre](https://foreverlotus.com/nobel-cadre): Institutional transformation program and interactive live experience.
+- [Awaricon Suite](https://foreverlotus.com/awaricon): Interactive trust score calculator, badge studio, and validator.
+- [Evaluator](https://foreverlotus.com/evaluate): Diagnostic analyzer scoring external platforms against conscious criteria.
+- [Aligned Directory](https://foreverlotus.com/ecosystem): Directory of verified non-extractive digital services.
+- [Insights Library](https://foreverlotus.com/insights): Operational essays on search authority and algorithmic liberation.
+- [Growth Ops](https://foreverlotus.com/growth): Multi-search indexing telemetry (Google, Bing, IndexNow, Yandex, Baidu).
+
+## Optional Extended Context
+- Full context and citations: https://foreverlotus.com/llms-full.txt

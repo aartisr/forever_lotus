@@ -1,0 +1,7 @@
+{
+  "name": "Forever Lotus - Digital Dignity & Sovereign Technology",
+  "description": "The foundational institutional platform, living Dignity Observatory, Awaricon Verification Suite, Research Dossier, and interactive tools for Forever Lotus.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

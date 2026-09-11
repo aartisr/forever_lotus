@@ -1,0 +1,49 @@
+# Forever Lotus Robots Policy
+# https://foreverlotus.com
+# Open Knowledge, AI Discoverability & Sovereign Indexing
+
+User-agent: *
+Allow: /
+Disallow: /awaricon/admin
+
+# AI Search & Answer Engine Bots (Explicitly Welcome)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+# Canonical Sitemaps and Machine-Readable LLM Context
+Sitemap: https://foreverlotus.com/sitemap.xml
+Sitemap: https://foreverlotus.com/rss.xml
+
+# LLMs Text Direct Reference (https://llmstxt.org)
+# llms.txt: https://foreverlotus.com/llms.txt
+# llms-full.txt: https://foreverlotus.com/llms-full.txt

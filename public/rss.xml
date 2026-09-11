@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Forever Lotus - Digital Dignity &amp; Sovereign Technology</title>
+    <link>https://foreverlotus.com/</link>
+    <description>The foundational manifesto, research dossier, and living telemetry for the Non-Extractive Web.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Sep 2026 18:30:00 GMT</lastBuildDate>
+    <atom:link href="https://foreverlotus.com/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>The Forever Lotus Manifesto: Foundational Declaration of Digital Dignity</title>
+      <link>https://foreverlotus.com/manifesto</link>
+      <guid>https://foreverlotus.com/manifesto</guid>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>
+      <description>The complete 15-point charter establishing non-extractive web architecture, zero-surveillance design, and cognitive sovereignty.</description>
+    </item>
+
+    <item>
+      <title>Eastern Philosophy in Modern Software: Ahimsa, Pratītyasamutpāda &amp; Dharma</title>
+      <link>https://foreverlotus.com/philosophy</link>
+      <guid>https://foreverlotus.com/philosophy</guid>
+      <pubDate>Thu, 15 Feb 2024 00:00:00 GMT</pubDate>
+      <description>Integrating Vedic, Buddhist, and Upanishadic wisdom into ethical digital systems and humane interface design.</description>
+    </item>
+
+    <item>
+      <title>Global Dignity Observatory: Real-time Telemetry on Human Attention Extraction</title>
+      <link>https://foreverlotus.com/observatory</link>
+      <guid>https://foreverlotus.com/observatory</guid>
+      <pubDate>Sun, 01 Jun 2025 00:00:00 GMT</pubDate>
+      <description>Open data metrics tracking global algorithmic dopamine traps and non-extractive digital node distribution.</description>
+    </item>
+
+    <item>
+      <title>Global Dignity Accord: An Open Institutional Charter for Sovereign Systems</title>
+      <link>https://foreverlotus.com/accord</link>
+      <guid>https://foreverlotus.com/accord</guid>
+      <pubDate>Fri, 15 Aug 2025 00:00:00 GMT</pubDate>
+      <description>International treaty signed by engineers, creators, and institutions to preserve human cognitive liberty.</description>
+    </item>
+
+    <item>
+      <title>Awaricon Proof-of-Presence: Mathematical Trust &amp; Open Verification</title>
+      <link>https://foreverlotus.com/awaricon</link>
+      <guid>https://foreverlotus.com/awaricon</guid>
+      <pubDate>Tue, 01 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Interactive badge studio and mathematical verification protocol for purpose-driven platforms.</description>
+    </item>
+  </channel>
+</rss>
