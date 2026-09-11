@@ -328,6 +328,62 @@ export const SearchGrowthOpsView: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* 5. Product Analytics & Behavioral Telemetry (PostHog + Microsoft Clarity) */}
+            <div className="bg-[#FAF8F5] rounded-2xl border border-stone-200 p-6 space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-base font-display font-bold text-stone-900 flex items-center gap-2">
+                    <Layers className="w-4 h-4 text-amber-700" />
+                    <span>User Journey &amp; Behavioral Telemetry (PostHog &amp; Microsoft Clarity)</span>
+                  </h4>
+                  <p className="text-xs text-stone-700 font-serif-body">
+                    Zero-PII behavioral diagnostics, heatmap recording, and non-extractive event telemetry.
+                  </p>
+                </div>
+                <span className="text-xs font-mono-code bg-amber-100 text-amber-900 px-2.5 py-1 rounded-full font-bold">
+                  Sovereign Privacy Active
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl p-4 border border-stone-200 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-stone-900">PostHog Analytics</span>
+                    <span className="text-[10px] font-mono-code px-2 py-0.5 rounded bg-stone-100 text-stone-700">
+                      VITE_POSTHOG_KEY
+                    </span>
+                  </div>
+                  <p className="text-xs text-stone-700 font-serif-body">
+                    Automated client-side SPA route transition tracking, privacy-preserving session recording with input masking, and event telemetry.
+                  </p>
+                  <div className="pt-2 text-[11px] font-mono-code text-stone-700 flex items-center justify-between border-t border-stone-100">
+                    <span>Host: us.i.posthog.com / eu.i.posthog.com</span>
+                    <span className="text-emerald-700 font-bold flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Ready
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-xl p-4 border border-stone-200 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-stone-900">Microsoft Clarity</span>
+                    <span className="text-[10px] font-mono-code px-2 py-0.5 rounded bg-stone-100 text-stone-700">
+                      VITE_CLARITY_PROJECT_ID
+                    </span>
+                  </div>
+                  <p className="text-xs text-stone-700 font-serif-body">
+                    Session heatmaps, rage-click detection, scroll-depth analytics, and non-intrusive usability diagnostics.
+                  </p>
+                  <div className="pt-2 text-[11px] font-mono-code text-stone-700 flex items-center justify-between border-t border-stone-100">
+                    <span>Async Script Loader: clarity.ms</span>
+                    <span className="text-emerald-700 font-bold flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Ready
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         ) : activeTab === 'indexing' ? (
           <div className="pt-8">

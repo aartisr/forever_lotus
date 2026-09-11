@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import { PWAInstallGuide } from './components/PWAInstallGuide';
+import { AnalyticsProvider } from './components/AnalyticsProvider';
 
 // Core Home Page (included directly for instant First Contentful Paint)
 import HomePage from './pages/HomePage';
@@ -227,6 +228,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-lotus-bg text-lotus-cream flex flex-col selection:bg-lotus-gold selection:text-black">
+      {/* PostHog & Microsoft Clarity Telemetry Provider */}
+      <AnalyticsProvider />
+
       {/* Universal Navigation Header */}
       <Navigation />
 
